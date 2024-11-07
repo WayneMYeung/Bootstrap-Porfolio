@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bootstrap Project - Home</title>
+    <!-- Link to Bootstrap CSS from node_modules -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/custom.css"> <!-- Your custom styles -->
+</head>
+<body>
+    <!-- Rounded Navbar -->
+    <nav class="rounded-navbar">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" href="home.html">
+                    <i class="fas fa-home"></i> <!-- Home icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#about">  
+                    <i class="fas fa-user"></i> <!-- User icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#projects">
+                    <i class="fas fa-briefcase"></i> <!-- Briefcase icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">
+                    <i class="fas fa-envelope"></i> <!-- Envelope icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#more">
+                    <i class="fas fa-list"></i> <!-- List icon -->
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content text-center">
+            <h1 class="fixed-text">I'M A</h1>
+            <h2 class="hero-text">
+                <span class="sec-text" id="typing-text"></span>
+            </h2>
+        </div>
+    </div>
+      
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">About Me</h2>
+            <p class="text-center">I'm a passionate web developer with experience in creating responsive and dynamic websites. I love exploring new technologies and constantly improving my skills.</p>
+        </div>
+    </section>
+
+<!-- Projects Section with Carousel -->
+<section id="projects" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Projects</h2>
+        
+        <!-- Bootstrap Carousel -->
+        <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Carousel indicators (optional) -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            </div>
+            
+            <!-- Carousel inner slides -->
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="card text-center">
+                        <img src="img/Wikipedia-redesign.png" class="card-img-top" alt="Project 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Project 1</h5>
+                            <p class="card-text">A brief description of Project 1 goes here.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="card text-center">
+                        <img src="img/meet-homie-image.png" class="card-img-top" alt="Project 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Project 2</h5>
+                            <p class="card-text">A brief description of Project 2 goes here.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <div class="card text-center">
+                        <img src="img/webite-image.jpg" class="card-img-top" alt="Project 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Project 3</h5>
+                            <p class="card-text">A brief description of Project 3 goes here.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="carousel-item">
+                    <div class="card text-center">
+                        <img src="img/2d-survivor-game.png" class="card-img-top" alt="Project 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Project 4</h5>
+                            <p class="card-text">A brief description of Project 4 goes here.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="carousel-item">
+                    <div class="card text-center">
+                        <img src="img/Personal-Website.PNG" class="card-img-top" alt="Project 5">
+                        <div class="card-body">
+                            <h5 class="card-title">Project 5</h5>
+                            <p class="card-text">A brief description of Project 4 goes here.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 6 -->
+                <div class="carousel-item">
+                    <div class="card text-center">
+                        <img src="img/project-redesign2.PNG" class="card-img-top" alt="Project 6">
+                        <div class="card-body">
+                            <h5 class="card-title">Project 6</h5>
+                            <p class="card-text">A brief description of Project 6 goes here.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carousel controls (next and previous) -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5 text-center">
+        <div class="container">
+            <h2 class="mb-4">Connect With Me</h2>
+            <a href="contact.html" class="btn btn-outline-light">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white py-3">
+        <p>© 2024 My Portfolio. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/typing-effect.js"></script>
+    <script src="js/navbar-active.js"></script>
+</body>
+</html>

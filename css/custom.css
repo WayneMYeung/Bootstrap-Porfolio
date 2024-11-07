@@ -1,0 +1,259 @@
+/* custom.css */
+
+/* Rounded Navbar Styling */
+.rounded-navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.rounded-navbar .nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.rounded-navbar .nav-item {
+    list-style: none;
+}
+
+.rounded-navbar .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #444;
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.rounded-navbar .nav-link:hover {
+    background-color: #555;
+}
+
+.rounded-navbar .nav-link i {
+    font-size: 1.2rem;
+}
+
+.rounded-navbar .nav .nav-link.active {
+    background-color: #fff !important;
+    color: #000 !important;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+
+/* Full-screen Hero Section Styling */
+.hero-section {
+    position: relative;
+    height: 100vh; /* Full screen height */
+    background-color: #faf1e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Hero Section Styling */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #faf1e0;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+}
+
+/* Fixed Text Styling */
+.fixed-text {
+    font-size: 4vw; /* Adjust as needed */
+    -webkit-text-stroke: 2px #375E97;
+    color: #375E97;
+    margin: 0;
+}
+
+/* Typing Text Styling */
+.sec-text {
+    font-weight: 900;
+    line-height: 0.85;
+    font-size: 10.5vw; /* Adjust as needed */
+    color: #faf1e0;
+    -webkit-text-stroke: 2px #375E97;
+    text-shadow: 
+        -1px 1px 0 #375E97,
+        -1.5px 1.5px 0 #375E97,
+        -2px 2px 0 #375E97,
+        -2.5px 2.5px 0 #375E97,
+        -3px 3px 0 #375E97,
+        -3.5px 3.5px 0 #375E97,
+        -4px 4px 0 #375E97,
+        -4.5px 4.5px 0 #375E97,
+        -5px 5px 0 #375E97,
+        -5.5px 5.5px 0 #375E97,
+        -6px 6px 0 #375E97,
+        -6.5px 6.5px 0 #375E97,
+        -7px 7px 0 #375E97,
+        -7.5px 7.5px 0 #375E97,
+        -8px 8px 0 #375E97,
+        -8.5px 8.5px 0 #375E97,
+        -9px 9px 0 #375E97,
+        -9.5px 9.5px 0 #375E97,
+        -10px 10px 0 #375E97,
+        -10.5px 10.5px 0 #375E97,
+        -11px 11px 0 #375E97,
+        -11.5px 11.5px 0 #375E97,
+        -12px 12px 0 #375E97,
+        -12.5px 12.5px 0 #375E97,
+        -13px 13px 0 #375E97,
+        -13.5px 13.5px 0 #375E97,
+        -14px 14px 0 #375E97,
+        -14.5px 14.5px 0 #375E97,
+        -15px 15px 0 #375E97,
+        -15.5px 15.5px 0 #375E97,
+        -16px 16px 0 #375E97,
+        -16.5px 16.5px 0 #375E97,
+        -17px 17px 0 #375E97,
+        -17.5px 17.5px 0 #375E97,
+        -18px 18px 0 #375E97,
+        -18.5px 18.5px 0 #375E97,
+        -19px 19px 0 #375E97,
+        -19.5px 19.5px 0 #375E97,
+        -20px 20px 0 #375E97;
+}
+
+/* Blinking cursor effect */
+.sec-text::after {
+    content: '|';
+    animation: blink 0.7s step-end infinite;
+    margin-left: 5px;
+}
+
+/* Blinking animation */
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* About Section */
+#about {
+    background-color: #f8f9fa;
+}
+
+/* Carousel Container Styling */
+#projects .carousel {
+    max-width: 800px; /* Set maximum width for the carousel */
+    margin: 0 auto; /* Center the carousel within the section */
+}
+
+/* Styling for Carousel Images */
+.carousel-item img {
+    width: 100%; /* Full width of the container */
+    height: 400px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    border-top-left-radius: 0.25rem; /* Match Bootstrap card border-radius */
+    border-top-right-radius: 0.25rem; /* Match Bootstrap card border-radius */
+}
+
+/* Styling for Carousel Cards */
+.carousel-item .card {
+    border: none; /* Remove default border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    border-radius: 0.5rem; /* Rounded corners for the card */
+    overflow: hidden; /* Ensure content fits within the rounded corners */
+}
+
+/* Centering Text in the Card */
+.carousel-item .card-body {
+    text-align: center;
+}
+
+/* Carousel Controls Styling */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #333; /* Dark background for the controls */
+    border-radius: 50%; /* Make controls circular */
+    padding: 10px; /* Add padding for better visibility */
+    opacity: 0.8; /* Slightly transparent */
+    transition: opacity 0.3s; /* Smooth transition for hover */
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    opacity: 1; /* Full opacity on hover */
+}
+
+/* Carousel Indicators Styling */
+.carousel-indicators button {
+    background-color: #666; /* Gray color for inactive indicators */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; /* Make indicators circular */
+    margin: 5px; /* Spacing between indicators */
+}
+
+.carousel-indicators .active {
+    background-color: #333; /* Darker color for active indicator */
+}
+
+/* Additional Styling for the Section */
+#projects {
+    padding: 2rem 0;
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+#projects h2 {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+#projects .carousel-item .btn {
+    background-color: #007bff; /* Primary button color */
+    color: #fff;
+    border-radius: 20px; /* Rounded button */
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+}
+
+#projects .carousel-item .btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Contact Section Styling */
+.contact-section {
+    background-color: #333;
+    color: #fff;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.contact-section .btn {
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.contact-section .btn:hover {
+    background-color: #fff;
+    color: #333;
+    border-color: #fff;
+}

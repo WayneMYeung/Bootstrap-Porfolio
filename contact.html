@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me - My Bootstrap Project</title>
+    <!-- Link to Bootstrap CSS and Font Awesome -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/contact.css"> <!-- Your custom styles -->
+</head>
+<body>
+    <!-- Rounded Navbar -->
+    <nav class="rounded-navbar">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">
+                    <i class="fas fa-home"></i> <!-- Home icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html#about">
+                    <i class="fas fa-user"></i> <!-- User icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="home.html#projects">
+                    <i class="fas fa-briefcase"></i> <!-- Briefcase icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">
+                    <i class="fas fa-envelope"></i> <!-- Envelope icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">
+                    <i class="fas fa-list"></i> <!-- List icon -->
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Contact Me</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Your Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white py-3">
+        <p>© 2024 My Portfolio. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script> <!-- Your custom scripts -->
+</body>
+</html>

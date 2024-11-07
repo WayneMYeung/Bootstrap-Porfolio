@@ -1,0 +1,79 @@
+/* Rounded Navbar Styling */
+.rounded-navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.rounded-navbar .nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.rounded-navbar .nav-item {
+    list-style: none;   
+}
+
+.rounded-navbar .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #444;
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.rounded-navbar .nav-link:hover {
+    background-color: #555;
+}
+
+.rounded-navbar .nav-link i {
+    font-size: 1.2rem;
+}
+
+/* Contact Page Styling */
+#contact {
+    margin-top: 3rem; 
+    background-color: #ffffff;
+    padding: 3rem 0;
+}
+
+#contact .form-control {
+    border-radius: 0;
+    border: 1px solid #ced4da;
+}
+
+#contact .btn-primary {
+    margin-top: 1rem;
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#contact .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+    z-index: 1000;
+}
