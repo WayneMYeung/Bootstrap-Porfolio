@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Rounded Navbar -->
-    <nav class="rounded-navbar">
+    <nav class="rounded-navbar" id="floatingNavbar">
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <a class="nav-link active" href="home.html">
@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#about">  
+                <a class="nav-link" href="resume.html">  
                     <i class="fas fa-user"></i> <!-- User icon -->
                 </a>
             </li>
@@ -39,11 +39,19 @@
                 </a>
             </li>
         </ul>
-    </nav>
+    </nav>    
 
     <!-- Hero Section -->
     <div class="hero-section">
         <div class="hero-content text-center">
+            <!-- Fixed Navbar -->
+            <div class="fixed-navbar">
+                <nav class="nav">
+                    <a href="#about" class="nav-link">ABOUT</a>
+                    <a href="resume.html" class="nav-link">RESUME</a>
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </nav>
+            </div>
             <h1 class="fixed-text">I'M A</h1>
             <h2 class="hero-text">
                 <span class="sec-text" id="typing-text"></span>
@@ -180,5 +188,6 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/typing-effect.js"></script>
     <script src="js/navbar-active.js"></script>
+    <script src="js/navbar-scroll.js"></script>
 </body>
 </html>
