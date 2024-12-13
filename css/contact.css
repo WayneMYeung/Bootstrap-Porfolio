@@ -1,3 +1,11 @@
+/* General Styles */
+body {
+    font-family: "Agdasima", serif;
+    background-color: #faf1e0;
+    margin: 0;
+    padding: 0;
+}
+
 /* Rounded Navbar Styling */
 .rounded-navbar {
     position: fixed;
@@ -9,7 +17,11 @@
     border-radius: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     z-index: 1000;
+    opacity: 1; /* Make it visible */
+    transition: opacity 0.3s ease;
 }
+
+
 
 .rounded-navbar .nav {
     display: flex;
@@ -17,7 +29,7 @@
 }
 
 .rounded-navbar .nav-item {
-    list-style: none;   
+    list-style: none;
 }
 
 .rounded-navbar .nav-link {
@@ -41,10 +53,40 @@
     font-size: 1.2rem;
 }
 
+.rounded-navbar .nav .nav-link.active {
+    background-color: #fff !important;
+    color: #000 !important;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+    .rounded-navbar {
+        padding: 0.2rem 0.4rem; /* Further reduce padding */
+        top: 10px; /* Adjust top position */
+    }
+
+    .rounded-navbar .nav-link {
+        width: 30px; /* Further reduce size of nav items */
+        height: 30px;
+        font-size: 0.8rem; /* Further reduce font size */
+    }
+
+    .hero-section .fixed-navbar .nav-link {
+        font-size: 0.65rem; /* Further reduce font size */
+        padding: 0.2rem 0.6rem; /* Adjust padding for very small screens */
+    }
+}
+
+.rounded-navbar .nav-link:hover {
+    background-color: #555;
+}
+
 /* Contact Page Styling */
 #contact {
     margin-top: 3rem; 
-    background-color: #ffffff;
+    background-color: #faf1e0;
     padding: 3rem 0;
 }
 
@@ -64,6 +106,17 @@
 #contact .btn-primary:hover {
     background-color: #0056b3;
     border-color: #0056b3;
+}
+
+.fas.fa-info-circle {
+    margin-left: 8px; /* Space between the label and the icon */
+    color: #6c757d; /* Light gray color */
+    cursor: pointer; /* Change cursor to pointer for better usability */
+    font-size: 0.9rem;
+}
+
+.fas.fa-info-circle:hover {
+    color: #007bff; /* Change color on hover to indicate interactivity */
 }
 
 footer {

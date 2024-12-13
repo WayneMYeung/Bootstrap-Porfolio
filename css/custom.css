@@ -1,20 +1,27 @@
 /* custom.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Ensure full width is used */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
 /* Fixed Navbar Styling for Top of Hero Section */
 .hero-section .fixed-navbar {
-    position: absolute; /* Relative to the hero section */
-    top: 20px; /* Adjust spacing from the top */
-    left: 80%; /* Center align */
-    transform: translateX(-50%); /* Center on the x-axis */
+    position: absolute; /* Keeps it within the hero section */
+    top: 4%; /* Adjust spacing from the top */
+    right: 2%;
     z-index: 10; /* Ensure it stays above other elements */
-    font-family: 'Inter', sans-serif; /* Use the imported font */
+    font-family: 'Inter', sans-serif; /* Use a modern font */
 }
 
 .hero-section .fixed-navbar .nav {
     display: flex;
     gap: 1.5rem; /* Add spacing between buttons */
     justify-content: center; /* Align items horizontally */
+    align-items: center;
 }
 
 .hero-section .fixed-navbar .nav-link {
@@ -101,6 +108,20 @@
 
 /* Media Queries for Smaller Screens */
 @media (max-width: 768px) {
+    .hero-section .fixed-navbar {
+        top: 10px; /* Adjust spacing for smaller screens */
+        right: 10px; /* Keep it aligned to the right */
+    }
+
+    .hero-section .fixed-navbar .nav-link {
+        font-size: 0.75rem; /* Reduce font size */
+        padding: 0.3rem 0.8rem; /* Adjust padding */
+        border-radius: 20px; /* Slightly smaller buttons */
+    }
+
+    .hero-section .fixed-navbar .nav {
+        gap: 0.5rem; /* Reduce spacing between links */
+    }
     .rounded-navbar {
         padding: 0.3rem 0.5rem; /* Reduce padding */
     }
@@ -126,6 +147,11 @@
         width: 30px; /* Further reduce size of nav items */
         height: 30px;
         font-size: 0.8rem; /* Further reduce font size */
+    }
+
+    .hero-section .fixed-navbar .nav-link {
+        font-size: 0.65rem; /* Further reduce font size */
+        padding: 0.2rem 0.6rem; /* Adjust padding for very small screens */
     }
 }
 
@@ -164,7 +190,7 @@
 .sec-text {
     font-weight: 900;
     line-height: 0.85;
-    font-size: 10.5vw; /* Adjust as needed */
+    font-size: 10vw; /* Adjust as needed */
     color: #faf1e0;
     -webkit-text-stroke: 2px #375E97;
     text-shadow: 
@@ -226,91 +252,69 @@
 
 /* About Section */
 #about {
+    font-family: "Agdasima", serif;
     background-color: #f8f9fa;
 }
 
-/* Carousel Container Styling */
-#projects .carousel {
-    max-width: 800px; /* Set maximum width for the carousel */
-    margin: 0 auto; /* Center the carousel within the section */
+#about h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
 }
 
-/* Styling for Carousel Images */
-.carousel-item img {
-    width: 100%; /* Full width of the container */
-    height: 400px; /* Set a fixed height */
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
-    border-top-left-radius: 0.25rem; /* Match Bootstrap card border-radius */
-    border-top-right-radius: 0.25rem; /* Match Bootstrap card border-radius */
+#about p {
+    font-size: 1.7rem;
+    color: #555;
 }
 
-/* Styling for Carousel Cards */
-.carousel-item .card {
-    border: none; /* Remove default border */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-    border-radius: 0.5rem; /* Rounded corners for the card */
-    overflow: hidden; /* Ensure content fits within the rounded corners */
-}
-
-/* Centering Text in the Card */
-.carousel-item .card-body {
-    text-align: center;
-}
-
-/* Carousel Controls Styling */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: #333; /* Dark background for the controls */
-    border-radius: 50%; /* Make controls circular */
-    padding: 10px; /* Add padding for better visibility */
-    opacity: 0.8; /* Slightly transparent */
-    transition: opacity 0.3s; /* Smooth transition for hover */
-}
-
-.carousel-control-prev-icon:hover,
-.carousel-control-next-icon:hover {
-    opacity: 1; /* Full opacity on hover */
-}
-
-/* Carousel Indicators Styling */
-.carousel-indicators button {
-    background-color: #666; /* Gray color for inactive indicators */
-    width: 10px;
-    height: 10px;
-    border-radius: 50%; /* Make indicators circular */
-    margin: 5px; /* Spacing between indicators */
-}
-
-.carousel-indicators .active {
-    background-color: #333; /* Darker color for active indicator */
-}
-
-/* Additional Styling for the Section */
+/* Project Section*/
 #projects {
-    padding: 2rem 0;
-    background-color: #f8f9fa; /* Light gray background */
+    font-family: "Agdasima", serif;
+    background-color: #f8f9fa;
+    padding: 3rem 0;
 }
 
 #projects h2 {
+    font-size: 3rem;
+    font-weight: 700;
     color: #333;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-}
+  }
+  
+  .card {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    font-weight: Bold;
+    margin-bottom: 1rem;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+  }
 
-#projects .carousel-item .btn {
-    background-color: #007bff; /* Primary button color */
-    color: #fff;
-    border-radius: 20px; /* Rounded button */
-    padding: 0.5rem 1rem;
-    transition: background-color 0.3s;
-}
-
-#projects .carousel-item .btn:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-}
+  .card-img-top {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+  }
+  
+  .carousel-inner .carousel-item {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
 
 /* Contact Section Styling */
 .contact-section {
+    font-family: "Agdasima", serif;
     background-color: #333;
     color: #fff;
 }

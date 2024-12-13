@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Projects</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Playwrite+TZ+Guides&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/portfolio.css">
+</head>
+<body>
+    <!-- Rounded Navbar -->
+    <nav class="rounded-navbar" id="floatingNavbar">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">
+                    <i class="fas fa-home"></i> <!-- Home icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="resume.html">  
+                    <i class="fas fa-user"></i> <!-- User icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="portfolio.html">
+                    <i class="fas fa-briefcase"></i> <!-- Briefcase icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">
+                    <i class="fas fa-envelope"></i> <!-- Envelope icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#more">
+                    <i class="fas fa-list"></i> <!-- List icon -->
+                </a>
+            </li>
+        </ul>
+    </nav>    
+
+    <!-- Hero Section -->
+    <div class="hero-section text-center">
+        <h1 class="hero-title">Projects.</h1>
+    </div>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <div class="portfolio-item" data-image="../img/project4.png"
+             data-title="Wiki Redesign" 
+             data-description="A redesign of the Wikipedia homepage to improve user experience and accessibility." 
+             data-github="https://github.com/WayneMYeung/Wikipedia-Redesign">
+            <div class="img-container">
+                <img src="../img/project4.png" alt="Project 1 Image">
+                <div class="overlay">
+                    <div class="project-name">Wikipedia-Redesign</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item" data-image="../img/project2.png"
+             data-title="MeetHomie Scheduling App" 
+             data-description="A scheduling application to help users manage their appointments and meetings efficiently."
+             data-github="https://github.com/douglasquan/MeetHomie-scheduling-app">
+            <div class="img-container">
+                <img src="../img/project2.png" alt="Project 2 Image">
+                <div class="overlay">
+                    <div class="project-name">MeetHomie</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item" data-image="../img/project3.jpg"
+             data-title="WeBite" 
+             data-description="A food ordering and management system for home cooks to sell their dishes to customers." 
+             data-github="https://github.com/douglasquan/WeBite-Food-Ordering-Management-for-Home-Cooks-">
+            <div class="img-container">
+                <img src="../img/project3.jpg" alt="Project 3 Image">
+                <div class="overlay">
+                    <div class="project-name">WeBite</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item" data-image="../img/project5.png"
+             data-title="Old Personal Website" 
+             data-description="A personal website to showcase my portfolio, resume, and contact information." 
+             data-github="https://github.com/WayneMYeung/Personal-Website">
+            <div class="img-container">
+                <img src="../img/project5.png" alt="Project 4 Image">
+                <div class="overlay">
+                    <div class="project-name">Personal Website</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item" data-image="../img/project6.PNG"
+             data-title="New Bootstrap Portfolio" 
+             data-description="A portfolio website built using Bootstrap, HTML, and CSS." 
+             data-github="https://github.com/WayneMYeung/Bootstrap-Porfolio">
+            <div class="img-container">
+                <img src="../img/project6.PNG" alt="Project 5 Image">
+                <div class="overlay">
+                    <div class="project-name">Bootstrap Portfolio</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item" data-image="../img/project1.PNG"
+             data-title="2D Survivor Game" 
+             data-description="A 2D survival game where players must avoid enemy hits and collect power-ups to survive." 
+             data-github="https://github.com/WayneMYeung/2D-Survivor-Game">
+            <div class="img-container">
+                <img src="../img/project1.PNG" alt="Project 6 Image">
+                <div class="overlay">
+                    <div class="project-name">2D Survivor Game</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- Modal Structure -->
+    <div class="modal" id="imageModal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-inner">
+            <img class="modal-content" id="modalImg" src="" alt="Enlarged Project Image">
+            <div class="modal-info">
+                <h2 id="modalTitle"></h2>
+                <p id="modalDescription"></p>
+                <a id="modalGithub" href="#" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+    
+      
+      
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-center text-white py-3">
+        <p>© 2024 Your Portfolio. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/portfolio-pop.js"></script>
+</body>
+</html>
