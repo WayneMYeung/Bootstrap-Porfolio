@@ -61,21 +61,18 @@ body {
     transition: all 0.3s ease;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .rounded-navbar {
-        padding: 0.2rem 0.4rem; /* Further reduce padding */
-        top: 10px; /* Adjust top position */
+        padding: 0.3rem 0.5rem; /* Reduce padding */
+    }
+
+    .rounded-navbar .nav {
+        gap: 0.5rem; /* Reduce gap between items */
     }
 
     .rounded-navbar .nav-link {
-        width: 30px; /* Further reduce size of nav items */
-        height: 30px;
-        font-size: 0.8rem; /* Further reduce font size */
-    }
-
-    .hero-section .fixed-navbar .nav-link {
-        font-size: 0.65rem; /* Further reduce font size */
-        padding: 0.2rem 0.6rem; /* Adjust padding for very small screens */
+        width: 25px; /* Reduce size of nav items */
+        height: 31px;
     }
 }
 
@@ -95,6 +92,54 @@ body {
 
 .hero-section h2 {
     font-size: 1.5rem;
+}
+
+.hero-section .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.hero-section .social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hero-section .social-links a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional colors for GitHub and LinkedIn */
+.hero-section .social-links a.btn-dark {
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+.hero-section .social-links a.btn-dark:hover {
+    background-color: #555;
+}
+
+.hero-section .social-links a.btn-primary {
+    background-color: #0077b5;
+    color: #fff;
+    border: none;
+}
+
+.hero-section .social-links a.btn-primary:hover {
+    background-color: #005983;
+}
+
+.hero-section .social-links a i {
+    margin-right: 0.5rem; /* Add spacing between icon and text */
+    font-size: 1.2rem; 
 }
 
 /* About Section */

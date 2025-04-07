@@ -1,12 +1,12 @@
 /* General Styles */
 body {
     font-family: "Agdasima", serif;
-    background-color: #faf1e0;
     margin: 0;
     padding: 0;
-}
+    background-color: #faf1e0;
+  }
 
-/* Rounded Navbar Styling */
+  /* Rounded Navbar Styling */
 .rounded-navbar {
     position: fixed;
     top: 20px;
@@ -20,8 +20,6 @@ body {
     opacity: 1; /* Make it visible */
     transition: opacity 0.3s ease;
 }
-
-
 
 .rounded-navbar .nav {
     display: flex;
@@ -75,56 +73,69 @@ body {
         height: 31px;
     }
 }
-
-.rounded-navbar .nav-link:hover {
-    background-color: #555;
-}
-
-/* Contact Page Styling */
-#contact {
-    margin-top: 3rem; 
-    background-color: #faf1e0;
+  
+  /* Hero Section */
+  .hero-section {
+    background-color: #2E3A46;
     padding: 3rem 0;
-}
-
-#contact .form-control {
-    border-radius: 0;
-    border: 1px solid #ced4da;
-}
-
-#contact .btn-primary {
+  }
+  
+  .hero-section h1 {
+    padding-top: 3rem;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .hero-section p {
+    font-size: 1.2rem;
     margin-top: 1rem;
-    background-color: #007bff;
-    border-color: #007bff;
-    border-radius: 0.25rem;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-#contact .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-}
-
-.fas.fa-info-circle {
-    margin-left: 8px; /* Space between the label and the icon */
-    color: #6c757d; /* Light gray color */
-    cursor: pointer; /* Change cursor to pointer for better usability */
+  }
+  
+  /* Countdown Section */
+  .countdown-section {
+    background-color: #faf1e0;
+  }
+  
+  .countdown .time {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Projects Section */
+  .projects-section {
+    background-color: #faf1e0;
+  }
+  
+  .projects-section h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: transform 0.3s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-title {
+    font-weight: bold;
+  }
+  
+  .card-text {
+    color: #555;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #333;
+    color: #fff;
     font-size: 0.9rem;
-}
-
-.fas.fa-info-circle:hover {
-    color: #007bff; /* Change color on hover to indicate interactivity */
-}
-
-footer {
-    position: relative; /* Change from fixed to relative */
-    bottom: 0; /* This ensures it stays at the bottom of the content */
-    left: 0;
-    width: 100%;
-    background-color: #343a40;
-    color: #ffffff;
-    text-align: center;
-    padding: 1rem 0;
-    z-index: 1000;
-}
-
+  }
+  

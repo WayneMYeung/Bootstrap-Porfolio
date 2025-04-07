@@ -4,6 +4,7 @@ body {
     background-color: #faf1e0;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* prevent horizontal scrollbar on small screens */
 }
 
 /* Rounded Navbar Styling */
@@ -20,8 +21,6 @@ body {
     opacity: 1; /* Make it visible */
     transition: opacity 0.3s ease;
 }
-
-
 
 .rounded-navbar .nav {
     display: flex;
@@ -61,26 +60,19 @@ body {
     transition: all 0.3s ease;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .rounded-navbar {
-        padding: 0.2rem 0.4rem; /* Further reduce padding */
-        top: 10px; /* Adjust top position */
+        padding: 0.3rem 0.5rem; /* Reduce padding */
+    }
+
+    .rounded-navbar .nav {
+        gap: 0.5rem; /* Reduce gap between items */
     }
 
     .rounded-navbar .nav-link {
-        width: 30px; /* Further reduce size of nav items */
-        height: 30px;
-        font-size: 0.8rem; /* Further reduce font size */
+        width: 25px; /* Reduce size of nav items */
+        height: 31px;
     }
-
-    .hero-section .fixed-navbar .nav-link {
-        font-size: 0.65rem; /* Further reduce font size */
-        padding: 0.2rem 0.6rem; /* Adjust padding for very small screens */
-    }
-}
-
-.rounded-navbar .nav-link:hover {
-    background-color: #555;
 }
 
 /* Hero Section */
@@ -98,14 +90,35 @@ body {
     margin-top: 3rem;
 }
 
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem; /* Smaller font on mobile */
+    }
+}
+
 /* Portfolio Section */
 .portfolio {
     columns: 3;
     column-gap: 20px;
-    width: 1200px; 
+    max-width: 1200px; 
+    width: 100%;
     margin: 0 auto;
-    padding: 40px 0;
+    padding: 40px 20px; /* Add some horizontal padding */
     background: #faf1e0;
+    box-sizing: border-box;
+}
+
+/* Responsive Columns */
+@media (max-width: 1200px) {
+    .portfolio {
+        columns: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio {
+        columns: 1;
+    }
 }
 
 .portfolio-item {
@@ -172,15 +185,13 @@ body {
     pointer-events: none; /* No interactions when hidden */
 }
 
-
 .modal-inner {
     display: flex;
+    flex-wrap: wrap;
     max-width: 90%;
     max-height: 90%;
     background: #fff;
     position: relative;
-
-    /* Add a slight scale effect and smooth transition */
     transform: scale(0.9);
     transition: transform 0.3s ease;
 }
@@ -191,10 +202,11 @@ body {
 }
 .modal.show .modal-inner {
     transform: scale(1);
-    }
+}
 
 .modal-content {
     max-width: 60%;
+    width: 100%;
     max-height: 100%;
     object-fit: cover;
     border-right: 2px solid #ccc;
@@ -203,6 +215,7 @@ body {
 .modal-info {
     padding: 20px;
     max-width: 40%;
+    width: 100%;
     overflow-y: auto;
 }
 
@@ -231,8 +244,18 @@ body {
     z-index: 10000;
 }
 
-  
-  
+@media (max-width: 768px) {
+    .modal-content,
+    .modal-info {
+        max-width: 100%;
+        border: none;
+    }
+
+    .modal-inner {
+        flex-direction: column;
+    }
+}
+
 /* Footer */
 .footer {
     background-color: #333;

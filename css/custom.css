@@ -8,6 +8,17 @@ html, body {
     overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
 /* Fixed Navbar Styling for Top of Hero Section */
 .hero-section .fixed-navbar {
     position: absolute; /* Keeps it within the hero section */
@@ -131,27 +142,8 @@ html, body {
     }
 
     .rounded-navbar .nav-link {
-        width: 35px; /* Reduce size of nav items */
-        height: 35px;
-        font-size: 0.9rem; /* Reduce font size */
-    }
-}
-
-@media (max-width: 480px) {
-    .rounded-navbar {
-        padding: 0.2rem 0.4rem; /* Further reduce padding */
-        top: 10px; /* Adjust top position */
-    }
-
-    .rounded-navbar .nav-link {
-        width: 30px; /* Further reduce size of nav items */
-        height: 30px;
-        font-size: 0.8rem; /* Further reduce font size */
-    }
-
-    .hero-section .fixed-navbar .nav-link {
-        font-size: 0.65rem; /* Further reduce font size */
-        padding: 0.2rem 0.6rem; /* Adjust padding for very small screens */
+        width: 25px; /* Reduce size of nav items */
+        height: 31px;
     }
 }
 
@@ -250,24 +242,52 @@ html, body {
 }
 
 
-/* About Section */
+/* About Section Styling */
 #about {
     font-family: "Agdasima", serif;
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 3rem 0; /* Spacing above and below */
 }
 
 #about h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #333;
+    font-size: 2.5rem; /* Larger heading */
+    font-weight: bold; /* Bold heading */
+    color: #333; /* Dark text color */
+    margin-bottom: 2rem; /* Space below the heading */
 }
 
-#about p {
-    font-size: 1.7rem;
-    color: #555;
+/* Profile Picture Styling */
+.profile-pic {
+    width: 100%; /* Responsive width */
+    max-width: 250px; /* Limit the size */
+    border: 5px solid #fff; /* White border for contrast */
+    border-radius: 50%; /* Circular image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    margin-bottom: 1rem; /* Space below image on smaller screens */
 }
 
-/* Project Section*/
+/* About Text Styling */
+.about-text {
+    font-size: 1.2rem; /* Slightly larger font for readability */
+    color: #555; /* Muted text color */
+    line-height: 1.6; /* Better line spacing */
+    text-align: justify; /* Clean justification */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #about .row {
+        flex-direction: column; /* Stack image and text vertically */
+        text-align: center; /* Center-align text for smaller screens */
+    }
+
+    .profile-pic {
+        margin: 0 auto 1rem auto; /* Center image on smaller screens */
+    }
+}
+
+
+/* Projects Section */
 #projects {
     font-family: "Agdasima", serif;
     background-color: #f8f9fa;
@@ -278,39 +298,109 @@ html, body {
     font-size: 3rem;
     font-weight: 700;
     color: #333;
-  }
-  
-  .card {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-title {
-    font-weight: Bold;
-    margin-bottom: 1rem;
-  }
-  
-  .card-text {
-    font-size: 1rem;
-    color: #555;
-  }
+    margin-bottom: 2rem;
+}
 
-  .card-img-top {
+.card {
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
     width: 100%;
-    height: 300px;
+    height: 200px;
     object-fit: cover;
     object-position: center;
-  }
-  
-  
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    background-color: rgba(0,0,0,0.5);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
-  }
-  
-  .carousel-inner .carousel-item {
-    transition: transform 0.5s ease, opacity 0.5s ease;
-  }
+    padding: 10px;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive Style */
+@media (max-width: 768px) {
+    #projects .row-cols-md-3 {
+        row-cols: 1 !important;
+    }
+    .carousel-inner .row {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Fun Fact & Video Section */
+#fun-fact-video {
+    background-color: #f8f9fa; /* Light background color */
+    padding: 3rem 0; /* Add padding to the section */
+}
+
+#fun-fact-video h2 {
+    font-family: "Agdasima", serif;
+    font-size: 3rem; /* Larger heading size */
+    font-weight: bold; /* Bold heading */
+    color: #333; /* Dark text color */
+    margin-bottom: 2rem; /* Spacing below the heading */
+}
+
+/* Fun Fact Card */
+.fact-card {
+    font-family: "Agdasima", serif;
+    background-color: #fff; /* White card background */
+    border: none; /* No border for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the card */
+    border-radius: 10px; /* Rounded corners */
+    padding: 1.5rem; /* Internal padding */
+}
+
+.fact-card .card-text {
+    font-size: 1.2rem; /* Slightly larger text for emphasis */
+    color: #555; /* Muted text color */
+    line-height: 1.6; /* Better line spacing */
+}
+
+/* Video Wrapper */
+.video-wrapper {
+    margin-top: 2rem; /* Spacing above the video */
+}
+
+.video-wrapper .ratio {
+    border-radius: 10px; /* Rounded corners for the video frame */
+    overflow: hidden; /* Ensure clean edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for video */
+}
+
+.video-wrapper p {
+    font-size: 1rem; /* Normal-sized text for video description */
+    color: #333; /* Dark text color */
+    margin-top: 1rem; /* Spacing above the description */
+    text-align: center; /* Center the text */
+}
+
 
 /* Contact Section Styling */
 .contact-section {
@@ -338,4 +428,30 @@ html, body {
     background-color: #fff;
     color: #333;
     border-color: #fff;
+}
+
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem; /* Reduce heading size */
+    }
+
+    .card-text {
+        font-size: 0.9rem; /* Reduce card text size */
+    }
+
+    .btn {
+        padding: 0.5rem 1rem; /* Adjust button padding */
+    }
+}
+
+/* Navbar Adjustments */
+@media (max-width: 768px) {
+    .rounded-navbar .nav {
+        gap: 0.5rem;
+    }
+
+    .rounded-navbar .nav-link {
+        font-size: 0.5rem;
+    }
 }
