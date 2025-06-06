@@ -1,5 +1,5 @@
 // Array of words to display
-const words = ["DEVELOPER", "DESIGNER", "CREATOR", "PROBLEM SOLVER"];
+const words = ["DEVELOPER", "DESIGNER", "CREATOR", "INNOVATOR"];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;

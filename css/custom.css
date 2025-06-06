@@ -1,5 +1,43 @@
 /* custom.css */
+
+/* ===================================== */
+/* 1) Custom Fonts                       */
+/* ===================================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
+
+
+@font-face {
+    font-family: 'Refuse';               /* a name you choose */
+    src: url('../Fonts/refuse.trip.ttf')      /* path from custom.css to the font file */
+         format('opentype');
+}
+
+@font-face {
+    font-family: 'Vacation';               /* a name you choose */
+    src: url('../Fonts/vacation-postcard-nf.regular.ttf')      /* path from custom.css to the font file */
+         format('opentype');
+}
+
+@font-face {
+    font-family: 'backso';               /* a name you choose */
+    src: url('../Fonts/backso.regular.ttf')      /* path from custom.css to the font file */
+         format('opentype');
+}
+
+@font-face {
+    font-family: 'Drawishan';               /* a name you choose */
+    src: url('../Fonts/drawishan.regular.otf')      /* path from custom.css to the font file */
+         format('opentype');
+}
+
+@font-face {
+    font-family: 'Ransom';               /* a name you choose */
+    src: url('../Fonts/blackcasper.regular.ttf')      /* path from custom.css to the font file */
+         format('opentype');
+}
+/* ===================================== */
+/* 2) Reset & Base Styles                */
+/* ===================================== */
 
 html, body {
     margin: 0;
@@ -8,62 +46,335 @@ html, body {
     overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-/* Hero Section */
-.hero-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
+.snap-wrapper {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
-/* Fixed Navbar Styling for Top of Hero Section */
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  width: 100%;
+}
+
+
+
+/* ===================================== */
+/* 3) Hero Section                       */
+/* ===================================== */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: #faf1e0; /* fallback color */
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/hero-pattern.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.60; /* 👈 adjust this value (0 = invisible, 1 = fully visible) */
+  z-index: -1;
+}
+/* ===================================== */
+/* 4) Fixed Navbar                       */
+/* ===================================== */
 .hero-section .fixed-navbar {
-    position: absolute; /* Keeps it within the hero section */
-    top: 4%; /* Adjust spacing from the top */
+    position: absolute;
+    top: 4%;
     right: 2%;
-    z-index: 10; /* Ensure it stays above other elements */
-    font-family: 'Inter', sans-serif; /* Use a modern font */
+    z-index: 10;
+    font-family: 'Inter', sans-serif;
 }
 
 .hero-section .fixed-navbar .nav {
     display: flex;
-    gap: 1.5rem; /* Add spacing between buttons */
-    justify-content: center; /* Align items horizontally */
-    align-items: center;
+    gap: 1.5rem;
+    justify-content: center;
 }
 
-.hero-section .fixed-navbar .nav-link {
-    font-size: 0.9rem; /* Adjust button font size */
-    text-transform: uppercase; /* Make text uppercase */
-    padding: 0.4rem 1.2rem; /* Add padding for the buttons */
-    background-color: #000; /* Background color (black) */
-    color: #fff; /* Text color (white) */
-    text-decoration: none; /* Remove underline */
-    border-radius: 25px; /* Make buttons more rounded */
-    font-weight: 600; /* Use a medium weight for modern styling */
-    letter-spacing: 0.08em; /* Add slight spacing between letters */
-    transition: all 0.3s ease; /* Smooth hover effect */
-    transform: scaleY(1.3);
+.type--A {
+  --line_color: #555555;
+  --back_color: #ffecf6;
+}
+.type--B {
+  --line_color: #1b1919;
+  --back_color: #e9ecff;
+}
+.type--C {
+  --line_color: #00135c;
+  --back_color: #c7cce4;
+}
+.button {
+  position: relative;
+  z-index: 0;
+  width: 180px;
+  height: 56px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--line_color);
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+.button__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.button::before,
+.button::after,
+.button__text::before,
+.button__text::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line_color);
+  transition: all 0.5s ease;
+}
+.button::before {
+  top: 0;
+  left: 54px;
+  width: calc(100% - 56px * 2 - 16px);
+}
+.button::after {
+  top: 0;
+  right: 54px;
+  width: 8px;
+}
+.button__text::before {
+  bottom: 0;
+  right: 54px;
+  width: calc(100% - 56px * 2 - 16px);
+}
+.button__text::after {
+  bottom: 0;
+  left: 54px;
+  width: 8px;
+}
+.button__line {
+  position: absolute;
+  top: 0;
+  width: 56px;
+  height: 100%;
+  overflow: hidden;
+}
+.button__line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 300px;
+  border: solid 3px var(--line_color);
+}
+.button__line:nth-child(1),
+.button__line:nth-child(1)::before {
+  left: 0;
+}
+.button__line:nth-child(2),
+.button__line:nth-child(2)::before {
+  right: 0;
+}
+.button:hover {
+  letter-spacing: 6px;
+}
+.button:hover::before,
+.button:hover .button__text::before {
+  width: 8px;
+}
+.button:hover::after,
+.button:hover .button__text::after {
+  width: calc(100% - 56px * 2 - 16px);
+}
+.button__drow1,
+.button__drow2 {
+  position: absolute;
+  z-index: -1;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+}
+.button__drow1 {
+  top: -16px;
+  left: 20px;
+  width: 32px;
+  height: 0;
+  transform: rotate(30deg);
+}
+.button__drow2 {
+  top: 44px;
+  left: 57px;
+  width: 32px;
+  height: 0;
+  transform: rotate(-127deg);
+}
+.button__drow1::before,
+.button__drow1::after,
+.button__drow2::before,
+.button__drow2::after {
+  content: "";
+  position: absolute;
+}
+.button__drow1::before {
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 32px;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+  transform: rotate(-60deg);
+}
+.button__drow1::after {
+  top: -10px;
+  left: 45px;
+  width: 0;
+  height: 32px;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+  transform: rotate(69deg);
+}
+.button__drow2::before {
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 32px;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+  transform: rotate(-146deg);
+}
+.button__drow2::after {
+  bottom: 26px;
+  left: -40px;
+  width: 0;
+  height: 32px;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+  transform: rotate(-262deg);
+}
+.button__drow1,
+.button__drow1::before,
+.button__drow1::after,
+.button__drow2,
+.button__drow2::before,
+.button__drow2::after {
+  background: var(--back_color);
+}
+.button:hover .button__drow1 {
+  animation: drow1 ease-in 0.06s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow1::before {
+  animation: drow2 linear 0.08s 0.06s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow1::after {
+  animation: drow3 linear 0.03s 0.14s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow2 {
+  animation: drow4 linear 0.06s 0.2s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow2::before {
+  animation: drow3 linear 0.03s 0.26s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow2::after {
+  animation: drow5 linear 0.06s 0.32s;
+  animation-fill-mode: forwards;
+}
+@keyframes drow1 {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100px;
+  }
+}
+@keyframes drow2 {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  11% {
+    opacity: 1;
+  }
+  100% {
+    width: 120px;
+  }
+}
+@keyframes drow3 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 80px;
+  }
+}
+@keyframes drow4 {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 120px;
+  }
+}
+@keyframes drow5 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 80px;
+  }
 }
 
-.hero-section .fixed-navbar .nav-link:hover {
-    background-color: #555; /* Lighter background on hover */
-    color: #f1f1f1; /* Lighter text on hover */
-    transform: scale(1.08); /* Slight hover scaling */
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Active Link Styling */
-.hero-section .fixed-navbar .nav-link.active {
-    background-color: #fff; /* White background for active */
-    color: #000; /* Black text for active */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add shadow for active */
-    transform: scale(1.1); /* Slightly larger active link */
+.hero-container {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  z-index: 2;
 }
 
-/* Rounded Navbar Styling */
+.button:not(:last-child) {
+  margin-bottom: 64px;
+}
+
+
+
+
+/* ===================================== */
+/* 4) Floating Sticky Navbar             */
+/* ===================================== */
 .rounded-navbar {
     position: fixed;
     top: 20px;
@@ -148,90 +459,37 @@ html, body {
 }
 
 
-/* Full-screen Hero Section Styling */
-.hero-section {
-    position: relative;
-    height: 100vh; /* Full screen height */
-    background-color: #faf1e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* Hero Section Styling */
-.hero-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: #faf1e0;
-    height: 100vh; /* Full viewport height */
-    text-align: center;
-}
-
-/* Fixed Text Styling */
+/* ===================================== */
+/* 5) Hero Section Fixed Text Styling    */
+/* ===================================== */
 .fixed-text {
-    font-size: 4vw; /* Adjust as needed */
-    -webkit-text-stroke: 2px #375E97;
-    color: #375E97;
+    font-size: 5vw; /* Adjust as needed */
+    transform: scaleY(1);
+    color: #00135c;
     margin: 0;
+    font-family: 'Drawishan', sans-serif;
 }
 
-/* Typing Text Styling */
-.sec-text {
-    font-weight: 900;
-    line-height: 0.85;
-    font-size: 10vw; /* Adjust as needed */
-    color: #faf1e0;
-    -webkit-text-stroke: 2px #375E97;
-    text-shadow: 
-        -1px 1px 0 #375E97,
-        -1.5px 1.5px 0 #375E97,
-        -2px 2px 0 #375E97,
-        -2.5px 2.5px 0 #375E97,
-        -3px 3px 0 #375E97,
-        -3.5px 3.5px 0 #375E97,
-        -4px 4px 0 #375E97,
-        -4.5px 4.5px 0 #375E97,
-        -5px 5px 0 #375E97,
-        -5.5px 5.5px 0 #375E97,
-        -6px 6px 0 #375E97,
-        -6.5px 6.5px 0 #375E97,
-        -7px 7px 0 #375E97,
-        -7.5px 7.5px 0 #375E97,
-        -8px 8px 0 #375E97,
-        -8.5px 8.5px 0 #375E97,
-        -9px 9px 0 #375E97,
-        -9.5px 9.5px 0 #375E97,
-        -10px 10px 0 #375E97,
-        -10.5px 10.5px 0 #375E97,
-        -11px 11px 0 #375E97,
-        -11.5px 11.5px 0 #375E97,
-        -12px 12px 0 #375E97,
-        -12.5px 12.5px 0 #375E97,
-        -13px 13px 0 #375E97,
-        -13.5px 13.5px 0 #375E97,
-        -14px 14px 0 #375E97,
-        -14.5px 14.5px 0 #375E97,
-        -15px 15px 0 #375E97,
-        -15.5px 15.5px 0 #375E97,
-        -16px 16px 0 #375E97,
-        -16.5px 16.5px 0 #375E97,
-        -17px 17px 0 #375E97,
-        -17.5px 17.5px 0 #375E97,
-        -18px 18px 0 #375E97,
-        -18.5px 18.5px 0 #375E97,
-        -19px 19px 0 #375E97,
-        -19.5px 19.5px 0 #375E97,
-        -20px 20px 0 #375E97;
+  .sec-text {
+    position: relative;
+    line-height: 1;
+    min-height: 1em;
+    vertical-align: top;
+    font-size: 10vw;
+    display: inline-block;
+    color: #00135c;
+    font-family: 'Refuse', sans-serif;
 }
 
 /* Blinking cursor effect */
 .sec-text::after {
     content: '|';
+    position: absolute;           /* 2 */
+    left: 100%;                   /* place it right after your text */
+    top: -0.1em;                  /* move it up a bit */
+    transform: scaleX(0.6);       /* make it half as wide */
+    font-weight: 100;             /* make the glyph itself thinner */
     animation: blink 0.7s step-end infinite;
-    margin-left: 5px;
 }
 
 /* Blinking animation */
@@ -241,57 +499,54 @@ html, body {
     }
 }
 
-
-/* About Section Styling */
+/* ===================================== */
+/* 6) About Section Styling              */
+/* ===================================== */
 #about {
-    font-family: "Agdasima", serif;
-    background-color: #f8f9fa; /* Light gray background */
-    padding: 3rem 0; /* Spacing above and below */
+  font-family: "Agdasima", serif;
+  background-color: #f8f9fa;
+  padding: 3rem 0;
 }
 
 #about h2 {
-    font-size: 2.5rem; /* Larger heading */
-    font-weight: bold; /* Bold heading */
-    color: #333; /* Dark text color */
-    margin-bottom: 2rem; /* Space below the heading */
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 2rem;
 }
 
-/* Profile Picture Styling */
 .profile-pic {
-    width: 100%; /* Responsive width */
-    max-width: 250px; /* Limit the size */
-    border: 5px solid #fff; /* White border for contrast */
-    border-radius: 50%; /* Circular image */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    margin-bottom: 1rem; /* Space below image on smaller screens */
+  max-width: 250px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
 }
 
-/* About Text Styling */
 .about-text {
-    font-size: 1.2rem; /* Slightly larger font for readability */
-    color: #555; /* Muted text color */
-    line-height: 1.6; /* Better line spacing */
-    text-align: justify; /* Clean justification */
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+  text-align: justify;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
-    #about .row {
-        flex-direction: column; /* Stack image and text vertically */
-        text-align: center; /* Center-align text for smaller screens */
-    }
+  #about .row {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .profile-pic {
-        margin: 0 auto 1rem auto; /* Center image on smaller screens */
-    }
+  .profile-pic {
+    margin: 0 auto 1rem auto;
+  }
 }
 
-
-/* Projects Section */
+/* ===================================== */
+/* 7) )Project Section Styling           */
+/* ===================================== */
 #projects {
-    font-family: "Agdasima", serif;
-    background-color: #f8f9fa;
-    padding: 3rem 0;
+  background-color: #faf8f1;
+  padding: 3rem 0;
 }
 
 #projects h2 {
@@ -301,56 +556,53 @@ html, body {
     margin-bottom: 2rem;
 }
 
-.card {
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.json-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+.json-row-1{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-.card-img-top {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    object-position: center;
+.json-row-2 {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-.card-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #333;
+.json-btn {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
-.card-text {
-    font-size: 0.9rem;
-    color: #555;
+.json-btn.square {
+  height: 37vh;
+  aspect-ratio: 228 / 271;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 10px;
+.json-btn.rect {
+  height: 37vh;
+  aspect-ratio: 16 / 9;
 }
 
-.carousel-control-prev-icon:hover,
-.carousel-control-next-icon:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-}
 
-/* Responsive Style */
-@media (max-width: 768px) {
-    #projects .row-cols-md-3 {
-        row-cols: 1 !important;
-    }
-    .carousel-inner .row {
-        display: flex;
-        justify-content: center;
-    }
+/* reset any unwanted scrollbars */
+.scroll-snap {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  scrollbar-width: none;            /* Firefox */
+}
+.scroll-snap::-webkit-scrollbar {    /* Chrome/Safari */
+  display: none;
 }
 
 /* Fun Fact & Video Section */
