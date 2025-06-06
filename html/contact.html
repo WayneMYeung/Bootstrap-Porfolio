@@ -1,161 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Me - My Bootstrap Project</title>
-    <!-- Link to Bootstrap CSS and Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Playwrite+TZ+Guides&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/contact.css"> <!-- Your custom styles -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <link rel="stylesheet" href="../css/contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Rounded Navbar -->
-    <nav class="rounded-navbar" id="floatingNavbar">
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-home"></i> <!-- Home icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="resume.html">  
-                    <i class="fas fa-user"></i> <!-- User icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="portfolio.html">
-                    <i class="fas fa-briefcase"></i> <!-- Briefcase icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="contact.html">
-                    <i class="fas fa-envelope"></i> <!-- Envelope icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="upcoming.html">
-                    <i class="fas fa-list"></i> <!-- List icon -->
-                </a>
-            </li>
+  <header class="site-header">
+    <h1 class="site-header__title">Contact.</h1>
+  </header>
+  <main class="contact-container">
+    <div class="contact-form-card">
+      <div class="contact-info-card">
+        <h2 class="info-card__heading">LET’S CONNECT</h2>
+        <ul class="info-card__list">
+          <li>
+            <i class="fas fa-envelope info-card__icon" aria-hidden="true"></i>
+            <a href="mailto:waynemyoung@gmail.com">waynemyoung@gmail.com</a>
+          </li>
+          <li>
+            <i class="fab fa-linkedin info-card__icon" aria-hidden="true"></i>
+            <a href="https://www.linkedin.com/in/waynemyoung/" target="_blank">linkedin.com/in/waynemyoung/</a>
+          </li>
+          <li>
+            <i class="fab fa-github info-card__icon" aria-hidden="true"></i>
+            <a href="https://github.com/WayneMYoung" target="_blank">github.com/WayneMYoung</a>
+          </li>
         </ul>
-    </nav>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Contact Me</h2>
-            <!-- Dropdown for "Reason for Contact" -->
-            <form>
-                <div class="form-group">
-                    <label for="reason">
-                        Reason for Contact
-                        <!-- Tooltip Icon -->
-                        <i class="fas fa-info-circle" 
-                           data-bs-toggle="tooltip" 
-                           data-bs-placement="right" 
-                           data-bs-html="true" 
-                           title="Choose the reason for contacting:<br>
-                                  &#8226; <b>Have a Question</b>: For inquiries or clarifications.<br>
-                                  &#8226; <b>Feedback</b>: To share your thoughts or suggestions.<br>
-                                  &#8226; <b>Collaboration</b>: If you're interested in working together."></i>
-                    </label>
-                    <select class="form-select" id="reason">
-                        <option value="question">Have a Question</option>
-                        <option value="feedback">Feedback</option>
-                        <option value="collaboration">Collaboration</option>
-                    </select>
-                </div>
-                
-                <div class="form-group mt-3">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                </div>
-                <div class="form-group mt-3">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                </div>
-                <div class="form-group mt-3">
-                    <label for="message">Message</label>
-                    <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
-                </div>
-                <!-- Tooltip Example -->
-                <button type="button" class="btn btn-info mt-3" data-bs-toggle="tooltip" data-bs-placement="right" title="This will reset all fields">
-                    Reset
-                </button>
-                <!-- Popover Example -->
-                <button type="button" class="btn btn-secondary mt-3" data-bs-toggle="popover" title="Tip" data-bs-content="Make sure to double-check your email before sending!">
-                    Helpful Tip
-                </button>
-                <button type="submit" class="btn btn-primary mt-3">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Modal Trigger -->
-    <div class="text-center my-4">
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#contactModal">
-            View Contact Info
-        </button>
+      </div>
+      <div class="contact-form-wrapper">
+        <h2 class="form-card__heading">LET’S TALK</h2>
+        <form>
+          <input type="text" class="form-input" placeholder="Name">
+          <input type="email" class="form-input" placeholder="Email">
+          <div class="form-select-wrapper">
+            <select class="form-select">
+              <option disabled selected>Topic</option>
+              <option>General Inquiry</option>
+              <option>Collaboration</option>
+              <option>Feedback</option>
+            </select>
+            <span class="select-arrow">▾</span>
+          </div>
+          <textarea class="form-textarea" placeholder="Description"></textarea>
+        </form>
+      </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contactModalLabel">Contact Information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Email:</strong> wayne.yeung@mail.utoronto.ca</p>
-                    <p><strong>Phone:</strong> +1 (647)-831-6325</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer bg-dark text-center text-white py-3">
-        <div class="container">
-            <!-- Navigation Links -->
-            <div class="footer-nav mb-3">
-                <a href="home.html" class="footer-link text-white me-3">Home</a>
-                <a href="resume.html" class="footer-link text-white me-3">Resume</a>
-                <a href="portfolio.html" class="footer-link text-white me-3">Portfolio</a>
-                <a href="contact.html" class="footer-link text-white me-3">Contact</a>
-                <a href="upcoming.html" class="footer-link text-white">Upcoming Projects</a>
-            </div>
-            <!-- Social Links -->
-            <div class="footer-social mb-3">
-                <a href="https://github.com/WayneMYeung" target="_blank" class="footer-social-link me-3">
-                    <i class="fab fa-github text-white" style="font-size: 1.5rem;"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/wayne-michael-yeung" target="_blank" class="footer-social-link">
-                    <i class="fab fa-linkedin text-white" style="font-size: 1.5rem;"></i>
-                </a>
-            </div>
-            <!-- Copyright -->
-            <p class="mb-0">© 2025 Wayne Michael Yeung. All rights reserved.</p>
-        </div>
-    </footer>
-    
-
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Initialize Tooltip
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-
-        // Initialize Popover
-        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-    </script>
+  </main>
 </body>
 </html>
-
