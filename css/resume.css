@@ -23,8 +23,6 @@ body {
 .container {
     margin: 0 auto;
     background: white;
-    width: 90%;
-    max-width: 1200px;
 }
 
 /* ===================================== */
@@ -77,10 +75,10 @@ body {
 .left-cell, .right-cell {
     background: var(--color-blue);
     color: white;
-    width: clamp(200px, 24vw, 280px);
+    width: 24vw;
     height: 24vh;
     padding: 8vh 0;
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: 3vw;
     font-weight: bold;
     text-align: center;
     margin-right: 60px;
@@ -94,7 +92,7 @@ body {
 }
 
 .content-text {
-    font-size: clamp(1rem, 1.125vw, 1.2rem);
+    font-size: 1.125vw;
     line-height: 1.7;
     color: var(--color-text);
     flex: 1;
@@ -114,7 +112,7 @@ body {
 }
 
 .profile-text {
-    font-size: clamp(1rem, 1.125vw, 1.2rem);
+    font-size: 1.125vw;
     line-height: 1.7;
     color: #333;
     flex: 1;
@@ -138,7 +136,7 @@ body {
 .education-content {
     margin-right: 120px;
     flex: 1;
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: 5vw;
 }
 
 /* ===================================== */
@@ -180,7 +178,7 @@ body {
 
 .skill-box .title {
   display: block;
-  font-size: clamp(0.8rem, 1vw, 1.2rem);
+  font-size: 1vw;
   font-weight: 600;
   color: #333;
 }
