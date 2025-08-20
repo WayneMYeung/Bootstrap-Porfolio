@@ -28,97 +28,207 @@ body{
 /* Remove default figure spacing everywhere */
 figure { margin: 0; padding: 0; }
 
-/* ===========================
-   Mobile hamburger overlay
-   =========================== */
-.menu-toggle{
-  display:none;
-  position:fixed; top:2.5vh; left:5vw; z-index:10000;
-  background:none; border:0; color:#fff; font-size:28px; cursor:pointer;
-}
-.menu-container{
-  position:fixed; inset:0; display:none;
-  background: rgba(0,0,0,.92);
-  align-items:center; justify-content:center; flex-direction:column;
-  gap:2rem; padding:24px; z-index:9999;
-}
-.menu-container .nav-links{ display:flex; flex-direction:column; gap:1.25rem; align-items:center; }
-.menu-container .nav-links a{ color:#fff; text-decoration:none; font-weight:800; }
-.menu-container .social-icons{ display:flex; gap:1.25rem; }
-.menu-container .social-icons a{ color:#fff; font-size:20px; }
-
-/* ===========================
-   Floating Sticky Navbar (your unified version)
-   =========================== */
+/* ===================== */
+/* Floating Sticky Navbar */
+/* ===================== */
+/* Defaults / design tokens for pills + ring */
 .rounded-navbar{
-  --pill-pad-y:.45rem; --pill-pad-x:.80rem; --pill-font:.95rem; --gap:.35rem; --icon:1rem;
-  --ring-width:2px; --ring-offset:-6px;
-  position:fixed; top:0; left:50%; transform:translateX(-50%) translateY(-8px);
-  background: var(--navy-deep);
-  padding:1vh 2vw; border-radius:0 0 18px 18px;
-  z-index: 9998;
-  opacity:0; pointer-events:none; transition: opacity .25s ease, transform .25s ease;
+  --pill-pad-y: .45rem;
+  --pill-pad-x: .80rem;
+  --pill-font: .95rem;
+  --gap: .35rem;
+  --icon: 1rem;
+
+  --ring-width: 2px;       /* ring thickness */
+  --ring-offset: -6px;     /* how far ring sits outside the pill */
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px); /* slide in from top when shown */
+  background: #000f4b;
+  padding: 1vh 2vw;
+  border-radius: 0 0 18px 18px; /* square top corners */
+  z-index: 9999;
+
+  opacity: 0;                     /* hidden on hero */
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
 }
-.rounded-navbar.always-on{ opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+
+/* visible state after leaving the landing/hero */
+.rounded-navbar.is-visible{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* inner layout */
 .rounded-navbar .nav{
-  display:flex; gap:var(--gap); align-items:center;
-  list-style:none; margin:0; padding:0;
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+/* link pills */
 .rounded-navbar .nav-link{
-  position:relative; color:#fff !important; background:transparent;
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:var(--pill-pad-y) var(--pill-pad-x); border-radius:999px;
-  font:600 var(--pill-font)/1 "Montserrat", system-ui, sans-serif; text-decoration:none;
-  transition: background .2s ease, box-shadow .2s ease; white-space:nowrap; outline:0; border:0;
+  position: relative;
+  color:#fff !important;
+  background: transparent;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding: var(--pill-pad-y) var(--pill-pad-x);
+  border-radius:999px;
+  font:600 var(--pill-font)/1 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  text-decoration:none;
+  transition: background .2s ease, box-shadow .2s ease;
+  white-space: nowrap;
+  outline: none;
+  border: none;
 }
 .rounded-navbar .nav-link i{ font-size: var(--icon); }
-.rounded-navbar .nav-link:hover{ background: rgba(255,255,255,.12); }
-.rounded-navbar .nav-link::after{
-  content:""; position:absolute; inset:var(--ring-offset);
-  border: var(--ring-width) solid #fff; border-radius:9999px; opacity:0; transform:scale(.96);
-  transition:opacity .2s ease, transform .2s ease; pointer-events:none;
-}
-.rounded-navbar .nav-link[aria-current="page"]::after{ opacity:1; transform:scale(1); }
 
-/* Responsive tweaks for navbar */
+/* Soft hover tint (no layout change) */
+.rounded-navbar .nav-link:hover{
+  background: rgba(255,255,255,.12);
+}
+
+/* White ring — single source of truth (no size change) */
+.rounded-navbar .nav-link::after{
+  content: "";
+  position: absolute;
+  inset: var(--ring-offset);       /* expands outside pill without changing layout */
+  border: var(--ring-width) solid #fff;
+  border-radius: 9999px;
+  opacity: 0;
+  transform: scale(.96);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
+}
+
+/* Current page */
+.rounded-navbar .nav-link.active::after,
+.rounded-navbar .nav-link[aria-current="page"]::after{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Always-visible variant for pages without hero/snap-scroll */
+.rounded-navbar.always-on{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+
+/* ====== Responsive tweaks ====== */
+@media (min-width:1200px) and (max-width:1920px){
+  .rounded-navbar{
+    padding: 1.2rem 1.6rem;
+    --pill-pad-y: .45rem;
+    --pill-pad-x: .85rem;
+    --pill-font: .95rem;
+    --icon: 1.05rem;
+  }
+}
+
+
+/* Tablet: widen bar + center contents + slightly smaller pills */
 @media (min-width:768px) and (max-width:1200px){
   .rounded-navbar{
-    width:min(60vw,1100px); padding:.8rem 1.2rem;
-    --pill-pad-y:.40rem; --pill-pad-x:.70rem; --pill-font:.90rem; --icon:.95rem; --ring-offset:-1px;
+    width: min(60vw, 1100px);
+    padding: 0.8rem 1.2rem;
+    box-sizing: border-box;
+    display: flex;
+    --pill-pad-y: .40rem;
+    --pill-pad-x: .70rem;
+    --pill-font: .90rem;
+    --icon: .95rem;
+    --ring-offset: -1px; /* ring sits a bit tighter */
   }
-  .rounded-navbar .nav{ width:100%; justify-content:center; flex-wrap:nowrap; }
+  .rounded-navbar .nav{
+    width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
 }
+
+/* Phones: make the bar a bit wider and keep contents centered */
 @media (max-width:768px){
   .rounded-navbar{
-    width:min(60vw,620px); padding:.5rem .8rem;
-    --pill-pad-y:.35rem; --pill-pad-x:.60rem; --pill-font:.85rem; --icon:.9rem; --gap:.25rem; --ring-offset:-5px;
+    width: min(60vw, 620px);   /* ⬅️ wider on phones */
+    padding: .5rem .8rem;
+    box-sizing: border-box;
+    display: flex;
+
+    /* keep your existing token tweaks */
+    --pill-pad-y: .35rem;
+    --pill-pad-x: .60rem;
+    --pill-font: .85rem;
+    --icon: .9rem;
+    --gap: .25rem;
+    --ring-offset: -5px;
   }
-  .rounded-navbar .nav{ width:100%; justify-content:center; flex-wrap:nowrap; }
-  .menu-toggle{ display:block; }         /* show hamburger on phones */
+  .rounded-navbar .nav{
+    width: 100%;
+    justify-content: center;   /* center links inside the wider bar */
+    flex-wrap: nowrap;
+  }
 }
+
+/* Very small phones: stretch a touch more, hide labels if needed */
 @media (max-width:500px){
-  .rounded-navbar{ width:60vw; }
+  .rounded-navbar{ width: 60vw; }
   .rounded-navbar .nav-link span{ display:none; }
-  .rounded-navbar .nav{ gap:1.2rem; }
+  .rounded-navbar .nav{gap:1.2rem;}
 }
 
 /* ===========================
    Unified Page Hero (contact baseline)
    =========================== */
 .page-hero{
-  background: var(--navy);
-  height:220px;
-  display:flex; align-items:center; justify-content:center;
-  padding-top:5vh; text-align:center;
+  background:#2B4167;              /* same as Contact */
+  height:220px;                    /* contact baseline */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top:5vh;                 /* headroom for fixed navbar */
+  text-align:center;
 }
+
 .page-hero__title{
   font-family:'Alfa Slab One', serif;
-  color:#fff; font-weight:400; letter-spacing:.5px;
-  font-size: clamp(32px, 6vw, 80px);
-  margin:0; line-height:1;
+  color:#fff;
+  font-weight:400;
+  letter-spacing:.5px;
+  font-size: clamp(32px, 6vw, 80px); /* same feel as Contact */
+  margin:0;
+  line-height:1;
 }
-@media (max-width:1920px){ .page-hero__title{ font-size:64px; } }
-@media (min-width:3840px){ .page-hero{ height:400px; } .page-hero__title{ font-size:140px; } }
+
+/* Optional: actions row under the title (e.g., resume social buttons) */
+.page-hero__inner{ display:flex; flex-direction:column; align-items:center; gap:14px; }
+.page-hero__actions{ display:flex; gap: clamp(10px, 1.8vw, 24px); }
+
+/* 1080p-ish refinement (kept from your contact.css) */
+@media (max-width:1920px){
+  .page-hero__title{ font-size:64px; }
+}
+
+/* 4K upscale (kept from your contact.css) */
+@media (min-width:3840px){
+  .page-hero{ height:400px; }
+  .page-hero__title{ font-size:140px; }
+}
+
+@media (max-width: 640px){
+  .page-hero{ height: 180px; padding-top: 4vh; }
+  .page-hero__title{ font-size: 48px; }
+}
 
 /* ===========================
    Layout wrapper (narrow, like your earlier page)
@@ -293,3 +403,118 @@ Return to Projects – floating link
   cursor:pointer; transition: background .12s ease, transform .12s ease;
 }
 .lb-arrow:hover{ background:rgba(255,255,255,.24); transform:translateY(-1px); }
+
+
+/* ============================
+   Tablet (641–1400px)
+   ============================ */
+@media (min-width: 768px) and (max-width: 1400px){
+  /* Layout width + rhythm */
+  .proj-wrap{
+    width: min(88vw, 980px);
+    margin: 20px auto 72px;
+  }
+
+  .project-media{ margin-bottom: 28px; }
+
+  /* Meta block stays 2-column but with tighter gutters */
+  .meta-grid{ margin: 6px 0 40px; }
+  .meta{
+    max-width: 86vw;
+    grid-template-columns: 140px 1fr;
+    gap: 6px 18px;
+  }
+  .meta dt{ letter-spacing: 3px; line-height: 2.2; }
+  .meta dd{ line-height: 2.2; }
+
+  /* Screens */
+  .screens-title{
+    font-size: clamp(14px, 1.6vw, 18px);
+    letter-spacing: .2em;
+  }
+  .screen-grid{
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: clamp(10px, 2.4vw, 20px);
+  }
+
+  /* Return button nudge */
+  .return-fab{
+    left: clamp(16px, 3vw, 32px);
+    bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ============================
+   Phones (≤640px)
+   ============================ */
+@media (max-width: 640px){
+  /* Layout width + spacing */
+  .proj-wrap{
+    width: 92vw;
+    margin: 16px auto 56px;
+  }
+  .project-media{
+    aspect-ratio: 16 / 9;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  }
+
+  /* Meta goes single-column and tighter type */
+  .meta-grid{ margin: 2px 0 32px; }
+  .meta{
+    max-width: 80vw;
+    gap: 4px 0;
+  }
+  .meta dt{
+    font-size: clamp(12px, 3.6vw, 14px);
+    letter-spacing: 2px;
+    line-height: 1.4;          /* align to the top nicely */
+  }
+  .meta dd{
+    font-size: clamp(12px, 3.6vw, 14px);
+    line-height: 1.55;
+  }
+  .meta dd ul{ padding-left: 1rem; }
+  .meta dd li{ margin: 2px 0; }
+
+  /* Screens — one column */
+  .screens{ margin-top: 4px; }
+  .screens-title{
+    display: inline-block;
+    font-size: clamp(12px, 3.6vw, 14px);
+    letter-spacing: .16em;
+    padding: 4px 10px;
+    border-width: 1.5px;
+  }
+  .screen-grid{
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .screen{ aspect-ratio: 16 / 10; }
+
+  /* Return button scale */
+  .return-fab{
+    left: 14px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    gap: .5rem;
+  }
+  .return-fab__icon{ width: 30px; height: 30px; font-size: 13px; }
+  .return-fab__label{ font-size: 13px; }
+}
+
+/* ============================
+   Tiny phones (≤400px): icon-only
+   ============================ */
+@media (max-width: 400px){
+  .return-fab__label{ display: none; }
+  .return-fab__icon{ width: 36px; height: 36px; }
+}
+
+/* ============================
+   Lightbox responsiveness
+   ============================ */
+@media (max-width: 640px){
+  .lb-stage{ width: 96vw; height: 82vh; }
+  .lb-arrow{ width: 40px; height: 40px; font-size: 20px; }
+  .lb-close{ width: 36px; height: 36px; font-size: 20px; }
+}

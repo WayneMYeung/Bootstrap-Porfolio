@@ -14,50 +14,14 @@
 </head>
 <body>
 
-  <!-- Mobile hamburger & full-screen overlay (layout only) -->
-  <button class="menu-toggle" aria-label="Open menu" aria-controls="siteMenu" aria-expanded="false">
-    <i class="fas fa-bars" aria-hidden="true"></i>
-  </button>
-  <div id="siteMenu" class="menu-container" hidden>
-    <nav class="nav-links" aria-label="Mobile">
-      <a href="../../index.html">PROJECT</a>
-      <a href="../about.html">ABOUT</a>
-      <a href="../resume.html">RESUME</a>
-      <a href="../contact.html">CONTACT</a>
-    </nav>
-    <div class="social-icons" aria-label="Social">
-      <a href="https://www.linkedin.com/in/waynemyeung/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://github.com/WayneMYeung" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-    </div>
-  </div>
-
-  <!-- Floating Navbar (keep your unified style & colorway) -->
-  <nav class="rounded-navbar always-on" aria-label="Primary">
+  <nav class="rounded-navbar always-on" id="floatingNavbar" aria-label="Primary">
     <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link" href="../../index.html">
-          <i class="fas fa-home"></i><span>Home</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../resume.html">
-          <i class="fas fa-file-alt"></i><span>Resume</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <!-- Projects marked current -->
-        <a class="nav-link" href="../project.html" aria-current="page">
-          <i class="fas fa-folder"></i><span>Projects</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../contact.html">
-          <i class="fas fa-phone"></i><span>Contact</span>
-        </a>
-      </li>
+      <li class="nav-item"><a class="nav-link" href="../../index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="../resume.html"><i class="fas fa-file-alt"></i><span>Resume</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="../project.html" aria-current="page"><i class="fas fa-folder"></i><span>Projects</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="../contact.html"><i class="fas fa-phone"></i><span>Contact</span></a></li>
     </ul>
   </nav>
-
   <!-- Unified hero (same as Contact) -->
   <header class="page-hero">
     <h1 class="page-hero__title">3D Website.</h1>
@@ -73,7 +37,7 @@
     <section class="meta-grid">
       <dl class="meta">
         <div class="row">
-          <dt>GOAL</dt>
+          <dt>GOAL:</dt>
           <dd>
             <ul>
               <li>Showcase work in an immersive but fast experience.</li>
@@ -84,7 +48,7 @@
         </div>
 
         <div class="row">
-          <dt>OVERVIEW</dt>
+          <dt>OVERVIEW:</dt>
           <dd>
             <ul>
               <li>React + React Three Fiber scene (hero room) with interactive hotspots.</li>
@@ -96,7 +60,7 @@
         </div>
 
         <div class="row">
-          <dt>HIGHLIGHTS</dt>
+          <dt>HIGHLIGHTS:</dt>
           <dd>
             <ul>
               <li>HeroExperience scene with interactive project popups.</li>
@@ -108,7 +72,7 @@
         </div>
 
         <div class="row">
-          <dt>DEPLOYED</dt>
+          <dt>DEPLOYED:</dt>
           <dd><a href="#" target="_blank" rel="noopener">Coming Soon</a></dd>
         </div>
 
