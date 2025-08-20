@@ -256,9 +256,9 @@ figure { margin: 0; padding: 0; }
 }
 .meta .row{ display:contents; }
 .meta dt{
-  color:#1F2937; letter-spacing:4px; font-size: clamp(16px, 1.2vw, 20px); line-height: 2.8;
+  color:#1F2937; letter-spacing:4px; font-size: clamp(16px, 1.2vw, 20px); line-height: 2.0;
 }
-.meta dd{ margin:0; color: #1F2937; font-size: clamp(16px, 1.2vw, 20px) ; display: flow-root; line-height: 2.8; }
+.meta dd{ margin:0; color: #1F2937; font-size: clamp(16px, 1.2vw, 20px) ; display: flow-root; line-height: 2.0; }
 .meta dd > :first-child { margin-top: 0; }
 .meta dd ul { margin: 0; padding-left: 1rem; }
 .meta dd li { margin: .25rem 0; line-height: inherit; }
