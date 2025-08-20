@@ -7,44 +7,38 @@
     <!-- Link to Bootstrap CSS from node_modules -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Playwrite+TZ+Guides&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Rock+Salt&family=Montserrat:ital,wght@0,100..900;1,100..900&&family=Reenie+Beanie&family=Pacifico&family=Playwrite+TZ+Guides&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/custom.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
     <!-- ===================== -->
-    <!--     Rounded Navbar    -->
+    <!--     Sticky Navbar     -->
     <!-- ===================== -->
-    <nav class="rounded-navbar" id="floatingNavbar">
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link active" href="index.html">
-                    <i class="fas fa-home"></i> <!-- Home icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="resume.html">  
-                    <i class="fas fa-user"></i> <!-- User icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="portfolio.html">
-                    <i class="fas fa-briefcase"></i> <!-- Briefcase icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="contact.html">
-                    <i class="fas fa-envelope"></i> <!-- Envelope icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="upcoming.html">
-                    <i class="fas fa-list"></i> <!-- List icon -->
-                </a>
-            </li>
-        </ul>
+    <nav class="rounded-navbar" id="floatingNavbar" aria-label="Primary">
+    <ul class="nav">
+        <li class="nav-item">
+        <a class="nav-link" href="index.html">
+            <i class="fas fa-home"></i><span>Home</span>
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="resume.html">
+            <i class="fas fa-file-alt"></i><span>Resume</span>
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="project.html">
+            <i class="fas fa-folder"></i><span>Projects</span>
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="contact.html">
+            <i class="fas fa-phone"></i><span>Contact</span>
+        </a>
+        </li>
+    </ul>
     </nav>
-
     <!-- ===================== -->
     <!-- Snap Scroll Container -->
     <!-- ===================== -->
@@ -62,7 +56,7 @@
                             <div class="button__drow1"></div>
                             <div class="button__drow2"></div>
                         </a>
-                        <a href="portfolio.html" class="button type--C">
+                        <a href="project.html" class="button type--C">
                             <div class="button__line"></div>
                             <div class="button__line"></div>
                             <span class="button__text">Projects</span>
@@ -86,10 +80,11 @@
                     <div class="loader" style="--size:1.5rem; --x:70%; --y:60%; --delay:1.5s;"></div>
                     <div class="loader" style="--size:2rem; --x:20%; --y:80%; --delay:.8s;"></div>
                 </div>
-                <h1 class="fixed-text">I'M A</h1>
+                <h1 class="fixed-text">Bring your ideas off the page as</h1>
                 <h2 class="hero-text">
                     <span class="sec-text" id="typing-text"></span>
                 </h2>
+                <h1 class="fixed-text" id="with-wayne">With Wayne Yeung</h1>
             </div>
         </div>
         
@@ -98,67 +93,131 @@
     <!-- ===================== -->
     <!--     About Section     -->
     <!-- ===================== -->
-    <section id="about" class="py-5 snap-section">
-    <div class="container">
-        <h2 class="text-center mb-4">About Me</h2>
-        <div class="row align-items-center">
-        <div class="col-md-4 text-center">
-            <img src="../img/profile-pic.jpeg" alt="Profile Picture" class="profile-pic img-fluid rounded-circle shadow">
+    <section id="about" class="about snap-section">
+    <div class="about-wrap">
+        <div class="about-grid">
+        <!-- LEFT (66%) -->
+        <div class="about-left">
+            <!-- 20% -->
+            <header class="about-nameblock">
+            <p class="about-hi">Hi, I’m</p>
+            <h2 class="about-name">Wayne Yeung</h2>
+            </header>
+            <!-- 80% -->
+            <figure class="about-photo-lg">
+            <img src="../img/Bookshelves.jpg" alt="Wayne searching books in a library">
+            </figure>
         </div>
-        <div class="col-md-8">
-            <p class="about-text">
-            I'm a passionate web developer with experience in creating responsive and dynamic websites. I enjoy blending design and functionality to build meaningful digital experiences. My skillset spans across front-end development, creative coding, and media production. 
-            <br><br>
-            I love exploring new technologies and constantly improving my craft. Outside of coding, I enjoy visual storytelling and game design, and recently created a 3D Capybara game in Unity, inspired by my love for capybaras.
+
+        <!-- RIGHT (34%) -->
+        <div class="about-right">
+            <!-- 40% -->
+            <div class="about-copy">
+            <p>
+                A web designer who combines technical precision with artistic flair to
+                create memorable digital experiences.
             </p>
+            </div>
+            <!-- 60% -->
+            <figure class="about-photo-sm">
+            <img src="../img/Wayne.jpg" alt="Wayne seated in gown">
+            </figure>
         </div>
         </div>
     </div>
     </section>
-    
+
+
 
     <!-- ===================== -->
     <!-- Project Section -->
     <!-- ===================== -->
     <section id="projects" class="py-5 snap-section">
         <div class="container text-center">
-            <h2 class="mb-4">Projects</h2>
+            <h2 class="mb-4">Featured Projects</h2>
+            <div class="projects-track">
             <div class="json-row-1">
                 <a href="calendar.html">
-                    <lottie-player src="../animations/Calendar.json" class="json-btn rect" background="transparent"></lottie-player>
+                <lottie-player src="../animations/MeetHomie.json" class="json-btn rect" background="transparent"></lottie-player>
                 </a>
                 <a href="task.html">
-                    <lottie-player src="../animations/Wizardo.json" class="json-btn square" background="transparent"></lottie-player>
+                <lottie-player src="../animations/Wizard.io.json" class="json-btn square" background="transparent"></lottie-player>
                 </a>
             </div>
 
-            <!-- Second Row -->
             <div class="json-row-2">
                 <a href="plugins.html">
-                    <lottie-player src="../animations/WePark.json" class="json-btn square" background="transparent"></lottie-player>
+                <lottie-player src="../animations/WePark.json" class="json-btn square" background="transparent"></lottie-player>
                 </a>
                 <a href="mobile.html">
-                    <lottie-player src="../animations/WeBite.json" class="json-btn rect" background="transparent"></lottie-player>
+                <lottie-player src="../animations/WeBite.json" class="json-btn rect" background="transparent"></lottie-player>
+                </a>
+            </div>
+
+            <div class="projects-cta">
+                <a href="project.html" class="cta-btn" aria-label="Go to the Projects page">
+                See all projects
                 </a>
             </div>
         </div>
     </section>
 
-    
+    <!-- ===================== -->
+    <!--   Expertise Section   -->
+    <!-- ===================== -->
+    <section id="expertise" class="snap-section">
+    <div class="expertise-wrap">
+        <h2 class="expertise-title"><span>My Expertise</span></h2>
 
-        <!-- Contact Section -->
-        <section id="contact" class="snap-section contact-section py-5 text-center">
-            <div class="container">
-                <h2 class="mb-4">Connect With Me</h2>
-                <a href="contact.html" class="btn btn-outline-light">Get in Touch</a>
-            </div>
-        </section>
+        <div class="expertise-grid">
+        <!-- Card 1 -->
+        <article class="expertise-card">
+            <div class="icon"><i class="fa-solid fa-code"></i></div>
+            <h3>Web Development</h3>
+            <p>Creating responsive, fast-loading websites with clean code and modern frameworks.</p>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="expertise-card">
+            <div class="icon"><i class="fa-regular fa-object-group"></i></div>
+            <h3>UX/UI Design</h3>
+            <p>Designing intuitive interfaces with a focus on user experience and visual aesthetics.</p>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="expertise-card">
+            <div class="icon"><i class="fa-solid fa-pen-nib"></i></div>
+            <h3>Brand Identity</h3>
+            <p>Creating cohesive brand identities that communicate your unique story.</p>
+        </article>
+        </div>
+
+        <!-- CTA -->
+        <div class="expertise-cta">
+        <h3 class="cta-title">Let’s Create 
+            <br>Something Amazing</h3>
+
+        <!-- Anchor wrapper: arrow is positioned relative to THIS box -->
+        <div class="cta-target">
+            <!-- Your PNG arrow (any path/name works) -->
+            <!-- <img
+            class="cta-arrow is-navy"
+            src="../img/arrow.png"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            /> -->
+            <a href="contact.html" class="cta-btn" aria-label="Go to contact page">Get in Touch</a>
+        </div>
+        </div>
+    </div>
+    </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="footer bg-dark text-center text-white py-3">
+    <!-- <footer class="footer bg-dark text-center text-white py-3">
       <div class="container">
-          <!-- Navigation Links -->
           <div class="footer-nav mb-3">
               <a href="home.html" class="footer-link text-white me-3">Home</a>
               <a href="resume.html" class="footer-link text-white me-3">Resume</a>
@@ -166,7 +225,6 @@
               <a href="contact.html" class="footer-link text-white me-3">Contact</a>
               <a href="upcoming.html" class="footer-link text-white">Upcoming Projects</a>
           </div>
-          <!-- Social Links -->
           <div class="footer-social mb-3">
               <a href="https://github.com/WayneMYeung" target="_blank" class="footer-social-link me-3">
                   <i class="fab fa-github text-white" style="font-size: 1.5rem;"></i>
@@ -175,53 +233,20 @@
                   <i class="fab fa-linkedin text-white" style="font-size: 1.5rem;"></i>
               </a>
           </div>
-          <!-- Copyright -->
           <p class="mb-0">© 2025 Wayne Michael Yeung. All rights reserved.</p>
       </div>
-  </footer>
+  </footer> -->
   
     <!-- Bootstrap JavaScript -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/typing-effect.js"></script>
-    <script src="../js/navbar-active.js"></script>
-    <script src="../js/navbar-scroll.js"></script>
     <script src="../js/snap-scroll.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        const scroller = document.querySelector('.scroll-snap');
+    <script src="../js/inview-once.js" defer></script>
+    <script src="../js/lottie-hover.js" defer></script>
+    <script src="../js/navbar-active.js" defer></script>
+    <script src="../js/navbar-hero-toggle.js" defer></script>
 
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('in-view');
-                io.unobserve(e.target);
-            }
-            });
-        }, {
-            root: scroller,
-            threshold: 0.5
-        });
-
-        cards.forEach(c => io.observe(c));
-        });
-    </script>
-    <script>
-        document.querySelectorAll('.json-btn').forEach(player => {
-
-            player.addEventListener('mouseenter', () => {
-                player.setSpeed(5);
-                player.setDirection(1); // forward
-                player.play();
-            });
-
-            player.addEventListener('mouseleave', () => {
-                player.setSpeed(4);
-                player.setDirection(-1); // reverse
-                player.play();
-            });
-        });
-    </script>
 
 </body>
 </html>

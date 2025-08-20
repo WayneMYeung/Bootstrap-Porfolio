@@ -47,7 +47,7 @@ html, body {
 }
 
 .snap-wrapper {
-  height: 100vh;
+  height: 100dvh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
@@ -55,7 +55,7 @@ html, body {
 
 .snap-section {
   scroll-snap-align: start;
-  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
 }
 
@@ -106,8 +106,10 @@ html, body {
     display: flex;
     gap: 1.5rem;
     justify-content: center;
+    flex-wrap: nowrap;
 }
 
+/* From Uiverse.io by himanshu9682 */ 
 .type--A {
   --line_color: #555555;
   --back_color: #ffecf6;
@@ -123,10 +125,10 @@ html, body {
 .button {
   position: relative;
   z-index: 0;
-  width: 180px;
+  width: 240px;
   height: 56px;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   color: var(--line_color);
   letter-spacing: 2px;
@@ -215,14 +217,14 @@ html, body {
 }
 .button__drow1 {
   top: -16px;
-  left: 20px;
+  left: 40px;
   width: 32px;
   height: 0;
   transform: rotate(30deg);
 }
 .button__drow2 {
   top: 44px;
-  left: 57px;
+  left: 77px;
   width: 32px;
   height: 0;
   transform: rotate(-127deg);
@@ -346,7 +348,7 @@ html, body {
     width: 0;
   }
   100% {
-    width: 80px;
+    width: 124px;
   }
 }
 
@@ -357,105 +359,259 @@ html, body {
   justify-content: center;
   align-items: center;
 }
-
-.hero-container {
-  width: 100%;
-  height: 300px;
-  display: flex;
-  z-index: 2;
-}
-
 .button:not(:last-child) {
   margin-bottom: 64px;
 }
 
-
-
-
-/* ===================================== */
-/* 4) Floating Sticky Navbar             */
-/* ===================================== */
-.rounded-navbar {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+@media (min-width: 1440px){
+  .hero-section .fixed-navbar{
+    transform: scale(.85);
+    transform-origin: top right; /* keep it anchored in the corner */
+  }
+  .hero-section .fixed-navbar .nav{ gap: 4rem; }
 }
 
-.rounded-navbar .nav {
+@media (min-width: 3200px){
+  .hero-section .fixed-navbar{
+    transform: scale(1.5);
+    transform-origin: top right; /* keep it anchored in the corner */
+  }
+  .hero-section .fixed-navbar .nav{ gap: 4rem; }
+}
+
+/* Tablet and down */
+@media (max-width: 1400px){
+  .hero-section{
+    /* use small viewport height on mobile UIs */
+    min-height: 100svh;
+    height: auto;
+    padding: clamp(16px, 4vw, 24px);
+  }
+
+  .hero-content{
+    max-width: 90vw;
+    margin-inline: auto;
+  }
+
+  /* Top line */
+  .hero-section .fixed-text{
+    font-size: clamp(20px, 4vw, 32px);
+  }
+
+  /* Big typed word */
+  .hero-section .sec-text{
+    font-size: clamp(48px, 16vw, 96px);
+    line-height: .95;
+    white-space: normal;     /* allow wrapping on smaller widths */
+    word-break: keep-all;
+  }
+
+  /* Bottom line */
+  #with-wayne{
+    font-size: clamp(20px, 4vw, 32px);
+    margin-top: 3vh;
+  }
+
+  /* Shrink corner buttons slightly and pull in */
+  .hero-section .fixed-navbar{
+    right: 12px;
+    transform: scale(.7);
+    transform-origin: top right;
+  }
+
+  /* Tone down background ornaments */
+  .background-loaders .loader{
+    opacity: .35;
+    transform: scale(.85);
+  }
+}
+
+/* Large phones / phablets */
+@media (max-width: 768px){
+  .hero-section{
+    padding: clamp(16px, 5vw, 22px) 16px;
+  }
+
+  .hero-section .fixed-text{
+    font-size: clamp(20px, 6.5vw, 34px);
+  }
+
+  .sec-text{
+    font-size: clamp(40px, 12.5vw, 84px);
+  }
+
+  #with-wayne{
+    font-size: clamp(16px, 4.8vw, 24px);
+  }
+
+  .hero-section .fixed-navbar{
+    right: 8px;
+    transform: scale(.5);
+  }
+}
+
+/* Small phones */
+@media (max-width: 450px){
+  .hero-content{ max-width: 94vw; }
+
+  .hero-section .fixed-text{
+    font-size: clamp(22px, 6vw, 30px);
+  }
+  .hero-section .sec-text{
+    font-size: clamp(36px, 16vw, 74px);
+  }
+
+  #with-wayne{font-size: clamp(22px, 6vw, 30px); margin-top: 4vh;}
+
+  /* If you want super-clean mobile, hide the floaty loaders */
+  .background-loaders{ display: none; }
+
+  .hero-section .fixed-navbar{
+    top: 4vh;
+    right: 8px;
+    transform: scale(.4);
+  }
+  
+  .hero-section .fixed-navbar .button__text{ font-size: 25px; letter-spacing: 1px; }
+}
+
+
+/* ===================== */
+/* Floating Sticky Navbar */
+/* ===================== */
+/* Defaults / design tokens for pills + ring */
+.rounded-navbar{
+  --pill-pad-y: .45rem;
+  --pill-pad-x: .80rem;
+  --pill-font: .95rem;
+  --gap: .35rem;
+  --icon: 1rem;
+
+  --ring-width: 2px;       /* ring thickness */
+  --ring-offset: -6px;     /* how far ring sits outside the pill */
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px); /* slide in from top when shown */
+  background: #000f4b;
+  padding: 1vh 2vw;
+  border-radius: 0 0 18px 18px; /* square top corners */
+  z-index: 9999;
+
+  opacity: 0;                     /* hidden on hero */
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+/* visible state after leaving the landing/hero */
+.rounded-navbar.is-visible{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* inner layout */
+.rounded-navbar .nav{
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+}
+
+/* link pills */
+.rounded-navbar .nav-link{
+  position: relative;
+  color:#fff !important;
+  background: transparent;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding: var(--pill-pad-y) var(--pill-pad-x);
+  border-radius:999px;
+  font:600 var(--pill-font)/1 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  text-decoration:none;
+  transition: background .2s ease, box-shadow .2s ease;
+  white-space: nowrap;
+  outline: none;
+  border: none;
+}
+.rounded-navbar .nav-link i{ font-size: var(--icon); }
+
+/* Soft hover tint (no layout change) */
+.rounded-navbar .nav-link:hover{
+  background: rgba(255,255,255,.12);
+}
+
+/* White ring — single source of truth (no size change) */
+.rounded-navbar .nav-link::after{
+  content: "";
+  position: absolute;
+  inset: var(--ring-offset);       /* expands outside pill without changing layout */
+  border: var(--ring-width) solid #fff;
+  border-radius: 9999px;
+  opacity: 0;
+  transform: scale(.96);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
+}
+
+/* Current page */
+.rounded-navbar .nav-link.active::after,
+.rounded-navbar .nav-link[aria-current="page"]::after{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ====== Responsive tweaks ====== */
+
+/* Tablet: widen bar + center contents + slightly smaller pills */
+@media (min-width:768px) and (max-width:1200px){
+  .rounded-navbar{
+    width: min(60vw, 1100px);
+    padding: 0.8rem 1.2rem;
+    box-sizing: border-box;
     display: flex;
-    gap: 1rem;
-}
-
-.rounded-navbar .nav-item {
-    list-style: none;
-}
-
-.rounded-navbar .nav-link {
-    display: flex;
-    align-items: center;
+    --pill-pad-y: .40rem;
+    --pill-pad-x: .70rem;
+    --pill-font: .90rem;
+    --icon: .95rem;
+    --ring-offset: -1px; /* ring sits a bit tighter */
+  }
+  .rounded-navbar .nav{
+    width: 100%;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: #444;
-    color: #fff;
-    border-radius: 50%;
-    text-decoration: none;
-    transition: background-color 0.3s;
+    flex-wrap: nowrap;
+  }
 }
 
-.rounded-navbar .nav-link:hover {
-    background-color: #555;
+/* Phones: make the bar a bit wider and keep contents centered */
+@media (max-width:768px){
+  .rounded-navbar{
+    width: min(60vw, 620px);   /* ⬅️ wider on phones */
+    padding: .5rem .8rem;
+    box-sizing: border-box;
+    display: flex;
+
+    /* keep your existing token tweaks */
+    --pill-pad-y: .35rem;
+    --pill-pad-x: .60rem;
+    --pill-font: .85rem;
+    --icon: .9rem;
+    --gap: .25rem;
+    --ring-offset: -5px;
+  }
+  .rounded-navbar .nav{
+    width: 100%;
+    justify-content: center;   /* center links inside the wider bar */
+    flex-wrap: nowrap;
+  }
 }
 
-.rounded-navbar .nav-link i {
-    font-size: 1.2rem;
-}
-
-.rounded-navbar .nav .nav-link.active {
-    background-color: #fff !important;
-    color: #000 !important;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-}
-
-/* Media Queries for Smaller Screens */
-@media (max-width: 768px) {
-    .hero-section .fixed-navbar {
-        top: 10px; /* Adjust spacing for smaller screens */
-        right: 10px; /* Keep it aligned to the right */
-    }
-
-    .hero-section .fixed-navbar .nav-link {
-        font-size: 0.75rem; /* Reduce font size */
-        padding: 0.3rem 0.8rem; /* Adjust padding */
-        border-radius: 20px; /* Slightly smaller buttons */
-    }
-
-    .hero-section .fixed-navbar .nav {
-        gap: 0.5rem; /* Reduce spacing between links */
-    }
-    .rounded-navbar {
-        padding: 0.3rem 0.5rem; /* Reduce padding */
-    }
-
-    .rounded-navbar .nav {
-        gap: 0.5rem; /* Reduce gap between items */
-    }
-
-    .rounded-navbar .nav-link {
-        width: 25px; /* Reduce size of nav items */
-        height: 31px;
-    }
+/* Very small phones: stretch a touch more, hide labels if needed */
+@media (max-width:500px){
+  .rounded-navbar{ width: 60vw; }
+  .rounded-navbar .nav-link span{ display:none; }
+  .rounded-navbar .nav{gap:1.2rem;}
 }
 
 
@@ -463,11 +619,11 @@ html, body {
 /* 5) Hero Section Fixed Text Styling    */
 /* ===================================== */
 .fixed-text {
-    font-size: 5vw; /* Adjust as needed */
+    font-size: 3vw; /* Adjust as needed */
     transform: scaleY(1);
     color: #00135c;
-    margin: 0;
-    font-family: 'Drawishan', sans-serif;
+    margin: 2rem 0;
+    font-family: 'Reenie Beanie', sans-serif;
 }
 
   .sec-text {
@@ -502,79 +658,220 @@ html, body {
 /* ===================================== */
 /* 6) About Section Styling              */
 /* ===================================== */
-#about {
-  font-family: "Agdasima", serif;
-  background-color: #f8f9fa;
-  padding: 3rem 0;
+/* ===== About (85% width, aligned photos, paragraph aligned with name) ===== */
+.about{
+  background:#FAF8F1;
+  display:flex; align-items:center;
 }
 
-#about h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 2rem;
+.about-wrap{
+  width: 60vw;       /* ~85% of the page, capped */
+  margin: 0 auto;
+  padding: clamp(20px,3vw,32px);
 }
 
-.profile-pic {
-  max-width: 250px;
-  border: 5px solid #fff;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1rem;
+/* Use ONE grid so name/text share the same row, and photos share another row */
+.about-grid{
+  display:grid;
+  grid-template-columns: 2fr 1fr;            /* 66% / 34% */
+  grid-template-rows: auto 1fr;              /* row1: text, row2: photos */
+  grid-template-areas:
+    "name  copy"
+    "photoL photoR";
+  gap: clamp(20px,2.8vw,40px);
+  min-height: clamp(560px, 78vh, 900px);     /* canvas height */
+  align-items: end;                           /* bottom-align the photo row */
 }
 
-.about-text {
-  font-size: 1.2rem;
-  color: #555;
-  line-height: 1.6;
-  text-align: justify;
+/* Flatten left/right wrappers so their children take grid areas directly */
+.about-left,
+.about-right{ display: contents; }
+
+/* --- Placements --- */
+.about-nameblock{ grid-area: name; align-self:start; position:relative; }
+.about-copy     { grid-area: copy; align-self:start; }
+
+.about-nameblock,
+.about-copy{
+  grid-row: 1;          /* same grid row */
+  align-self: start;    /* align to the top of that row */
 }
 
-@media (max-width: 768px) {
-  #about .row {
-    flex-direction: column;
-    text-align: center;
+.about-photo-lg { grid-area: photoL; align-self:end; display:flex; align-items:flex-end; height:100%; }
+.about-photo-sm { grid-area: photoR; align-self:end; display:flex; align-items:flex-end; height:100%; }
+
+/* Keep full image (no crop) and “sit” the bitmap on the bottom edge */
+.about-photo-lg img,
+.about-photo-sm img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  object-position: bottom center;            /* forces visible bottoms to line up */
+  display:block;
+}
+
+/* Typography */
+.about-name{
+  margin:0;
+  margin-top: 0;
+  font-family: "Rock Salt","Reenie Beanie",cursive; /* use your hand font */
+  font-size: clamp(44px, 8vw, 120px);
+  color:#0d2a63;
+}
+
+.about-hi{
+  position:absolute;
+  left:0;
+  top: -6vh;                     /* nudge as desired */
+  margin:0;
+  font: clamp(24px,2vw,36px)/1.1 "Rock Salt","Reenie Beanie",cursive;
+  color:#0d2a63;
+}
+
+/* Right paragraph: larger and roomier */
+.about-copy p{
+  margin:0;
+  margin-top: 0;
+  max-width: 50ch;
+  font: normal clamp(16px,1.25vw,22px)/1.9 "Montserrat", system-ui, sans-serif;
+  color:#243253;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 2000px){
+  /* keep the name reasonable on big screens */
+  .about-name{
+    font-size: clamp(48px, 4vw, 96px);
   }
 
-  .profile-pic {
-    margin: 0 auto 1rem auto;
+  .about-copy p{
+    font-size: clamp(12px, 0.88vw, 20px);
+  }
+
+  .about-hi{
+    font-size: clamp(20px, 1.2vw, 32px);
+  }
+
+  /* pack the grid rows together, don't stretch vertically */
+  .about-grid{
+    min-height: unset;                   /* no forced tall canvas */
+    grid-template-rows: auto auto;       /* row1: text, row2: photos (tight) */
+    align-content: start;                /* keep both rows at the top */
+    row-gap: clamp(16px, 1.2vw, 28px);   /* smaller gap between text & photos */
   }
 }
+
+@media (max-width:1400px){
+  /* canvas & container */
+  .about{ padding-block: clamp(40px,8vw,96px); }
+  .about-wrap{ width: min(92vw, 760px); }
+
+  /* kill the old grid arrangement and reorder */
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "photoR"   /* small portrait on the top-right */
+      "name"     /* Hi, I’m + Wayne Yeung */
+      "copy"     /* description paragraph */
+      "photoL";  /* wide library photo at the bottom */
+    gap: clamp(16px,4vw,28px);
+    align-items: start;
+  }
+
+  /* reset any earlier alignment tricks */
+  .about-left, .about-right{ display: contents; }
+
+  /* small portrait — top-right */
+  .about-photo-sm{ 
+    grid-area: photoR;
+    justify-self: end;                 /* push to the right */
+    max-width: min(68vw, 340px);
+    height: auto;
+  }
+  .about-photo-sm img{ width:100%; height:auto; object-fit: contain; }
+
+  /* name block */
+  .about-nameblock{ grid-area: name; }
+  .about-hi{ position: static; margin: 0 0 .25rem; }
+  .about-name{ font-size: clamp(42px, 12vw, 72px); }
+
+  /* paragraph */
+  .about-copy{ grid-area: copy; }
+  .about-copy p{
+    max-width: 36ch;                   /* tidy column like your mock */
+    font-size: clamp(16px, 1.9vw, 19px);
+    line-height: 1.9;
+  }
+
+  /* wide photo — bottom-left */
+  .about-photo-lg{
+    grid-area: photoL;
+    justify-self: start;               /* align left */
+    max-width: min(90vw, 520px);
+    height: auto;
+  }
+  .about-photo-lg img{ width:100%; height:auto; object-fit: contain; }
+}
+
+/* Phones: slightly tighter scale */
+@media (max-width:640px){
+  .about-wrap{ width: 92vw; }
+  .about-hi{ font-size: clamp(16px, 4vw, 32px); margin-bottom: 8px;}
+  .about-name{ font-size: clamp(36px, 10vw, 64px); }
+  .about-copy p{ font-size: clamp(12px, 2vw, 18px); padding-right:16vw; margin-bottom: 2vh;}
+  .about-photo-sm{ max-width: 40vw;}
+  .about-photo-lg{ max-width: min(94vw, 480px); margin-right: 8vw;}
+}
+
 
 /* ===================================== */
 /* 7) )Project Section Styling           */
 /* ===================================== */
 #projects {
   background-color: #faf8f1;
-  padding: 3rem 0;
+  padding: 1rem 0;
+}
+
+#projects .container{
+  padding-top: 6vh;
+  display: block;           /* cancel your global flex */
+  align-items: initial;     /* no cross-axis centering */
+  text-align: initial;      /* ignore the parent's .text-center */
+}
+
+#projects .projects-track{
+  display: inline-grid;          /* grid so we can right-align the CTA */
+  row-gap: 2rem;                 /* space between rows/CTA */
+  margin-inline: auto;           /* center the whole track in the page */
 }
 
 #projects h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 2rem;
+  font-family: "Montserrat";
+  font-size: clamp(28px, 4.6vw, 64px);
+  font-weight: 800;
+  letter-spacing:.5px;
+  text-align:center;
+  color:#00135c;
+  margin-bottom: 2rem;
 }
 
 .json-row {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 2rem;
 }
 
 .json-row-1{
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 2rem;
 }
 
 .json-row-2 {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 2rem;
 }
 
 .json-btn {
@@ -583,15 +880,246 @@ html, body {
 }
 
 .json-btn.square {
-  height: 37vh;
-  aspect-ratio: 228 / 271;
+  height: 28vh;
+  aspect-ratio: 228 / 248;
 }
 
 .json-btn.rect {
-  height: 37vh;
-  aspect-ratio: 16 / 9;
+  height: 28vh;
+  aspect-ratio: 488/ 248;
 }
 
+/* Projects: CTA button spacing + sizing */
+.projects-cta{
+  display: grid;                 /* override any .d-flex from HTML */
+  justify-items: end;            /* push the button to the right edge */
+
+}
+
+#projects .json-row-1 + .json-row-2 {
+  margin-top: 0;
+}
+
+#projects .cta-btn{
+  font-size: clamp(14px, 1.1vw, 18px);
+  padding: 12px 24px;
+  display: inline-block;
+}
+
+
+/* ============================
+   PROJECTS — Mobile/Tablet layout
+   ============================ */
+/* PROJECTS — tablet/phone layout (fix mapping through row wrappers) */
+@media (max-width: 1400px){
+  /* keep rows “invisible” so their children become grid items */
+  #projects .json-row-1,
+  #projects .json-row-2{ display: contents; }
+
+  /* grid like the mock */
+  #projects .projects-track{
+    --g: clamp(16px, 4vw, 28px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "hero hero"
+      "s1   s2"
+      "wide wide"
+      "cta  cta";
+    gap: var(--g);
+    width: 60vw; /* max width of the track */
+    margin-inline: auto;
+    grid-auto-flow: dense;
+  }
+
+  /* ✅ map the four cards by row/position */
+  #projects .projects-track .json-row-1 > a:first-child { grid-area: hero; } /* big top */
+  #projects .projects-track .json-row-1 > a:last-child  { grid-area: s1;   } /* small left */
+  #projects .projects-track .json-row-2 > a:first-child { grid-area: s2;   } /* small right */
+  #projects .projects-track .json-row-2 > a:last-child  { grid-area: wide; } /* wide bottom */
+
+  /* card visuals (optional but nice) */
+  #projects .json-btn{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  /* CTA stays right-aligned */
+  #projects .projects-cta{ grid-area: cta; display:grid; justify-items:end; margin-top:4px; }
+}
+
+@media (max-width: 640px){
+  #projects .projects-track{
+    width: 80vw;
+  }
+}
+
+/* ===================== */
+/*   Expertise Section   */
+/* ===================== */
+#expertise{
+  background:#faf8f1;
+  display:flex; align-items:center;
+}
+
+.expertise-wrap{
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  padding:60px 24px 80px;
+}
+
+/* Title */
+.expertise-title{
+  text-align:center;
+  color:#00135c;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight:800;
+  letter-spacing:.5px;
+  font-size: clamp(28px, 4.6vw, 64px);
+  margin: 0 0 36px;
+}
+.expertise-title span{ position:relative; display:inline-block; }
+.expertise-title span::after{
+  content:""; display:block;
+  width:160px; height:6px; margin:12px auto 0;
+  background:#00135c; border-radius:4px;
+}
+
+/* Cards */
+.expertise-grid{
+  display:grid; gap:28px;
+  grid-template-columns: repeat(3,1fr);
+}
+.expertise-card{
+  background:#fdfdfd; border-radius:20px; padding:56px;
+  box-shadow:0 0 4px rgba(0,0,0,.12);
+  color:#0d1b4a; text-align:left;
+  transition:transform .2s ease, box-shadow .2s ease;
+  min-height:220px;
+}
+.expertise-card:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.08); }
+.expertise-card .icon{ font-size:28px; color:#00135c; margin-bottom:10px; }
+.expertise-card h3{
+  font-family:"Montserrat",system-ui,sans-serif; font-weight:700;
+  font-size: clamp(18px, 2.1vw, 28px); margin:0 0 8px; color:#00135c;
+}
+.expertise-card p{
+  font-family:"Montserrat",system-ui,sans-serif; font-weight:500;
+  font-size:14px; line-height:1.45; color:#001b3f; opacity:.9; max-width:40ch;
+}
+
+/* Responsive cards */
+@media (max-width: 992px){ .expertise-grid{ grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 600px){
+  .expertise-grid{ grid-template-columns: 1fr; }
+  .expertise-title span::after{ width:120px; }
+}
+
+/* ===== CTA ===== */
+.expertise-cta{
+  text-align:center;
+  margin: clamp(64px, 12vw, 144px) 0 12px;
+  position: relative;
+}
+.cta-title{
+  font-family:"Montserrat",system-ui,sans-serif;
+  font-weight:800; color:#00135c; letter-spacing:.5px;
+  font-size: clamp(28px, 4.6vw, 64px);
+  line-height:1.05;
+  margin: 0 0 clamp(24px, 4vw, 36px);
+}
+
+/* Button */
+.cta-target {
+  position: relative;
+  display: inline-block;
+  padding-top: clamp(10px, 2vw, 20px); /* drastically reduced top padding */
+}
+.cta-btn{
+  display:inline-block; padding:14px 28px; border-radius:999px; text-decoration:none;
+  font-family:"Montserrat",system-ui,sans-serif; font-weight:600; color:#fff;
+  background: linear-gradient(180deg, #00135c 0%, #0a1e7a 100%);
+  box-shadow: 0 10px 24px rgba(0, 19, 92, .25), inset 0 -2px 0 rgba(255,255,255,.15);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.cta-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0,19,92,.28), inset 0 -2px 0 rgba(255,255,255,.20);
+  filter: brightness(1.05);
+}
+.cta-btn:active{ transform:none; box-shadow: 0 6px 16px rgba(0,19,92,.22) inset; }
+.cta-btn:focus-visible{ outline:3px solid #c7cce4; outline-offset:4px; }
+
+/* ============================
+   EXPERTISE — Tablet & Phone
+   ============================ */
+/* Tablet & small laptops */
+@media (max-width: 1200px){
+  /* two columns, cards use the same fixed width */
+  #expertise .expertise-grid{
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* use card width, not 1fr */
+    justify-content: center;                /* center the 2 cols */
+    gap: clamp(14px, 3.2vw, 24px);
+  }
+
+  /* same width for ALL cards (narrower than desktop) */
+  #expertise .expertise-card{
+    width: clamp(240px, 36vw, 320px);
+    padding: clamp(16px, 2.4vw, 28px);
+    border-radius: 18px;
+  }
+
+  /* put the 3rd card under the first row, centered (same width) */
+  #expertise .expertise-card:nth-child(3){
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}
+
+/* ============================
+   EXPERTISE — phones: 3 columns, mini cards
+   ============================ */
+@media (max-width: 640px){
+  /* three narrow columns */
+  #expertise .expertise-grid{
+    grid-template-columns: repeat(3, auto); /* 3 cols driven by card width */
+    justify-content: center;                /* center the grid */
+    gap: clamp(8px, 2.8vw, 12px);
+  }
+
+  /* same narrow width for ALL cards */
+  #expertise .expertise-card{
+    width: clamp(100px, 28vw, 130px);       /* make cards small */
+    padding: clamp(8px, 2.5vw, 12px);
+    min-height: auto;
+    border-radius: 12px;
+  }
+
+  /* smaller typography inside the cards */
+  #expertise .expertise-card .icon{ 
+    font-size: clamp(12px, 4.2vw, 16px);
+    margin-bottom: 4px;
+  }
+  #expertise .expertise-card h3{
+    font-size: clamp(10px, 3.2vw, 12px);
+    margin: 0 0 4px;
+  }
+  #expertise .expertise-card p{
+    font-size: clamp(8px, 2.7vw, 10px);
+    line-height: 1.25;
+  }
+
+  /* let the 3rd card flow normally (undo tablet centering) */
+  #expertise .expertise-card:nth-child(3){
+    grid-column: auto;
+    justify-self: center;
+  }
+}
+
+/* ===================================== */
 
 /* reset any unwanted scrollbars */
 .scroll-snap {
@@ -603,107 +1131,4 @@ html, body {
 }
 .scroll-snap::-webkit-scrollbar {    /* Chrome/Safari */
   display: none;
-}
-
-/* Fun Fact & Video Section */
-#fun-fact-video {
-    background-color: #f8f9fa; /* Light background color */
-    padding: 3rem 0; /* Add padding to the section */
-}
-
-#fun-fact-video h2 {
-    font-family: "Agdasima", serif;
-    font-size: 3rem; /* Larger heading size */
-    font-weight: bold; /* Bold heading */
-    color: #333; /* Dark text color */
-    margin-bottom: 2rem; /* Spacing below the heading */
-}
-
-/* Fun Fact Card */
-.fact-card {
-    font-family: "Agdasima", serif;
-    background-color: #fff; /* White card background */
-    border: none; /* No border for the card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the card */
-    border-radius: 10px; /* Rounded corners */
-    padding: 1.5rem; /* Internal padding */
-}
-
-.fact-card .card-text {
-    font-size: 1.2rem; /* Slightly larger text for emphasis */
-    color: #555; /* Muted text color */
-    line-height: 1.6; /* Better line spacing */
-}
-
-/* Video Wrapper */
-.video-wrapper {
-    margin-top: 2rem; /* Spacing above the video */
-}
-
-.video-wrapper .ratio {
-    border-radius: 10px; /* Rounded corners for the video frame */
-    overflow: hidden; /* Ensure clean edges */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for video */
-}
-
-.video-wrapper p {
-    font-size: 1rem; /* Normal-sized text for video description */
-    color: #333; /* Dark text color */
-    margin-top: 1rem; /* Spacing above the description */
-    text-align: center; /* Center the text */
-}
-
-
-/* Contact Section Styling */
-.contact-section {
-    font-family: "Agdasima", serif;
-    background-color: #333;
-    color: #fff;
-}
-
-.contact-section h2 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-}
-
-.contact-section .btn {
-    border: 2px solid #fff;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    transition: all 0.3s;
-}
-
-.contact-section .btn:hover {
-    background-color: #fff;
-    color: #333;
-    border-color: #fff;
-}
-
-
-@media (max-width: 768px) {
-    h2 {
-        font-size: 2rem; /* Reduce heading size */
-    }
-
-    .card-text {
-        font-size: 0.9rem; /* Reduce card text size */
-    }
-
-    .btn {
-        padding: 0.5rem 1rem; /* Adjust button padding */
-    }
-}
-
-/* Navbar Adjustments */
-@media (max-width: 768px) {
-    .rounded-navbar .nav {
-        gap: 0.5rem;
-    }
-
-    .rounded-navbar .nav-link {
-        font-size: 0.5rem;
-    }
 }

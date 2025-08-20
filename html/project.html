@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects</title>
+
+  <!-- libs you already use -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/custom.css">
+
+  <!-- this page -->
+  <link rel="stylesheet" href="../css/project.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <!-- ===================== -->
+    <!--     Sticky Navbar     -->
+    <!-- ===================== -->
+    <nav class="rounded-navbar always-on" id="floatingNavbar" aria-label="Primary">
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i><span>Resume</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="project.html" aria-current="page"><i class="fas fa-folder"></i><span>Projects</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-phone"></i><span>Contact</span></a></li>
+      </ul>
+    </nav>
+
+  <section class="projects">
+    <header class="page-hero">
+      <h1 class="page-hero__title">Projects.</h1>
+    </header>
+
+
+    <!-- 12-box layout -->
+    <main class="projects-grid" aria-label="Project gallery">
+      <!-- 1 (H) -->
+      <a href="#" class="tile tile--wide item-1" aria-label="MeetHomie">
+        <lottie-player src="../animations/MeetHomie.json" background="transparent"></lottie-player>
+      </a>
+
+      <!-- 2 (Unit) -->
+      <a href="#" class="tile tile--unit item-2" aria-label="Wizard.io">
+        <lottie-player src="../animations/Wizard.io.json" background="transparent"></lottie-player>
+      </a>
+
+      <!-- 3 (Unit) -->
+      <a href="#" class="tile tile--unit item-3" aria-label="WePark">
+        <lottie-player src="../animations/WePark.json" background="transparent"></lottie-player>
+      </a>
+
+      <!-- 4 (Vertical) -->
+      <a href="#" class="tile tile--tall item-4" aria-label="Kelly">
+        <lottie-player src="../animations/Kelly.json" background="transparent"></lottie-player>
+      </a>
+
+      <!-- 5 (H) -->
+      <a href="#" class="tile tile--wide item-5" aria-label="WeBite">
+        <lottie-player src="../animations/WeBite.json" background="transparent"></lottie-player>
+      </a>
+
+      <!-- 6 (Unit) -->
+      <a href="#" class="tile tile--unit item-6" aria-label="Petition">
+        <lottie-player src="../animations/Petition.json" background="transparent"></lottie-player>
+      </a>
+
+      <!-- 7 (Unit) -->
+      <a href="#" class="tile tile--unit item-7" aria-label="Clothing App">
+        <lottie-player src="../animations/ClothingApp.json" background="transparent"></lottie-player>
+      </a>
+
+      <!-- 8 (H) -->
+      <a href="#" class="tile tile--wide item-8" aria-label="3D Web Portfolio">
+        <lottie-player src="../animations/3DWeb.json" background="transparent"></lottie-player>
+      </a>
+    </main>
+  </section>
+
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Same hover/touch behavior you’ve been using
+    document.querySelectorAll('.projects-grid lottie-player').forEach(player => {
+      const fwd = () => { player.setSpeed(5); player.setDirection(1); player.play(); };
+      const rev = () => { player.setSpeed(4); player.setDirection(-1); player.play(); };
+      player.addEventListener('mouseenter', fwd);
+      player.addEventListener('mouseleave', rev);
+      let toggled = false;
+      player.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        (toggled ? rev : fwd)(); toggled = !toggled;
+      }, { passive: false });
+    });
+  </script>
+  <script>
+  (function () {
+    // “No hover” usually means touch device (phones/tablets)
+    const isNoHover = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+    // grab only the project tiles on this page
+    const players = document.querySelectorAll(".projects-grid lottie-player");
+
+    players.forEach((p) => {
+      // remove any handlers you may have added previously
+      p.replaceWith(p.cloneNode(true)); // quick way to clear old listeners
+    });
+
+    // re-query after clone
+    const freshPlayers = document.querySelectorAll(".projects-grid lottie-player");
+
+    freshPlayers.forEach((player) => {
+      const toEndAndStop = () => {
+        // jump to the last frame so the name is visible by default
+        // (use 99% instead of 100% if your file freezes on 100%)
+        player.seek("99%");
+        player.pause();
+      };
+
+      if (isNoHover) {
+        // Phone/Tablet: show name by default
+        // Make sure we only seek after the JSON is ready
+        player.addEventListener("ready", toEndAndStop);
+        player.addEventListener("load", toEndAndStop); // some builds use 'load'
+
+        // Optional: tap toggles hide/show with a short reverse/forward
+        let showing = true; // starts at end (name visible)
+        player.addEventListener("click", () => {
+          player.setSpeed(3);
+          if (showing) {
+            player.setDirection(-1); // play backward (hide)
+            player.play();
+          } else {
+            player.setDirection(1); // play forward (show)
+            player.play();
+          }
+          showing = !showing;
+        });
+      } else {
+        // Desktop: keep your hover behaviour
+        const fwd = () => { player.setSpeed(5); player.setDirection(1); player.play(); };
+        const rev = () => { player.setSpeed(4); player.setDirection(-1); player.play(); };
+        player.addEventListener("mouseenter", fwd);
+        player.addEventListener("mouseleave", rev);
+
+        // start from the “at rest” frame
+        player.addEventListener("ready", () => { player.seek("0%"); player.pause(); });
+        player.addEventListener("load",  () => { player.seek("0%"); player.pause(); });
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,136 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
-    <link rel="stylesheet" href="../css/resume.css">
-    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Tektur&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume</title>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Tektur:wght@400..900&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet"/>
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="../css/resume.css"/>
 </head>
 <body>
-    <div class="container">
-        <!-- Header --> 
-        <header class="header">
-            <h1>Resume.</h1>
-            <div class="social-links">
-                <a href="#" class="social-btn">
-                    <div class="social-icon"></div>
-                    LinkedIn
-                </a>
-                <a href="#" class="social-btn">
-                    <div class="social-icon"></div>
-                    GitHub
-                </a>
-                <a href="#" class="social-btn">
-                    <div class="social-icon"></div>
-                    Resume
-                </a>
-            </div>
-        </header>
-
-        <!-- Profile Section -->
-        <section class="profile-section">
-            <div class="left-cell">01 Profile</div>
-            <p class="content-text">
-                A proactive student at University of Toronto. Possess strong leadership, creativity and communication skills with fluency in both Chinese and English. Keen to pursue a career in the Gaming and technology industry.
-            </p>
-        </section>
-
-        <!-- Education Section -->
-        <section class="education-section">
-            <div class="content-text">
-                <div class="university">University of Toronto (2020 - 2025)</div>
-                <div class="degree">Computer Science & Communication, Culture, Information &<br>Technology (CCIT)</div>
-            </div>
-            <div class="right-cell">02 Education</div>
-        </section>
-
-        <!-- Profession Section -->
-        <section class="profession-section">
-            <div class="left-cell">03 Profession</div>
-            <div class="wrapper">
-                <div class="skills-container">
-                    <div class="skill-box">
-                        <span class="title">HTML</span>
-
-                        <div class="skill-bar">
-                            <span class="skill-per html">
-                                <span class="tooltip">50%</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="skill-box">
-                        <span class="title">CSS</span>
-
-                        <div class="skill-bar">
-                            <span class="skill-per css">
-                                <span class="tooltip">70%</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="skill-box">
-                        <span class="title">JavaScript</span>
-
-                        <div class="skill-bar">
-                            <span class="skill-per javascript">
-                                <span class="tooltip">50%</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="skill-box">
-                        <span class="title">NodeJS</span>
-
-                        <div class="skill-bar">
-                            <span class="skill-per nodejs">
-                                <span class="tooltip">30%</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="experience-section">
-            <h2 class="experience-title">04 Experience</h2>
-            <div class="timeline-container">
-                <div class="timeline-line"></div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-title">Full Stack Web Developer</div>
-                        <div class="job-period">Jun 2024 - Dec 2024</div>
-                        <div class="job-description">
-                            Designed creative commercial websites to enhance user experience. Participated in Agile processes.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-title">STEM Tutor</div>
-                        <div class="job-period">Sep 2023 - Apr 2024</div>
-                        <div class="job-description">
-                            Designed interactive E-commerce websites to enhance user experience. Participated in Agile processes.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-title">Full Stack Web Developer</div>
-                        <div class="job-period">Jun 2023 - Dec 2023</div>
-                        <div class="job-description">
-                            Designed creative commercial websites to enhance user experience. Participated in Agile processes.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- ===================== -->
+  <!--     HERO / HEADER     -->
+  <!-- ===================== -->
+  <header class="page-hero">
+    <div class="page-hero__inner">
+      <h1 class="page-hero__title">Resume.</h1>
+      <div class="page-hero__actions">
+      <nav class="social-links">
+          <a href="https://www.linkedin.com/in/wayne-michael-yeung" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/WayneMYeung" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span>GitHub</span>
+          </a>
+          <a href="../docs/Wayne_Yeung_Resume.pdf" class="social-btn" download aria-label="Download Resume PDF">
+          <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+          <span>Resume</span>
+          </a>
+      </nav>
     </div>
+  </header>
+
+  <main class="wrap">
+        <!-- ===================== -->
+    <!--     Sticky Navbar     -->
+    <!-- ===================== -->
+    <nav class="rounded-navbar always-on" id="floatingNavbar" aria-label="Primary">
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="resume.html"  aria-current="page"><i class="fas fa-file-alt"></i><span>Resume</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="project.html"><i class="fas fa-folder"></i><span>Projects</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-phone"></i><span>Contact</span></a></li>
+      </ul>
+    </nav>
+
+    <!-- ===================== -->
+    <!--      01 PROFILE       -->
+    <!-- ===================== -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="idx">01</span>
+        <span class="label">Profile</span>
+      </h2>
+
+      <p class="lead">
+        A proactive student at University of Toronto. Possess strong leadership, creativity and communication
+        skills with fluency in both Chinese and English. Keen to pursue a career in the Gaming and technology
+        industry.
+      </p>
+    </section>
+
+    <!-- ===================== -->
+    <!--     02 EDUCATION      -->
+    <!-- ===================== -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="idx">02</span>
+        <span class="label">Education</span>
+      </h2>
+
+      <div class="edu">
+        <div class="edu__school">University of Toronto (2020 – 2025)</div>
+        <div class="edu__degree">Bachelor of Science</div>
+        <div class="edu__major">
+          Computer Science &amp; Communication, Culture, Information &amp; Technology (CCIT)
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== -->
+    <!--   03 PROFESSIONAL     -->
+    <!-- ===================== -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="idx">03</span>
+        <span class="label">Professional</span>
+      </h2>
+
+      <div class="skills-card">
+        <div class="skill">
+          <div class="skill__meta">
+            <span>HTML</span><span class="skill__pct">50%</span>
+          </div>
+          <div class="bar">
+            <span class="bar__fill" style="--w:50%"></span>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill__meta">
+            <span>CSS</span><span class="skill__pct">70%</span>
+          </div>
+          <div class="bar">
+            <span class="bar__fill" style="--w:70%"></span>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill__meta">
+            <span>JavaScript</span><span class="skill__pct">50%</span>
+          </div>
+          <div class="bar">
+            <span class="bar__fill" style="--w:50%"></span>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill__meta">
+            <span>NodeJS</span><span class="skill__pct">30%</span>
+          </div>
+          <div class="bar">
+            <span class="bar__fill" style="--w:30%"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+    <!-- ===================== -->
+    <!--   04 EXPERIENCE       -->
+    <!-- ===================== -->
+    <!-- Your timeline block stays exactly the same -->
+    <section class="experience-section" id="experience">
+      <h2 class="experience-title">04 Experience</h2>
+      <div class="experience-divider"></div>
+
+      <section class="timeline tl-scope">
+        <article class="tl-item right">
+          <h3 class="tl-title">UTEHKSA President External</h3>
+          <div class="tl-divider" aria-hidden="true"></div>
+          <p class="tl-dates">May 2023 – May 2024</p>
+          <p class="tl-desc">Planned and executed various events, lead the organizational in External operations of the association</p>
+        </article>
+
+        <article class="tl-item left">
+          <h3 class="tl-title">STEM Tutor</h3>
+          <div class="tl-divider" aria-hidden="true"></div>
+          <p class="tl-dates">Sep 2023 – Apr 2024</p>
+          <p class="tl-desc">Tutored students in STEM subjects, designed interactive exercises,
+            and improved learning outcomes.</p>
+        </article>
+
+        <article class="tl-item right">
+          <h3 class="tl-title">Full Stack Web Developer</h3>
+          <div class="tl-divider" aria-hidden="true"></div>
+          <p class="tl-dates">Jun 2023 – Dec 2023</p>
+          <p class="tl-desc">Built and maintained client-facing web applications with Shopify API.
+            Collaborated in Agile sprints.</p>
+        </article>
+      </section>
+    </section>
 </body>
 </html>

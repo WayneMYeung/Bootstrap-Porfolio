@@ -1,0 +1,308 @@
+/* =========================================================
+   Projects grid — desktop fixed + tablet mosaic + phone stack
+   (Vertical card updated to 228×528)
+   ========================================================= */
+
+:root{
+  --page-bg:#FAF8F1;
+  --ink:#19222d;
+  --brand:#2B4167;
+
+  --maxw:min(94vw,1200px);
+
+  /* responsive, single source of truth for spacing */
+  --g: clamp(14px, 2.1vw, 32px);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--page-bg);
+  color:var(--ink);
+  font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+/* ===================== */
+/* Unified Page Hero     */
+/* ===================== */
+.page-hero{
+  background:#2B4167;              /* same as Contact */
+  height:220px;                    /* contact baseline */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top:5vh;                 /* headroom for fixed navbar */
+  text-align:center;
+}
+
+.page-hero__title{
+  font-family:'Alfa Slab One', serif;
+  color:#fff;
+  font-weight:400;
+  letter-spacing:.5px;
+  font-size: clamp(32px, 6vw, 80px); /* same feel as Contact */
+  margin:0;
+  line-height:1;
+}
+
+/* Optional: actions row under the title (e.g., resume social buttons) */
+.page-hero__inner{ display:flex; flex-direction:column; align-items:center; gap:14px; }
+.page-hero__actions{ display:flex; gap: clamp(10px, 1.8vw, 24px); }
+
+/* 1080p-ish refinement (kept from your contact.css) */
+@media (max-width:1920px){
+  .page-hero__title{ font-size:64px; }
+}
+
+/* 4K upscale (kept from your contact.css) */
+@media (min-width:3840px){
+  .page-hero{ height:400px; }
+  .page-hero__title{ font-size:140px; }
+}
+
+
+/* ===================== */
+/* Floating Sticky Navbar */
+/* ===================== */
+/* Defaults / design tokens for pills + ring */
+.rounded-navbar{
+  --pill-pad-y: .45rem;
+  --pill-pad-x: .80rem;
+  --pill-font: .95rem;
+  --gap: .35rem;
+  --icon: 1rem;
+
+  --ring-width: 2px;       /* ring thickness */
+  --ring-offset: -6px;     /* how far ring sits outside the pill */
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px); /* slide in from top when shown */
+  background: #000f4b;
+  padding: 1vh 2vw;
+  border-radius: 0 0 18px 18px; /* square top corners */
+  z-index: 9999;
+
+  opacity: 0;                     /* hidden on hero */
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+/* visible state after leaving the landing/hero */
+.rounded-navbar.is-visible{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* inner layout */
+.rounded-navbar .nav{
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* link pills */
+.rounded-navbar .nav-link{
+  position: relative;
+  color:#fff !important;
+  background: transparent;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding: var(--pill-pad-y) var(--pill-pad-x);
+  border-radius:999px;
+  font:600 var(--pill-font)/1 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  text-decoration:none;
+  white-space: nowrap;
+  outline: none;
+  border: none;
+}
+.rounded-navbar .nav-link i{ font-size: var(--icon); }
+
+/* Soft hover tint (no layout change) */
+.rounded-navbar .nav-link:hover{
+  background: rgba(255,255,255,.12);
+}
+
+/* White ring — single source of truth (no size change) */
+.rounded-navbar .nav-link::after{
+  content: "";
+  position: absolute;
+  inset: var(--ring-offset);       /* expands outside pill without changing layout */
+  border: var(--ring-width) solid #fff;
+  border-radius: 9999px;
+  opacity: 0;
+  transform: scale(.96);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
+}
+
+/* Current page */
+.rounded-navbar .nav-link.active::after,
+.rounded-navbar .nav-link[aria-current="page"]::after{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Always-visible variant for pages without hero/snap-scroll */
+.rounded-navbar.always-on{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+
+/* ====== Responsive tweaks ====== */
+@media (min-width:1200px) and (max-width:1920px){
+  .rounded-navbar{
+    padding: 1.2rem 1.6rem;
+    --pill-pad-y: .45rem;
+    --pill-pad-x: .85rem;
+    --pill-font: .95rem;
+    --icon: 1.05rem;
+  }
+}
+
+
+/* Tablet: widen bar + center contents + slightly smaller pills */
+@media (min-width:768px) and (max-width:1200px){
+  .rounded-navbar{
+    width: min(60vw, 1100px);
+    padding: 0.8rem 1.2rem;
+    box-sizing: border-box;
+    display: flex;
+    --pill-pad-y: .40rem;
+    --pill-pad-x: .70rem;
+    --pill-font: .90rem;
+    --icon: .95rem;
+    --ring-offset: -1px; /* ring sits a bit tighter */
+  }
+  .rounded-navbar .nav{
+    width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+}
+
+/* Phones: make the bar a bit wider and keep contents centered */
+@media (max-width:768px){
+  .rounded-navbar{
+    width: min(60vw, 620px);   /* ⬅️ wider on phones */
+    padding: .5rem .8rem;
+    box-sizing: border-box;
+    display: flex;
+
+    /* keep your existing token tweaks */
+    --pill-pad-y: .35rem;
+    --pill-pad-x: .60rem;
+    --pill-font: .85rem;
+    --icon: .9rem;
+    --gap: .25rem;
+    --ring-offset: -5px;
+  }
+  .rounded-navbar .nav{
+    width: 100%;
+    justify-content: center;   /* center links inside the wider bar */
+    flex-wrap: nowrap;
+  }
+}
+
+/* Very small phones: stretch a touch more, hide labels if needed */
+@media (max-width:500px){
+  .rounded-navbar{ width: 60vw; }
+  .rounded-navbar .nav-link span{ display:none; }
+  .rounded-navbar .nav{gap:1.2rem;}
+}
+
+/* ===================== DESKTOP (default) ===================== */
+/* 4 columns with FIXED areas so desktop never shifts */
+.projects-grid{
+  max-width:var(--maxw);
+  margin:32px auto 64px;
+  padding:0 clamp(10px,3vw,20px);
+
+  display:grid;
+  gap:var(--g);
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "n1 n1 n2 n3"
+    "n4 n5 n5 n6"
+    "n4 n7 n8 n8";
+  grid-template-rows: repeat(3, var(--cell-h));  /* ⬅ equal rows */
+  grid-auto-rows: var(--cell-h);                 /* fallback for any implicit rows */
+  align-items:start;        /* cards keep their own height via aspect-ratio */
+}
+
+/* Tiles */
+.tile{
+  position:relative; display:block;
+  border-radius:20px; overflow:hidden;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.tile:hover{ transform:translateY(-3px); }
+
+/* Lottie: fill without cropping (prevents strange inner padding) */
+.tile lottie-player{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  display:block;
+  object-fit:contain;
+  background:transparent;
+}
+
+/* Map items to areas (global so desktop stays locked) */
+.item-1{ grid-area:n1; }
+.item-2{ grid-area:n2; }
+.item-3{ grid-area:n3; }
+.item-4{ grid-area:n4; }
+.item-5{ grid-area:n5; }
+.item-6{ grid-area:n6; }
+.item-7{ grid-area:n7; }
+.item-8{ grid-area:n8; }
+
+/* ===== Real aspect ratios (UPDATED vertical to 228×528) ===== */
+.item-1, .item-5, .item-8{ aspect-ratio: 488 / 248; }   /* horizontals */
+.item-2, .item-3, .item-6, .item-7{ aspect-ratio: 228 / 248; } /* “square” */
+.item-4{ aspect-ratio: 228 / 528; }                     /* vertical (updated) */
+
+/* ===================== TABLET (768–1200px): 3 columns ===================== */
+@media (min-width:768px) and (max-width:1200px){
+  /* slightly tighter gap so the taller portrait doesn't feel too spaced out */
+  .projects-grid{ --g: clamp(12px, 1.6vw, 24px); }
+
+  .projects-grid{
+    grid-template-columns: repeat(3, 1fr);
+    /* your exact tablet pattern */
+    grid-template-areas:
+      "n1 n1 n2"
+      "n4 n5 n5"
+      "n4 n7 n3"
+      "n8 n8 n6";
+  }
+}
+
+/* ===================== PHONE (≤640px): 2 columns ===================== */
+@media (max-width: 640px){
+  /* tighten spacing a bit on small screens */
+  .projects-grid{
+    --g: clamp(10px, 4vw, 16px);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "n1 n1"
+      "n2 n4"
+      "n3 n4"
+      "n5 n5"
+      "n8 n8"
+      "n6 n7";
+  }
+
+  /* optional: slightly smaller corner radius on tiny tiles */
+  .tile{ border-radius: 16px; }
+}

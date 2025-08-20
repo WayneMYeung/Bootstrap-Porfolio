@@ -1,381 +1,564 @@
 /* ===================================== */
-/* 1) Base Styles                        */
+/* 1) Theme & Reset                      */
 /* ===================================== */
-:root {
-    --color-bg:     #FAF8F1;
-    --color-text:   #00135c;
-    --color-blue:   #2B4167;
+:root{
+  --bg: #FAF8F1;
+  --navy: #00135c;
+  --navy-2: #2B4167;
+  --ink: #0f172a;
+  --muted: #5b6b8b;
+  --card: #ffffff;
+  --stroke: #e8e8ef;
+  --chip: rgba(255,255,255,.16);
+  --chip-text: #f1f5ff;
+  --bar: #e7e9ef;
+  --bar-fill: #1f3bb6;
+  --shadow: 0 10px 28px rgba(0,0,0,.08);
 }
 
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ height:100%; }
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family: "Tektur", system-ui, sans-serif;
 }
 
-body {
-    font-family: 'Tektur', sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+/* wrapper for centered sections */
+.wrap{
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  padding-bottom:80px;
 }
 
-.container {
-    margin: 0 auto;
-    background: white;
+/* ===================== */
+/* Unified Page Hero     */
+/* ===================== */
+.page-hero{
+  background:#2B4167;              /* same as Contact */
+  height:220px;                    /* contact baseline */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top:5vh;                 /* headroom for fixed navbar */
+  text-align:center;
 }
 
-/* ===================================== */
-/* 2) Header                             */
-/* ===================================== */
-.header {
-    background: var(--color-blue);
-    color: white;
-    padding: 50px 0;
-    text-align: center;
-    font-family: 'Alfa Slab One', sans-serif;
+.page-hero__title{
+  font-family:'Alfa Slab One', serif;
+  color:#fff;
+  font-weight:400;
+  letter-spacing:.5px;
+  font-size: clamp(32px, 6vw, 80px); /* same feel as Contact */
+  margin:0;
+  line-height:1;
 }
 
-.header h1 {
-    font-size: 4rem;
-    font-weight: normal;
-    margin-bottom: 30px;
-    color: white;
+/* Optional: actions row under the title (e.g., resume social buttons) */
+.page-hero__inner{ display:flex; flex-direction:column; align-items:center; gap:14px; }
+.page-hero__actions{ display:flex; gap: clamp(10px, 1.8vw, 24px); }
+
+/* 1080p-ish refinement (kept from your contact.css) */
+@media (max-width:1920px){
+  .page-hero__title{ font-size:64px; }
 }
 
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+/* 4K upscale (kept from your contact.css) */
+@media (min-width:3840px){
+  .page-hero{ height:400px; }
+  .page-hero__title{ font-size:140px; }
 }
 
-.social-btn {
-    background: rgba(255,255,255,0.15);
-    padding: 8px 16px;
-    border-radius: 20px;
-    color: white;
-    text-decoration: none;
-    font-size: 0.8vw;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.header-icon{ font-size:.9em; }
+
+/* Social buttons in header */
+.social-links{
+  display:flex;
+  justify-content:center;
+  gap: clamp(10px, 1.8vw, 24px);
 }
-
-.social-icon {
-    width: 16px;
-    height: 16px;
-    background: white;
-    border-radius: 2px;
+.social-btn{
+  --pill-bg: rgba(255,255,255,0.15);
+  --pill-bg-hover: rgba(255,255,255,0.22);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  color:#fff;
+  text-decoration:none;
+  background: var(--pill-bg);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,.15) inset;
+  transition: background .2s ease, transform .15s ease;
+  font-size: clamp(12px, .95vw, 16px);
+  line-height: 1;
 }
+.social-btn i{ font-size: clamp(14px, 1.1vw, 18px); }
+.social-btn:hover{ background: var(--pill-bg-hover); transform: translateY(-1px); }
+.social-btn:active{ transform: translateY(0); }
+.social-btn:focus-visible{ outline: 3px solid #c7cce4; outline-offset: 3px; }
 
-/* ===================================== */
-/* 3) Main Content Base Style            */
-/* ===================================== */
+/* kill any old square placeholder */
+.social-icon{ display:none; }
 
-.left-cell, .right-cell {
-    background: var(--color-blue);
-    color: white;
-    width: 24vw;
-    height: 24vh;
-    padding: 8vh 0;
-    font-size: 3vw;
-    font-weight: bold;
-    text-align: center;
-    margin-right: 60px;
-    flex-shrink: 0;
-    border-radius: 0 30vh 30vh 0;
-}
+/* ===================== */
+/* Floating Sticky Navbar */
+/* ===================== */
+/* Defaults / design tokens for pills + ring */
+.rounded-navbar{
+  --pill-pad-y: .45rem;
+  --pill-pad-x: .80rem;
+  --pill-font: .95rem;
+  --gap: .35rem;
+  --icon: 1rem;
 
-.right-cell {
-    border-radius: 30vh 0 0 30vh;
-    margin-right: 0;
-}
+  --ring-width: 2px;       /* ring thickness */
+  --ring-offset: -6px;     /* how far ring sits outside the pill */
 
-.content-text {
-    font-size: 1.125vw;
-    line-height: 1.7;
-    color: var(--color-text);
-    flex: 1;
-    margin: 0 10vw;
-    text-align: center;
-}
-
-/* ===================================== */
-/* 4) Profile Section                    */
-/* ===================================== */
-.profile-section {
-    background: #f5f5f5;
-    padding: 60px 0px;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.profile-text {
-    font-size: 1.125vw;
-    line-height: 1.7;
-    color: #333;
-    flex: 1;
-    margin: 0 10vw;
-    text-align: center;
-}
-
-/* ===================================== */
-/* 5) Education Section                  */
-/* ===================================== */
-.education-section {
-    background: #f5f5f5;
-    padding: 60px 0px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    text-align: center;
-}
-
-.education-content {
-    margin-right: 120px;
-    flex: 1;
-    font-size: 5vw;
-}
-
-/* ===================================== */
-/* 6) Profession Section                 */
-/* ===================================== */
-.profession-section {
-    background: #f5f5f5;
-    padding: 60px 0px;
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-}
-
-.wrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; 
-  padding-right: 2vw;             
-}
-
-.skills-container {
-  flex: 1;                    /* means “take up the remaining space to the right” */
-  display: flex;              
-  justify-content: center;    /* horizontally center everything INSIDE skills-container */
-  align-items: flex-start;    /* top‐align skill‐boxes; use center if you want vertical centering */
-  max-width: 40vw;            /* if you want to force a max-width for the skill box */
-  width: 100%;
-  background: #ececec;
-  padding: 10px 20px;
-  border-radius: 7px;
-  flex-direction: column;
-}
-
-.skills-container .skill-box {
-  width: 100%;
-  margin: 25px 0;
-}
-
-.skill-box .title {
-  display: block;
-  font-size: 1vw;
-  font-weight: 600;
-  color: #333;
-}
-
-.skill-box .skill-bar {
-  height: 1vh;
-  width: 100%;
-  border-radius: 6px;
-  margin-top: 6px;
-  background: rgba(0,0,0,0.1);
-}
-
-.skill-bar .skill-per {
-  position: relative;
-  display: block;
-  height: 100%;
-  width: 90%;
-  border-radius: 6px;
-  background: #4070f4;
-  animation: progress 0.4s ease-in-out forwards;
-  opacity: 0;
-}
-
-.skill-per.html {
-  width: 50%;
-  animation-delay: 0.1s;
-}
-
-.skill-per.css {
-  width: 70%;
-  animation-delay: 0.1s;
-}
-
-.skill-per.javascript {
-  width: 50%;
-  animation-delay: 0.2s;
-}
-
-.skill-per.nodejs {
-  width: 30%;
-  animation-delay: 0.3s;
-}
-
-@keyframes progress {
-  0% {
-    width: 0;
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.skill-per .tooltip {
-  position: absolute;
-  right: -14px;
-  top: -28px;
-  font-size: 9px;
-  font-weight: 500;
-  color: #fff;
-  padding: 2px 6px;
-  border-radius: 3px;
-  background: #4070f4;
-  z-index: 1;
-}
-
-.tooltip::before {
-  content: '';
-  position: absolute;
+  position: fixed;
+  top: 0;
   left: 50%;
-  bottom: -2px;
-  height: 10px;
-  width: 10px;
-  z-index: -1;
-  background-color: #4070f4;
-  transform: translateX(-50%) rotate(45deg);
+  transform: translateX(-50%) translateY(-8px); /* slide in from top when shown */
+  background: #000f4b;
+  padding: 1vh 2vw;
+  border-radius: 0 0 18px 18px; /* square top corners */
+  z-index: 9999;
+
+  opacity: 0;                     /* hidden on hero */
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
 }
 
-/* ===================================== */
-/* 7) Experience Section                 */
-/* ===================================== */
-.experience-section {
-    background: #4a5c7a;
-    color: white;
-    padding: 80px 40px;
+/* visible state after leaving the landing/hero */
+.rounded-navbar.is-visible{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
 }
 
-.experience-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 60px;
+/* inner layout */
+.rounded-navbar .nav{
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.timeline-container {
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative;
+/* link pills */
+.rounded-navbar .nav-link{
+  position: relative;
+  color:#fff !important;
+  background: transparent;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding: var(--pill-pad-y) var(--pill-pad-x);
+  border-radius:999px;
+  font:600 var(--pill-font)/1 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  text-decoration:none;
+  transition: background .2s ease, box-shadow .2s ease;
+  white-space: nowrap;
+  outline: none;
+  border: none;
+}
+.rounded-navbar .nav-link i{ font-size: var(--icon); }
+
+/* Soft hover tint (no layout change) */
+.rounded-navbar .nav-link:hover{
+  background: rgba(255,255,255,.12);
 }
 
-.timeline-line {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    background: rgba(255,255,255,0.3);
+/* White ring — single source of truth (no size change) */
+.rounded-navbar .nav-link::after{
+  content: "";
+  position: absolute;
+  inset: var(--ring-offset);       /* expands outside pill without changing layout */
+  border: var(--ring-width) solid #fff;
+  border-radius: 9999px;
+  opacity: 0;
+  transform: scale(.96);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
 }
 
-.timeline-item {
-    position: relative;
-    margin-bottom: 50px;
+/* Current page */
+.rounded-navbar .nav-link.active::after,
+.rounded-navbar .nav-link[aria-current="page"]::after{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Always-visible variant for pages without hero/snap-scroll */
+.rounded-navbar.always-on{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+
+/* ====== Responsive tweaks ====== */
+@media (min-width:1200px) and (max-width:1920px){
+  .rounded-navbar{
+    padding: 1.2rem 1.6rem;
+    --pill-pad-y: .45rem;
+    --pill-pad-x: .85rem;
+    --pill-font: .95rem;
+    --icon: 1.05rem;
+  }
+}
+
+
+/* Tablet: widen bar + center contents + slightly smaller pills */
+@media (min-width:768px) and (max-width:1200px){
+  .rounded-navbar{
+    width: min(60vw, 1100px);
+    padding: 0.8rem 1.2rem;
+    box-sizing: border-box;
     display: flex;
-    align-items: flex-start;
+    --pill-pad-y: .40rem;
+    --pill-pad-x: .70rem;
+    --pill-font: .90rem;
+    --icon: .95rem;
+    --ring-offset: -1px; /* ring sits a bit tighter */
+  }
+  .rounded-navbar .nav{
+    width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
 }
 
-.timeline-item:nth-child(even) {
-    flex-direction: row-reverse;
+/* Phones: make the bar a bit wider and keep contents centered */
+@media (max-width:768px){
+  .rounded-navbar{
+    width: min(60vw, 620px);   /* ⬅️ wider on phones */
+    padding: .5rem .8rem;
+    box-sizing: border-box;
+    display: flex;
+
+    /* keep your existing token tweaks */
+    --pill-pad-y: .35rem;
+    --pill-pad-x: .60rem;
+    --pill-font: .85rem;
+    --icon: .9rem;
+    --gap: .25rem;
+    --ring-offset: -5px;
+  }
+  .rounded-navbar .nav{
+    width: 100%;
+    justify-content: center;   /* center links inside the wider bar */
+    flex-wrap: nowrap;
+  }
 }
 
-.timeline-content {
-    background: rgba(255,255,255,0.1);
-    padding: 25px;
-    border-radius: 8px;
-    width: 45%;
-    backdrop-filter: blur(10px);
+/* Very small phones: stretch a touch more, hide labels if needed */
+@media (max-width:500px){
+  .rounded-navbar{ width: 60vw; }
+  .rounded-navbar .nav-link span{ display:none; }
+  .rounded-navbar .nav{gap:1.2rem;}
 }
 
-.timeline-item:nth-child(odd) .timeline-content {
-    margin-right: auto;
-    margin-left: 0;
+/* ===================================== */
+/* 3) Section Headings                   */
+/* ===================================== */
+.section{ padding: clamp(40px, 7vw, 80px) 24px; text-align:center; }
+.section-title{
+  display:inline-flex; align-items:baseline; gap:12px; color:var(--navy);
+  font-weight: 900; letter-spacing:.5px;
+  font-size: clamp(28px, 4.6vw, 48px);
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+.section-title .idx{ font-size: .9em; opacity:.9; }
+.section-title .label{ position: relative; }
+.section-title .label::after{
+  content:""; display:block; height:4px; width: 120px; margin:8px auto 0;
+  background: var(--navy); border-radius: 3px;
 }
 
-.timeline-item:nth-child(even) .timeline-content {
-    margin-left: auto;
-    margin-right: 0;
+/* Text blocks */
+.lead{
+  font-family: "Teachers", system-ui, sans-serif;
+  font-size: clamp(14px, 1.25vw, 18px);
+  line-height: 1.7;
+  color: var(--navy);
+  max-width: 900px; margin: 0 auto;
 }
 
-.timeline-dot {
-    position: absolute;
+/* ===================================== */
+/* 4) Education                          */
+/* ===================================== */
+.edu{
+  font-family: "Teachers", sans-serif;
+  color:var(--navy);
+  margin-top: 6px;
+}
+.edu__school{ font-weight: 700; font-size: clamp(16px, 1.3vw, 20px); }
+.edu__degree{ opacity:.9; margin-top:4px; font-size: clamp(14px, 1.15vw, 18px); }
+.edu__major{ opacity:.9; margin-top:4px; font-size: clamp(14px, 1.05vw, 16px); }
+
+/* ===================================== */
+/* 5) Skills Card (Professional)         */
+/* ===================================== */
+.skills-card{
+  margin: clamp(14px, 2vw, 24px) auto 0;
+  width:100%; max-width: 720px;
+  background: var(--card);
+  border:1px solid var(--stroke);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 2.2vw, 22px);
+}
+.skill{ margin: 16px 0; }
+.skill__meta{
+  display:flex; align-items:center; justify-content:space-between;
+  font-weight:700; color: var(--navy);
+  font-size: clamp(12px, 1.05vw, 14px);
+  margin-bottom: 6px;
+}
+.skill__pct{
+  background:#eef1ff; color:#1b2e8b; border:1px solid #cfd7ff;
+  padding:2px 6px; border-radius:6px; font-weight:800;
+}
+.bar{
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: var(--bar);
+  border-radius: 999px;
+  overflow:hidden;
+}
+.bar__fill{
+  position:absolute; inset:0 auto 0 0; width: var(--w,0%);
+  background: var(--bar-fill);
+  border-radius: 999px;
+  transform-origin: left;
+  animation: grow .6s ease forwards;
+}
+@keyframes grow{ from{ width:0% } to{ width: var(--w,0%) } }
+
+/* ===================================== */
+/* 6) Experience (Compact Timeline)      */
+/* ===================================== */
+/* defaults already compact */
+.experience-section{
+  background: var(--navy-2);
+  color:#fff;
+  padding:56px 16px;                 /* compact */
+  --tl-line: 6px;                    /* thinner spine/divider */
+  --tl-dot: 14px;                    /* smaller dot */
+  --tl-gap-y: 2.25rem;               /* tighter vertical spacing */
+  --tl-content-pad: 0rem;
+}
+.experience-title{
+  font-family:'Tektur',sans-serif;
+  font-size: clamp(28px, 4.6vw, 48px);
+  font-weight:900;
+  text-align:center; margin:0;
+}
+.experience-divider{ width:48px; height:3px; margin:6px auto 24px; }
+
+/* centered spine layout */
+.experience-section .timeline{
+  position:relative; max-width:920px;         /* narrower than 1100px */
+  margin:0 auto; padding:1rem 0;
+}
+.experience-section .timeline::before{
+  content:""; position:absolute; top:0; bottom:0; left:50%;
+  width:var(--tl-line); transform:translateX(-50%); background:#fff; z-index:0;
+}
+
+/* halves */
+.experience-section .tl-item{
+  position:relative; width:50%; margin:var(--tl-gap-y) 0; z-index:1;
+}
+.experience-section .tl-item.right{ margin-left:50%; padding-right:var(--tl-content-pad); }
+.experience-section .tl-item.left { margin-right:50%; padding-left: var(--tl-content-pad); }
+
+/* text sizes */
+.experience-section .tl-title{
+  margin:0 0 .35rem; font-weight:800;
+  font-size:clamp(16px,1.6vw,22px); color:#fff;
+}
+.experience-section .tl-dates{
+  margin:.35rem 0; font-weight:600; font-size:clamp(12px,1.05vw,14px);
+}
+.experience-section .tl-desc{
+  margin:0; color:#b9c3d8; font-size:clamp(12px,1.05vw,14px); line-height:1.45;
+}
+
+/* lighter side offsets */
+.experience-section .tl-item.right .tl-title,
+.experience-section .tl-item.right .tl-dates,
+.experience-section .tl-item.right .tl-desc{ margin-left:28px; margin-right:12px; }
+.experience-section .tl-item.left  .tl-title,
+.experience-section .tl-item.left  .tl-dates,
+.experience-section .tl-item.left  .tl-desc{ margin-left:12px; margin-right:28px; }
+
+/* divider + dot */
+.experience-section .tl-divider{
+  position:relative; height:var(--tl-line); background:#fff;
+  margin:.2rem 0; z-index:1;
+}
+.experience-section .tl-item.right .tl-divider{ margin-right:var(--tl-content-pad); }
+.experience-section .tl-item.left  .tl-divider{ margin-left: var(--tl-content-pad); }
+.experience-section .tl-divider::before{
+  content:""; position:absolute; top:50%;
+  width:var(--tl-dot); height:var(--tl-dot);
+  border:var(--tl-line) solid #fff; background:var(--navy-2);
+  border-radius:50%; z-index:2; transform:translateY(-50%);
+}
+.experience-section .tl-item.right .tl-divider::before{ left:0;  transform:translate(-50%,-50%); }
+.experience-section .tl-item.left  .tl-divider::before{ right:0; transform:translate( 50%,-50%); }
+
+/* ===================================== */
+/* 7) Responsive                         */
+/* ===================================== */
+
+/* Keep desktop timeline layout but shrink it on smaller screens */
+
+/* Tablet & large phones */
+@media (max-width: 768px){
+  .experience-section{
+    padding: 32px 12px;          /* tighter section padding */
+    --tl-line: 4px;              /* thinner spine/divider */
+    --tl-dot: 10px;              /* smaller node dots */
+    --tl-gap-y: 1.2rem;          /* less vertical spacing */
+  }
+
+  /* Keep center spine at 50% and alternating halves */
+  .experience-section .timeline{
+    max-width: 620px;            /* narrower block */
+    margin: 0 auto;
+    transform: scale(.85);       /* shrink everything together */
+    transform-origin: top center;
+  }
+  .experience-section .timeline::before{
     left: 50%;
     transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-radius: 50%;
-    top: 25px;
+  }
+
+  /* Keep two columns */
+  .experience-section .tl-item{ width:50%; margin: var(--tl-gap-y) 0; }
+  .experience-section .tl-item.right{ margin-left:50%; padding-right:0; }
+  .experience-section .tl-item.left { margin-right:50%; padding-left: 0; }
+
+  /* Smaller type */
+  .experience-section .tl-title{ font-size: .98rem; }
+  .experience-section .tl-dates{ font-size: .8rem; }
+  .experience-section .tl-desc { font-size: .8rem; line-height: 1.4; }
+
+  /* Tighter side offsets from the spine */
+  .experience-section .tl-item.right .tl-title,
+  .experience-section .tl-item.right .tl-dates,
+  .experience-section .tl-item.right .tl-desc{ margin-left:18px; margin-right:10px; }
+
+  .experience-section .tl-item.left  .tl-title,
+  .experience-section .tl-item.left  .tl-dates,
+  .experience-section .tl-item.left  .tl-desc { margin-left:10px; margin-right:18px; }
 }
 
-.job-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 8px;
+
+/* Compact phones (also unifying Profile + Education) */
+@media (max-width: 576px){
+  /* Profile (first .section) */
+  .wrap .section:first-of-type{ padding: 16px clamp(14px, 5vw, 18px); }
+  .wrap .section:first-of-type .section-title{
+    margin-bottom: 10px; font-size: clamp(28px, 10vw, 32px);
+  }
+  .wrap .section:first-of-type .section-title .label::after{
+    width: 72px; height: 2px; margin-top: 4px;
+  }
+  .wrap .section:first-of-type .lead{
+    font-family: "Teachers", system-ui, sans-serif;
+    font-size: clamp(12px, 3.8vw, 14.5px);
+    line-height: 1.55; color: var(--navy);
+    padding-left: clamp(16px, 8vw, 24px);
+    padding-right: clamp(16px, 8vw, 24px);
+    max-width: 55ch; margin-left: auto; margin-right: auto;
+  }
+
+  /* Education (second .section) */
+  .wrap .section:nth-of-type(2){ padding: 18px 12px; }
+  .wrap .section:nth-of-type(2) .section-title{
+    gap: 6px; margin-bottom: 10px; font-size: clamp(28px, 10vw, 32px);
+  }
+  .wrap .section:nth-of-type(2) .section-title .label::after{
+    width: 72px; height: 2px; margin-top: 4px;
+  }
+  .wrap .section:nth-of-type(2) .edu{
+    margin-top: 6px;
+    padding-left: clamp(12px, 5vw, 20px);
+    padding-right: clamp(12px, 5vw, 20px);
+  }
+  .wrap .section:nth-of-type(2) .edu__school{
+    font-weight: 800; font-size: clamp(14px, 4.6vw, 18px); line-height: 1.25; text-wrap: balance;
+  }
+  .wrap .section:nth-of-type(2) .edu__degree{
+    margin-top: 4px; font-size: clamp(12px, 4vw, 16px); opacity: .95;
+  }
+  .wrap .section:nth-of-type(2) .edu__major{
+    margin-top: 6px; font-size: clamp(12px, 3.8vw, 15px);
+    line-height: 1.45; max-width: 55ch; hyphens: auto; word-break: normal;
+  }
+
+  /* Professional title spacing on phones */
+  .wrap .section:nth-of-type(3) .section-title{
+    gap: 6px; margin-bottom: 10px; font-size: clamp(28px, 10vw, 32px);
+  }
+
+    .experience-section .timeline{
+    max-width: 520px;
+    transform: scale(.78);
+  }
+  .experience-title{ font-size: clamp(28px, 10vw, 32px); }
 }
 
-.job-period {
-    font-size: 0.85rem;
-    opacity: 0.8;
-    margin-bottom: 12px;
+/* Very small phones */
+@media (max-width: 420px){
+  .experience-section{
+    --tl-line: 3px;
+    --tl-dot: 8px;
+    --tl-gap-y: 1rem;
+  }
+  .experience-section .timeline{
+    max-width: 460px;
+    transform: scale(.72);
+  }
+  .experience-section .tl-title{ font-size: .9rem; }
+  .experience-section .tl-dates,
+  .experience-section .tl-desc { font-size: .75rem; }
 }
 
-.job-description {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    opacity: 0.9;
+/* Ultra-compact phones */
+@media (max-width: 375px){
+  .experience-title{ font-size: 2rem; }
+
+  .wrap .section:first-of-type{ padding: 12px clamp(10px, 4.5vw, 16px); }
+  .wrap .section:first-of-type .section-title{ font-size: clamp(20px, 6.2vw, 24px); }
+  .wrap .section:first-of-type .section-title .label::after{ width: 60px; }
+  .wrap .section:first-of-type .lead{
+    padding-left: clamp(10px, 4.5vw, 16px);
+    padding-right: clamp(10px, 4.5vw, 16px);
+  }
+
+  .wrap .section:nth-of-type(2){ padding: 14px 10px; }
+  .wrap .section:nth-of-type(2) .section-title{
+    font-size: clamp(20px, 6.2vw, 24px); margin-bottom: 8px;
+  }
+  .wrap .section:nth-of-type(2) .section-title .label::after{
+    width: 60px; height: 2px;
+  }
+  .wrap .section:nth-of-type(2) .edu{ padding: 10px; border-radius: 8px; }
+  .wrap .section:nth-of-type(2) .edu__school{ font-size: clamp(13px, 4.6vw, 16px); }
+  .wrap .section:nth-of-type(2) .edu__degree{ font-size: clamp(12px, 4.2vw, 14px); }
+  .wrap .section:nth-of-type(2) .edu__major{ font-size: clamp(11.5px, 3.7vw, 14px); }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .profile-section,
-    .education-section,
-    .profession-section {
-        flex-direction: column;
-        text-align: center;
-    }
-
-
-    .education-content {
-        text-align: center;
-        margin: 0;
-    }
-
-    .timeline-item {
-        flex-direction: column !important;
-    }
-
-    .timeline-content {
-        width: 80%;
-        margin: 0 auto !important;
-    }
-
-    .timeline-line {
-        left: 20px;
-    }
-
-    .timeline-dot {
-        left: 20px;
-    }
+/* Big displays (optional) */
+@media (min-width:2560px){
+  .resume-title{ font-size: 6.5rem; }
 }

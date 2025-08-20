@@ -1,50 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact</title>
-  <link rel="stylesheet" href="../css/contact.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../css/contact.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Aboreto&display=swap&family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Teachers:ital,wght@0,400..800&family=Tektur:wght@400..900" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
-    <h1 class="site-header__title">Contact.</h1>
+  
+  <header class="page-hero">
+    <h1 class="page-hero__title">Contact.</h1>
   </header>
+
+
+  <!-- Floating Navbar (always visible on this page) -->
+  <nav class="rounded-navbar always-on" id="floatingNavbar" aria-label="Primary">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-home"></i><span>Home</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- Mark the current page with aria-current="page" (or add .active) -->
+        <a class="nav-link" href="resume.html">
+          <i class="fas fa-file-alt"></i><span>Resume</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="project.html">
+          <i class="fas fa-folder"></i><span>Projects</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html" aria-current="page">
+          <i class="fas fa-phone"></i><span>Contact</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
   <main class="contact-container">
+    <!-- Floating Words -->
+    <span class="floating-word bottom-left">Get In Touch</span>
+    <span class="floating-word top-right">Say Hello</span>
     <div class="contact-form-card">
       <div class="contact-info-card">
         <h2 class="info-card__heading">LET’S CONNECT</h2>
         <ul class="info-card__list">
           <li>
             <i class="fas fa-envelope info-card__icon" aria-hidden="true"></i>
-            <a href="mailto:waynemyoung@gmail.com">waynemyoung@gmail.com</a>
+            <a href="mailto:waynemyeung@gmail.com">waynemyeung@gmail.com</a>
           </li>
           <li>
             <i class="fab fa-linkedin info-card__icon" aria-hidden="true"></i>
-            <a href="https://www.linkedin.com/in/waynemyoung/" target="_blank">linkedin.com/in/waynemyoung/</a>
+            <a href="https://www.linkedin.com/in/waynemyeung/" target="_blank">linkedin.com/in/waynemyeung/</a>
           </li>
           <li>
             <i class="fab fa-github info-card__icon" aria-hidden="true"></i>
-            <a href="https://github.com/WayneMYoung" target="_blank">github.com/WayneMYoung</a>
+            <a href="https://github.com/WayneMYeung" target="_blank">github.com/WayneMYeung</a>
           </li>
         </ul>
       </div>
+
       <div class="contact-form-wrapper">
         <h2 class="form-card__heading">LET’S TALK</h2>
-        <form>
-          <input type="text" class="form-input" placeholder="Name">
-          <input type="email" class="form-input" placeholder="Email">
+        <form id="contactForm"
+              action="https://formspree.io/f/manbzdqy"  
+              method="POST" novalidate>
+          <input type="text"   class="form-input"  name="name"    placeholder="Name"  required aria-label="Name" />
+          <input type="email"  class="form-input"  name="email"   placeholder="Email" required aria-label="Email" />
           <div class="form-select-wrapper">
-            <select class="form-select">
-              <option disabled selected>Topic</option>
+            <select class="form-select" name="topic" required aria-label="Topic">
+              <option disabled selected value="">Topic</option>
               <option>General Inquiry</option>
               <option>Collaboration</option>
               <option>Feedback</option>
             </select>
             <span class="select-arrow">▾</span>
           </div>
-          <textarea class="form-textarea" placeholder="Description"></textarea>
+
+          <textarea class="form-textarea" name="message" placeholder="Description" required aria-label="Description"></textarea>
+
+          <!-- honeypot (spam trap) -->
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">Send</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </div>
         </form>
       </div>
     </div>
