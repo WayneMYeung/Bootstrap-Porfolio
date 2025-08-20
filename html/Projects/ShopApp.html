@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WeBite — Project Details</title>
+
+  <!-- Icons / fonts (same as other pages) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Aboreto&display=swap&family=Alfa+Slab+One&family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Teachers:ital,wght@0,400..800&family=Tektur:wght@400..900" rel="stylesheet">
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="../../css/projectdetails.css" />
+</head>
+<body>
+
+  <!-- Mobile hamburger & full-screen overlay (layout only) -->
+  <button class="menu-toggle" aria-label="Open menu" aria-controls="siteMenu" aria-expanded="false">
+    <i class="fas fa-bars" aria-hidden="true"></i>
+  </button>
+  <div id="siteMenu" class="menu-container" hidden>
+    <nav class="nav-links" aria-label="Mobile">
+      <a href="../../index.html">PROJECT</a>
+      <a href="../about.html">ABOUT</a>
+      <a href="../resume.html">RESUME</a>
+      <a href="../contact.html">CONTACT</a>
+    </nav>
+    <div class="social-icons" aria-label="Social">
+      <a href="https://www.linkedin.com/in/waynemyeung/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/WayneMYeung" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+
+  <!-- Floating Navbar (keep your unified style & colorway) -->
+  <nav class="rounded-navbar always-on" aria-label="Primary">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="../../index.html">
+          <i class="fas fa-home"></i><span>Home</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../resume.html">
+          <i class="fas fa-file-alt"></i><span>Resume</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- Projects marked current -->
+        <a class="nav-link" href="../project.html" aria-current="page">
+          <i class="fas fa-folder"></i><span>Projects</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../contact.html">
+          <i class="fas fa-phone"></i><span>Contact</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Unified hero (same as Contact) -->
+  <header class="page-hero">
+    <h1 class="page-hero__title">Shop App.</h1>
+  </header>
+
+  <main class="proj-wrap">
+    <!-- Cover image (center-cropped, square corners) -->
+    <figure class="project-media">
+      <img src="../../img/ShopApp/landing.PNG" alt="ShopApp cover image" />
+    </figure>
+
+    <!-- Two-column meta (labels + content) -->
+    <section class="meta-grid">
+      <dl class="meta">
+        <div class="row">
+          <dt>GOAL</dt>
+          <dd>
+            <ul>
+              <li>Browse → pick → buy in as few taps as possible.</li>
+              <li>Give clear sizing & pricing to cut hesitation/returns.</li>
+              <li>Keep checkout fast and predictable on mobile.</li>
+            </ul>
+          </dd>
+        </div>
+
+        <div class="row">
+          <dt>OVERVIEW</dt>
+          <dd>
+            <ul>
+              <li>Mobile shopping flow prototyped in Adobe XD (iPhone frames).</li>
+              <li>Home → grid → product → cart → checkout with search, sort, and filters.</li>
+              <li>Cart & checkout: promo, shipping, address, payment, order review.</li>
+            </ul>
+          </dd>
+        </div>
+
+        <div class="row">
+          <dt>HIGHLIGHTS</dt>
+          <dd>
+            <ul>
+              <li>Bottom nav for Home, Search, Cart, Account; sticky Add to Cart on PDP.</li>
+              <li>Card layout with sale/new badges, star ratings, quick wishlist.</li>
+              <li>Stepwise checkout (Cart → Address → Payment → Review) for clarity.</li>
+              <li>Reusable design components (cards, chips, buttons) for consistent UI and fast edits.</li>
+            </ul>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- API Screenshots gallery -->
+    <section class="screens">
+      <h3 class="screens-title">API Screenshots</h3>
+      <div class="screen-grid" data-gallery="webite-api">
+        <!-- Thumbs crop center; use data-full for large images (falls back to src) -->
+        <figure class="screen">
+          <img src="../../img/ShopApp/1.PNG"
+               data-full="../../img/ShopApp/1.PNG"
+               alt="Home page">
+        </figure>
+        <figure class="screen">
+          <img src="../../img/ShopApp/2.PNG"
+               data-full="../../img/ShopApp/2.PNG"
+               alt="Login">
+        </figure>
+        <figure class="screen">
+          <img src="../../img/ShopApp/3.PNG"
+               data-full="../../img/ShopApp/3.PNG"
+               alt="Create 1">
+        </figure>
+        <figure class="screen">
+          <img src="../../img/ShopApp/4.PNG"
+               data-full="../../img/ShopApp/4.PNG"
+               alt="Create 2">
+        </figure>
+      </div>
+    </section>
+  </main>
+  <!-- Return control -->
+  <a class="return-fab" href="../project.html" aria-label="Return to Projects">
+  <span class="return-fab__icon" aria-hidden="true">
+      <i class="fas fa-arrow-left"></i>
+  </span>
+  <span class="return-fab__label">Return</span>
+  </a>
+
+  <!-- Lightbox (one per page) -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-hidden="true">
+    <div class="lb-stage">
+      <button class="lb-close lb-btn" type="button" aria-label="Close">✕</button>
+
+      <figure class="lb-figure">
+        <img class="lb-img" id="lbImg" alt="">
+        <div class="lb-nav">
+          <button class="lb-arrow" id="lbPrev" aria-label="Previous">‹</button>
+          <button class="lb-arrow" id="lbNext" aria-label="Next">›</button>
+        </div>
+      </figure>
+
+      <div class="lb-ui">
+        <span class="lb-counter" id="lbCounter">1 / 1</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/project.js" defer></script>
+</body>
+</html>

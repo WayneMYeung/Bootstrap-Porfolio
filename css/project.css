@@ -119,6 +119,7 @@ body{
   border-radius:999px;
   font:600 var(--pill-font)/1 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   text-decoration:none;
+  transition: background .2s ease, box-shadow .2s ease;
   white-space: nowrap;
   outline: none;
   border: none;
