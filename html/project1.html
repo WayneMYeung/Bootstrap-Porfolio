@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project – MeetHomie</title>
+
+  <!-- libs -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Montserrat:wght@500;600;700&family=Teachers:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- your shared CSS (if you have one) -->
+  <!-- <link rel="stylesheet" href="../css/custom.css"> -->
+
+  <!-- this page -->
+  <link rel="stylesheet" href="../css/project1.css" />
+</head>
+<body>
+
+  <!-- Floating Navbar (always visible on info pages) -->
+  <nav class="rounded-navbar always-on" aria-label="Primary">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i><span>Resume</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="project.html"><i class="fas fa-folder"></i><span>Projects</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html"><i class="fas fa-phone"></i><span>Contact</span></a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Unified hero (same look as Contact) -->
+  <header class="page-hero">
+    <h1 class="page-hero__title">WeBite</h1>
+  </header>
+
+  <main class="project-wrap">
+    <!-- Media / cover -->
+    <figure class="project-media">
+      <!-- Replace with an image or lottie if you want -->
+      <img src="../img/MeetHomie/landing.webp" alt="MeetHomie cover" />
+    </figure>
+
+    <!-- Meta (two-column label/content using a definition list) -->
+    <section class="project-meta">
+      <dl class="meta-grid">
+        <dt>Goal</dt>
+        <dd>
+          <ul>
+            <li>Lower the friction of scheduling.</li>
+            <li>Offer flexible time coordination.</li>
+            <li>Keep everything about meetings in one place.</li>
+          </ul>
+        </dd>
+
+        <dt>Overview</dt>
+        <dd>
+          <ul>
+            <li>Email-only auth to minimize onboarding friction.</li>
+            <li>Consent management on recurring meeting data for 3rd-party APIs.</li>
+            <li>Host-controlled proposal window; team votes on candidate slots.</li>
+            <li>Unified dashboard with role-aware controls.</li>
+          </ul>
+        </dd>
+
+        <dt>Highlights</dt>
+        <dd>
+          <ul>
+            <li>Deep Firebase use — rules, tokens, dashboard.</li>
+            <li>Scoped REST API; custom, multi-role voting.</li>
+            <li>Mapped host ↔ invitee journey end-to-end.</li>
+            <li>Calendar-based conflict management.</li>
+          </ul>
+        </dd>
+
+        <dt>Tech Stack</dt>
+        <dd>
+          <div class="chips">
+            <span class="chip">React</span>
+            <span class="chip">Vite</span>
+            <span class="chip">Firebase</span>
+            <span class="chip">Node</span>
+            <span class="chip">REST</span>
+          </div>
+        </dd>
+
+        <dt>Links</dt>
+        <dd>
+          <div class="links">
+            <a class="btn-link" href="https://example.com" target="_blank" rel="noopener">
+              <i class="fa-solid fa-up-right-from-square"></i> Deployed
+            </a>
+            <a class="btn-link" href="https://github.com/yourrepo" target="_blank" rel="noopener">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a class="btn-link btn-outline" href="project.html">
+              <i class="fa-solid fa-arrow-left"></i> Back to Projects
+            </a>
+          </div>
+        </dd>
+      </dl>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="screens">
+      <details class="screens-accordion" open>
+        <summary>
+          <span class="pill"><i class="fa-regular fa-images"></i> App Screenshots</span>
+        </summary>
+
+        <div class="screen-grid">
+          <!-- Replace src with your actual images -->
+          <figure class="screen">
+            <img src="../img/projects/shot-1.png" alt="Login screen" />
+          </figure>
+          <figure class="screen">
+            <img src="../img/projects/shot-2.png" alt="Calendar view" />
+          </figure>
+          <figure class="screen">
+            <img src="../img/projects/shot-3.png" alt="Create event form" />
+          </figure>
+          <figure class="screen">
+            <img src="../img/projects/shot-4.png" alt="Availability matrix" />
+          </figure>
+        </div>
+      </details>
+    </section>
+
+    <!-- Tiny footer back link (optional duplicate at bottom) -->
+    <p class="backline">
+      <a href="project.html"><i class="fa-solid fa-arrow-left"></i> Return to Projects</a>
+    </p>
+  </main>
+</body>
+</html>
