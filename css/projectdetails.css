@@ -13,7 +13,7 @@
   --shadow: 0 10px 24px rgba(0,0,0,.08);
 
   --cover-ratio: 16/9;  /* top cover */
-  --shot-ratio: 16/10;  /* grid items */
+  --shot-ratio: 16/9;  /* grid items */
 }
 
 * { box-sizing: border-box; }
@@ -490,7 +490,7 @@ Return to Projects – floating link
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  .screen{ aspect-ratio: 16 / 10; }
+  .screen{ aspect-ratio: 16 / 9; }
 
   /* Return button scale */
   .return-fab{

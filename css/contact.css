@@ -1,503 +1,503 @@
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto:wght@300;400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto:wght@300;400;700&display=swap');
 
-@font-face{
-  font-family:'Chen';
-  src:url('../Fonts/ChenYuluoyan-2.0-Thin.ttf') format('opentype');
-}
+  @font-face{
+    font-family:'Chen';
+    src:url('../Fonts/ChenYuluoyan-2.0-Thin.ttf') format('opentype');
+  }
 
-/* ============== Base / Desktop (unchanged) ============== */
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-body{
-  margin:0;
-  background:#F9F8F3;
-  font-family:'Roboto',sans-serif;
-  color:#333;
-}
-/* ===================== */
-/* Unified Page Hero     */
-/* ===================== */
-.page-hero{
-  background:#2B4167;              /* same as Contact */
-  height:220px;                    /* contact baseline */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding-top:5vh;                 /* headroom for fixed navbar */
-  text-align:center;
-}
+  /* ============== Base / Desktop (unchanged) ============== */
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    background:#F9F8F3;
+    font-family:'Roboto',sans-serif;
+    color:#333;
+  }
+  /* ===================== */
+  /* Unified Page Hero     */
+  /* ===================== */
+  .page-hero{
+    background:#2B4167;              /* same as Contact */
+    height:220px;                    /* contact baseline */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-top:5vh;                 /* headroom for fixed navbar */
+    text-align:center;
+  }
 
-.page-hero__title{
-  font-family:'Alfa Slab One', serif;
-  color:#fff;
-  font-weight:400;
-  letter-spacing:.5px;
-  font-size: clamp(32px, 6vw, 80px); /* same feel as Contact */
-  margin:0;
-  line-height:1;
-}
+  .page-hero__title{
+    font-family:'Alfa Slab One', serif;
+    color:#fff;
+    font-weight:400;
+    letter-spacing:.5px;
+    font-size: clamp(32px, 6vw, 80px); /* same feel as Contact */
+    margin:0;
+    line-height:1;
+  }
 
-/* Optional: actions row under the title (e.g., resume social buttons) */
-.page-hero__inner{ display:flex; flex-direction:column; align-items:center; gap:14px; }
-.page-hero__actions{ display:flex; gap: clamp(10px, 1.8vw, 24px); }
+  /* Optional: actions row under the title (e.g., resume social buttons) */
+  .page-hero__inner{ display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .page-hero__actions{ display:flex; gap: clamp(10px, 1.8vw, 24px); }
 
-/* 1080p-ish refinement (kept from your contact.css) */
-@media (max-width:1920px){
-  .page-hero__title{ font-size:64px; }
-}
+  /* 1080p-ish refinement (kept from your contact.css) */
+  @media (max-width:1920px){
+    .page-hero__title{ font-size:64px; }
+  }
 
-/* 4K upscale (kept from your contact.css) */
-@media (min-width:3840px){
-  .page-hero{ height:400px; }
-  .page-hero__title{ font-size:140px; }
-}
-
-
-/* ===================== */
-/* Floating Sticky Navbar */
-/* ===================== */
-/* Defaults / design tokens for pills + ring */
-.rounded-navbar{
-  --pill-pad-y: .45rem;
-  --pill-pad-x: .80rem;
-  --pill-font: .95rem;
-  --gap: .35rem;
-  --icon: 1rem;
-
-  --ring-width: 2px;       /* ring thickness */
-  --ring-offset: -6px;     /* how far ring sits outside the pill */
-
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%) translateY(-8px); /* slide in from top when shown */
-  background: #000f4b;
-  padding: 1vh 2vw;
-  border-radius: 0 0 18px 18px; /* square top corners */
-  z-index: 9999;
-
-  opacity: 0;                     /* hidden on hero */
-  pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-}
-
-/* visible state after leaving the landing/hero */
-.rounded-navbar.is-visible{
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
-}
-
-/* inner layout */
-.rounded-navbar .nav{
-  display: flex;
-  gap: var(--gap);
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* link pills */
-.rounded-navbar .nav-link{
-  position: relative;
-  color:#fff !important;
-  background: transparent;
-  display:inline-flex;
-  align-items:center;
-  gap:.5rem;
-  padding: var(--pill-pad-y) var(--pill-pad-x);
-  border-radius:999px;
-  font:600 var(--pill-font)/1 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  text-decoration:none;
-  transition: background .2s ease, box-shadow .2s ease;
-  white-space: nowrap;
-  outline: none;
-  border: none;
-}
-.rounded-navbar .nav-link i{ font-size: var(--icon); }
-
-/* Soft hover tint (no layout change) */
-.rounded-navbar .nav-link:hover{
-  background: rgba(255,255,255,.12);
-}
-
-/* White ring — single source of truth (no size change) */
-.rounded-navbar .nav-link::after{
-  content: "";
-  position: absolute;
-  inset: var(--ring-offset);       /* expands outside pill without changing layout */
-  border: var(--ring-width) solid #fff;
-  border-radius: 9999px;
-  opacity: 0;
-  transform: scale(.96);
-  transition: opacity .2s ease, transform .2s ease;
-  pointer-events: none;
-}
-
-/* Current page */
-.rounded-navbar .nav-link.active::after,
-.rounded-navbar .nav-link[aria-current="page"]::after{
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Always-visible variant for pages without hero/snap-scroll */
-.rounded-navbar.always-on{
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
-}
+  /* 4K upscale (kept from your contact.css) */
+  @media (min-width:3840px){
+    .page-hero{ height:400px; }
+    .page-hero__title{ font-size:140px; }
+  }
 
 
-/* ====== Responsive tweaks ====== */
-@media (min-width:1200px) and (max-width:1920px){
+  /* ===================== */
+  /* Floating Sticky Navbar */
+  /* ===================== */
+  /* Defaults / design tokens for pills + ring */
   .rounded-navbar{
-    padding: 1.2rem 1.6rem;
     --pill-pad-y: .45rem;
-    --pill-pad-x: .85rem;
+    --pill-pad-x: .80rem;
     --pill-font: .95rem;
-    --icon: 1.05rem;
-  }
-}
+    --gap: .35rem;
+    --icon: 1rem;
 
+    --ring-width: 2px;       /* ring thickness */
+    --ring-offset: -6px;     /* how far ring sits outside the pill */
 
-/* Tablet: widen bar + center contents + slightly smaller pills */
-@media (min-width:768px) and (max-width:1200px){
-  .rounded-navbar{
-    width: min(60vw, 1100px);
-    padding: 0.8rem 1.2rem;
-    box-sizing: border-box;
-    display: flex;
-    --pill-pad-y: .40rem;
-    --pill-pad-x: .70rem;
-    --pill-font: .90rem;
-    --icon: .95rem;
-    --ring-offset: -1px; /* ring sits a bit tighter */
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px); /* slide in from top when shown */
+    background: #000f4b;
+    padding: 1vh 2vw;
+    border-radius: 0 0 18px 18px; /* square top corners */
+    z-index: 9999;
+
+    opacity: 0;                     /* hidden on hero */
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
   }
+
+  /* visible state after leaving the landing/hero */
+  .rounded-navbar.is-visible{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  /* inner layout */
   .rounded-navbar .nav{
-    width: 100%;
-    justify-content: center;
-    flex-wrap: nowrap;
-  }
-}
-
-/* Phones: make the bar a bit wider and keep contents centered */
-@media (max-width:768px){
-  .rounded-navbar{
-    width: min(60vw, 620px);   /* ⬅️ wider on phones */
-    padding: .5rem .8rem;
-    box-sizing: border-box;
     display: flex;
-
-    /* keep your existing token tweaks */
-    --pill-pad-y: .35rem;
-    --pill-pad-x: .60rem;
-    --pill-font: .85rem;
-    --icon: .9rem;
-    --gap: .25rem;
-    --ring-offset: -5px;
-  }
-  .rounded-navbar .nav{
-    width: 100%;
-    justify-content: center;   /* center links inside the wider bar */
-    flex-wrap: nowrap;
-  }
-}
-
-/* Very small phones: stretch a touch more, hide labels if needed */
-@media (max-width:500px){
-  .rounded-navbar{ width: 60vw; }
-  .rounded-navbar .nav-link span{ display:none; }
-  .rounded-navbar .nav{gap:1.2rem;}
-}
-
-
-
-/* floating scribbles */
-.floating-word{
-  position:absolute; z-index:0; pointer-events:none;
-  font-family:'Chen',cursive; color:#2B4167; font-size:48px;
-}
-.floating-word.top-right{ top:80px; right:-160px; transform:rotate(22deg); }
-.floating-word.bottom-left{ bottom:0; left:-220px; transform:rotate(-20deg); }
-
-.contact-container{
-  max-width:1150px; margin:100px auto 0; padding:0 20px; position:relative;
-}
-
-.contact-form-card{
-  background:#2B4167;
-  width:100%; max-width:1150px; height:65vh;
-  margin:0 auto; position:relative;
-  box-shadow:8px 12px 10px rgba(0,0,0,.25);
-  display:flex; justify-content:center;
-  padding:60px 0;
-}
-
-/* left info card (desktop) */
-.contact-info-card{
-  background:#A5A5A5; color:#fff;
-  width:500px; height:450px;
-  position:absolute; top:50%; left:0; transform:translate(-20%,-50%);
-  padding:20px; box-shadow:8px 12px 10px rgba(0,0,0,.25);
-  z-index:2;
-  display:flex; flex-direction:column; justify-content:center;
-}
-
-.info-card__heading{
-  font-family:'Tektur',sans-serif; font-weight:800; letter-spacing:.1em;
-  font-size:52px !important; text-align:center; margin-bottom:30px;
-}
-.info-card__list{ list-style:none; padding:0; margin:0 0 36px 0; }
-.info-card__list li{ display:flex; align-items:center; margin-bottom:50px; margin-left:1vw; }
-.info-card__icon{ font-size:30px; width:20px; margin-right:40px; color:#fff; text-align:center; }
-.info-card__list a{ color:#fff; text-decoration:none; font-size:20px; font-family:'Teachers',sans-serif; }
-.info-card__list a:hover{ color:#E0E0E0; text-decoration:underline; }
-
-/* right form (desktop) */
-.contact-form-wrapper{
-  position:relative; max-width:480px; width:100%;
-  margin-left:16vw; margin-top:-40px; color:#fff; z-index:1;
-}
-.form-card__heading{
-  font-family:'Tektur',sans-serif; font-weight:800; letter-spacing:.1em;
-  font-size:52px !important; text-align:center; margin-bottom:40px;
-}
-
-form{ display:flex; flex-direction:column; width:100%; }
-
-.form-input,.form-select,.form-textarea{
-  background:#fff; border:1px solid #ccc; color:#333;
-  height:48px; padding:0 10px; margin-bottom:40px;
-  font-family:'Roboto',sans-serif; font-size:14px;
-  border-radius:4px;
-}
-.form-textarea{ height:240px; padding:10px; resize:none; margin-bottom:0; }
-
-.form-select-wrapper{ position:relative; }
-.form-select{
-  appearance:none; background:#fff; height:48px;
-  padding:0 30px 0 10px; border:1px solid #ccc; width:100%;
-  font-family:'Teachers',sans-serif; font-size:14px; color:#333;
-  border-radius:4px;
-}
-.select-arrow{
-  position:absolute; right:10px; top:28%;
-  transform:translateY(-50%); pointer-events:none; font-size:16px; color:#333;
-}
-
-::placeholder{ color:#999; font-family:'Teachers',sans-serif; font-size:14px; }
-
-.form-input:focus,.form-select:focus,.form-textarea:focus{
-  outline:none; border-color:#2B4167; box-shadow:0 0 0 2px rgba(44,62,112,.2);
-}
-
-/* Hide honeypot field */
-.hp{ position:absolute; left:-9999px; }
-
-/* Actions row */
-.form-actions{
-  display:flex;
-  align-items:center;
-  gap: 12px;
-  margin-top: 16px;
-  justify-content:center; 
-  flex-wrap:wrap;
-}
-
-/* Send button */
-.btn-submit{
-  appearance:none;
-  border:0;
-  border-radius:999px;
-  background:#ffffff;
-  color:#2B4167;                /* matches your brand navy */
-  font-weight:700;
-  letter-spacing:.04em;
-  padding: 10px 26px;
-  box-shadow: 0 6px 12px rgba(0,0,0,.15);
-  cursor:pointer;
-  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
-}
-
-.btn-submit:hover{ transform: translateY(-1px); box-shadow: 0 8px 16px rgba(0,0,0,.18); }
-.btn-submit:active{ transform: translateY(0); box-shadow: 0 4px 10px rgba(0,0,0,.14); }
-.btn-submit:disabled{ opacity:.6; cursor:not-allowed; }
-
-/* Status text */
-.form-status{
-  margin:0;
-  color:#fff;
-  font-size: .95rem;
-  opacity:.9;
-}
-
-/* 2K UHD tune */
-@media (min-width:2560px) and (max-width:3839px) {
-  .btn-submit{
-    margin-top: 2vh;
-  }
-}
-
-/* ====== 1080p tune ====== */
-@media (max-width:1920px){
-  .site-header__title{ font-size:64px; }
-  .contact-form-card{ padding:40px 0; }
-  .contact-info-card{ width:400px; height:400px; transform:translate(-15%,-50%); }
-  .info-card__heading{ font-size:36px !important; }
-  .form-card__heading{ font-size:40px !important; }
-  .contact-form-wrapper{ margin-left:20vw; }
-}
-
-/* =========================================================
-   TABLET & PHONE
-   - stack vertically inside the dark card
-   - show "LET’S TALK" above icon row
-   - icons only (links still clickable)
-   - form below, centered
-   ========================================================= */
-@media (max-width:1200px){
-  .contact-container{
-    margin-top: clamp(48px, 6vh, 72px);
-    padding-bottom: clamp(28px, 6vh, 60px);
+    gap: var(--gap);
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  /* make the main card a vertical stack */
-  .contact-form-card{
-    height:auto;
-    padding: clamp(22px, 4vw, 36px) clamp(14px, 3vw, 24px) clamp(26px, 5vw, 44px);
-    display:flex; flex-direction:column; align-items:center; gap: clamp(12px, 2.6vw, 20px);
-    width: 76%;
+  /* link pills */
+  .rounded-navbar .nav-link{
+    position: relative;
+    color:#fff !important;
+    background: transparent;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    padding: var(--pill-pad-y) var(--pill-pad-x);
+    border-radius:999px;
+    font:600 var(--pill-font)/1 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    text-decoration:none;
+    transition: background .2s ease, box-shadow .2s ease;
+    white-space: nowrap;
+    outline: none;
+    border: none;
+  }
+  .rounded-navbar .nav-link i{ font-size: var(--icon); }
+
+  /* Soft hover tint (no layout change) */
+  .rounded-navbar .nav-link:hover{
+    background: rgba(255,255,255,.12);
   }
 
-  /* remove box & title, convert to a simple icon row */
-  .info-card__heading{ display:none !important; }
-  .contact-info-card{
-    position:static !important; transform:none !important;
-    width:auto; height:auto; padding:0; margin:0;
-    background:transparent !important; box-shadow:none !important;
-    max-width:720px;
+  /* White ring — single source of truth (no size change) */
+  .rounded-navbar .nav-link::after{
+    content: "";
+    position: absolute;
+    inset: var(--ring-offset);       /* expands outside pill without changing layout */
+    border: var(--ring-width) solid #fff;
+    border-radius: 9999px;
+    opacity: 0;
+    transform: scale(.96);
+    transition: opacity .2s ease, transform .2s ease;
+    pointer-events: none;
   }
 
-  /* LET'S TALK above the icons */
-  .contact-info-card::before{
-    content:"LET’S TALK";
-    display:block;
-    text-align:center;
-    font-family:"Tektur",sans-serif;
-    font-weight:800; letter-spacing:.08em; color:#fff;
-    font-size: clamp(28px, 5.4vw, 40px);
-    margin: 0 auto clamp(12px, 2.4vw, 18px);
+  /* Current page */
+  .rounded-navbar .nav-link.active::after,
+  .rounded-navbar .nav-link[aria-current="page"]::after{
+    opacity: 1;
+    transform: scale(1);
   }
 
-  /* icon row */
-  .info-card__list{
-    display:flex; justify-content:center; align-items:center;
-    gap: clamp(12px, 2.6vw, 20px);
-    margin:0 auto; padding:0; list-style:none;
-  }
-  .info-card__list li{
-    margin-top: 3vh;
-    position:relative;
-    width: clamp(64px, 9.8vw, 88px);
-    height: clamp(64px, 9.8vw, 88px);
-    border-radius:16px;
-    background:#B3B3B3;
-    display:grid; align-items:center; justify-content:center; place-items:center;
-    overflow:hidden;
-  }
-  .info-card__icon {
-    margin:0;        /* remove desktop spacing */
-    width:auto !important;      /* let the glyph size itself */
-    line-height:1;              /* no extra vertical space */
-    text-align:center;
-    font-size: clamp(32px, 8vw, 40px);
-    color: #fff;
+  /* Always-visible variant for pages without hero/snap-scroll */
+  .rounded-navbar.always-on{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
   }
 
-  /* make the whole tile clickable, hide link text */
-  .info-card__list a{
-    position:absolute; inset:0;
-    text-indent:-9999px; overflow:hidden;
+
+  /* ====== Responsive tweaks ====== */
+  @media (min-width:1200px) and (max-width:1920px){
+    .rounded-navbar{
+      padding: 1.2rem 1.6rem;
+      --pill-pad-y: .45rem;
+      --pill-pad-x: .85rem;
+      --pill-font: .95rem;
+      --icon: 1.05rem;
+    }
   }
 
-  /* form below the icons */
-  .form-card__heading{ display:none !important; }  /* heading is now above icons */
-  .contact-form-wrapper{
-    /* centered and narrower than before */
-    max-width: clamp(340px, 50vw, 560px);
-    margin: 0 auto;   /* ensure centered */
+
+  /* Tablet: widen bar + center contents + slightly smaller pills */
+  @media (min-width:768px) and (max-width:1200px){
+    .rounded-navbar{
+      width: min(60vw, 1100px);
+      padding: 0.8rem 1.2rem;
+      box-sizing: border-box;
+      display: flex;
+      --pill-pad-y: .40rem;
+      --pill-pad-x: .70rem;
+      --pill-font: .90rem;
+      --icon: .95rem;
+      --ring-offset: -1px; /* ring sits a bit tighter */
+    }
+    .rounded-navbar .nav{
+      width: 100%;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
   }
 
+  /* Phones: make the bar a bit wider and keep contents centered */
+  @media (max-width:768px){
+    .rounded-navbar{
+      width: min(60vw, 620px);   /* ⬅️ wider on phones */
+      padding: .5rem .8rem;
+      box-sizing: border-box;
+      display: flex;
+
+      /* keep your existing token tweaks */
+      --pill-pad-y: .35rem;
+      --pill-pad-x: .60rem;
+      --pill-font: .85rem;
+      --icon: .9rem;
+      --gap: .25rem;
+      --ring-offset: -5px;
+    }
+    .rounded-navbar .nav{
+      width: 100%;
+      justify-content: center;   /* center links inside the wider bar */
+      flex-wrap: nowrap;
+    }
+  }
+
+  /* Very small phones: stretch a touch more, hide labels if needed */
+  @media (max-width:500px){
+    .rounded-navbar{ width: 60vw; }
+    .rounded-navbar .nav-link span{ display:none; }
+    .rounded-navbar .nav{gap:1.2rem;}
+  }
+
+
+
+  /* floating scribbles */
   .floating-word{
-    font-size: clamp(18px, 3.8vw, 28px);   /* scale down a bit */
-    z-index: 0;
+    position:absolute; z-index:0; pointer-events:none;
+    font-family:'Chen',cursive; color:#2B4167; font-size:48px;
   }
+  .floating-word.top-right{ top:80px; right:-160px; transform:rotate(22deg); }
+  .floating-word.bottom-left{ bottom:0; left:-220px; transform:rotate(-20deg); }
 
-  /* move the top-right one to the bottom-right */
-  .floating-word.top-right{
-    right: clamp(16px, 4vw, 36px);
-  }
-
-  /* keep the other at bottom-left (adjust spacing/tilt) */
-  .floating-word.bottom-left{
-    left: clamp(8px, 2vw, 16px);
-    bottom: clamp(200px, 20vh, 240px);
-    transform: rotate(-20deg);
-  }
-}
-
-/* phones: slightly tighter */
-@media (max-width:640px){
   .contact-container{
-    margin-top: clamp(32px, 4vh, 64px);
+    max-width:1150px; margin:100px auto 0; padding:0 20px; position:relative;
   }
 
-  .contact-form-wrapper{
-    max-width: clamp(300px, 57vw, 440px);
-  }
   .contact-form-card{
-    padding: 20px 12px 28px;
-    width: 90%;
+    background:#2B4167;
+    width:100%; max-width:1150px;
+    margin:0 auto; position:relative;
+    box-shadow:8px 12px 10px rgba(0,0,0,.25);
+    display:flex; justify-content:center;
+    padding:60px 0;
   }
-  .contact-info-card::before{
-    font-size: clamp(24px, 7vw, 32px);
-    margin-bottom: 10px;
-  }
-  .info-card__list li{
-    width: clamp(56px, 17vw, 80px);
-    height: clamp(56px, 17vw, 80px);
-    border-radius:14px;
-  }
-  .floating-word{ 
-    display: none !important;
-  }
-}
 
-/* ================= 4K upscale (unchanged) ================= */
-@media (min-width:3840px){
-  html{ font-size:120%; }
-  ::placeholder{ font-size:22px; color:#999; }
-  .site-header{ height:400px; }
-  .site-header__title{ font-size:140px; }
-  .contact-container{ max-width:3200px; }
-  .contact-form-card{ max-width:1800px; padding:120px 0; height:1000px; }
+  /* left info card (desktop) */
   .contact-info-card{
-    width:800px; height:800px; transform:translate(-28%,-50%);
-    box-shadow:20px 20px 10px rgba(0,0,0,.25);
+    background:#A5A5A5; color:#fff;
+    width:500px; height:450px;
+    position:absolute; top:50%; left:0; transform:translate(-20%,-50%);
+    padding:20px; box-shadow:8px 12px 10px rgba(0,0,0,.25);
+    z-index:2;
+    display:flex; flex-direction:column; justify-content:center;
   }
-  .info-card__heading{ font-size:80px !important; margin-bottom:60px; }
-  .info-card__icon{ font-size:52px; }
-  .info-card__list{ margin-bottom:144px; margin-left:40px; }
-  .info-card__list a{ font-size:32px; margin-left:40px; }
-  .contact-form-wrapper{ max-width:800px; margin-left:30vw; margin-top:-80px; }
-  .form-card__heading{ font-size:88px !important; margin-bottom:80px; }
-  .form-input,.form-select,.form-textarea{ font-size:20px; height:70px; margin-bottom:60px; }
-  .form-textarea{ height:300px; }
-  .select-arrow{ font-size:24px; }
-  .contact-form-wrapper{ margin-left:20vw; }
-  .floating-word{ font-size:84px; }
-  .floating-word.top-right{ top:80px; right:300px; transform:rotate(22deg); }
-  .floating-word.bottom-left{ bottom:0; left:160px; transform:rotate(-20deg); }
-}
+
+  .info-card__heading{
+    font-family:'Tektur',sans-serif; font-weight:800; letter-spacing:.1em;
+    font-size:52px !important; text-align:center; margin-bottom:30px;
+  }
+  .info-card__list{ list-style:none; padding:0; margin:0 0 36px 0; }
+  .info-card__list li{ display:flex; align-items:center; margin-bottom:50px; margin-left:1vw; }
+  .info-card__icon{ font-size:30px; width:20px; margin-right:40px; color:#fff; text-align:center; }
+  .info-card__list a{ color:#fff; text-decoration:none; font-size:20px; font-family:'Teachers',sans-serif; }
+  .info-card__list a:hover{ color:#E0E0E0; text-decoration:underline; }
+
+  /* right form (desktop) */
+  .contact-form-wrapper{
+    position:relative; max-width:480px; width:100%;
+    margin-left:16vw; margin-top:-40px; color:#fff; z-index:1;
+  }
+  .form-card__heading{
+    font-family:'Tektur',sans-serif; font-weight:800; letter-spacing:.1em;
+    font-size:52px !important; text-align:center; margin-bottom:40px;
+  }
+
+  form{ display:flex; flex-direction:column; width:100%; }
+
+  .form-input,.form-select,.form-textarea{
+    background:#fff; border:1px solid #ccc; color:#333;
+    height:48px; padding:0 10px; margin-bottom:40px;
+    font-family:'Roboto',sans-serif; font-size:14px;
+    border-radius:4px;
+  }
+  .form-textarea{ height:240px; padding:10px; resize:none; margin-bottom:0; }
+
+  .form-select-wrapper{ position:relative; }
+  .form-select{
+    appearance:none; background:#fff; height:48px;
+    padding:0 30px 0 10px; border:1px solid #ccc; width:100%;
+    font-family:'Teachers',sans-serif; font-size:14px; color:#333;
+    border-radius:4px;
+  }
+  .select-arrow{
+    position:absolute; right:10px; top:28%;
+    transform:translateY(-50%); pointer-events:none; font-size:16px; color:#333;
+  }
+
+  ::placeholder{ color:#999; font-family:'Teachers',sans-serif; font-size:14px; }
+
+  .form-input:focus,.form-select:focus,.form-textarea:focus{
+    outline:none; border-color:#2B4167; box-shadow:0 0 0 2px rgba(44,62,112,.2);
+  }
+
+  /* Hide honeypot field */
+  .hp{ position:absolute; left:-9999px; }
+
+  /* Actions row */
+  .form-actions{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    margin-top: 16px;
+    justify-content:center; 
+    flex-wrap:wrap;
+  }
+
+  /* Send button */
+  .btn-submit{
+    appearance:none;
+    border:0;
+    border-radius:999px;
+    background:#ffffff;
+    color:#2B4167;                /* matches your brand navy */
+    font-weight:700;
+    letter-spacing:.04em;
+    padding: 10px 26px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.15);
+    cursor:pointer;
+    transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  }
+
+  .btn-submit:hover{ transform: translateY(-1px); box-shadow: 0 8px 16px rgba(0,0,0,.18); }
+  .btn-submit:active{ transform: translateY(0); box-shadow: 0 4px 10px rgba(0,0,0,.14); }
+  .btn-submit:disabled{ opacity:.6; cursor:not-allowed; }
+
+  /* Status text */
+  .form-status{
+    margin:0;
+    color:#fff;
+    font-size: .95rem;
+    opacity:.9;
+  }
+
+  /* 2K UHD tune */
+  @media (min-width:2560px) and (max-width:3839px) {
+    .btn-submit{
+      margin-top: 2vh;
+    }
+  }
+
+  /* ====== 1080p tune ====== */
+  @media (max-width:1920px){
+    .site-header__title{ font-size:64px; }
+    .contact-form-card{ padding:40px 0; }
+    .contact-info-card{ width:400px; height:400px; transform:translate(-15%,-50%); }
+    .info-card__heading{ font-size:36px !important; }
+    .form-card__heading{ font-size:40px !important; }
+    .contact-form-wrapper{ margin-left:20vw; }
+  }
+
+  /* =========================================================
+    TABLET & PHONE
+    - stack vertically inside the dark card
+    - show "LET’S TALK" above icon row
+    - icons only (links still clickable)
+    - form below, centered
+    ========================================================= */
+  @media (max-width:1200px){
+    .contact-container{
+      margin-top: clamp(48px, 6vh, 72px);
+      padding-bottom: clamp(28px, 6vh, 60px);
+    }
+
+    /* make the main card a vertical stack */
+    .contact-form-card{
+      height:auto;
+      padding: clamp(22px, 4vw, 36px) clamp(14px, 3vw, 24px) clamp(26px, 5vw, 44px);
+      display:flex; flex-direction:column; align-items:center; gap: clamp(12px, 2.6vw, 20px);
+      width: 76%;
+    }
+
+    /* remove box & title, convert to a simple icon row */
+    .info-card__heading{ display:none !important; }
+    .contact-info-card{
+      position:static !important; transform:none !important;
+      width:auto; height:auto; padding:0; margin:0;
+      background:transparent !important; box-shadow:none !important;
+      max-width:720px;
+    }
+
+    /* LET'S TALK above the icons */
+    .contact-info-card::before{
+      content:"LET’S TALK";
+      display:block;
+      text-align:center;
+      font-family:"Tektur",sans-serif;
+      font-weight:800; letter-spacing:.08em; color:#fff;
+      font-size: clamp(28px, 5.4vw, 40px);
+      margin: 0 auto clamp(12px, 2.4vw, 18px);
+    }
+
+    /* icon row */
+    .info-card__list{
+      display:flex; justify-content:center; align-items:center;
+      gap: clamp(12px, 2.6vw, 20px);
+      margin:0 auto; padding:0; list-style:none;
+    }
+    .info-card__list li{
+      margin-top: 3vh;
+      position:relative;
+      width: clamp(64px, 9.8vw, 88px);
+      height: clamp(64px, 9.8vw, 88px);
+      border-radius:16px;
+      background:#B3B3B3;
+      display:grid; align-items:center; justify-content:center; place-items:center;
+      overflow:hidden;
+    }
+    .info-card__icon {
+      margin:0;        /* remove desktop spacing */
+      width:auto !important;      /* let the glyph size itself */
+      line-height:1;              /* no extra vertical space */
+      text-align:center;
+      font-size: clamp(32px, 8vw, 40px);
+      color: #fff;
+    }
+
+    /* make the whole tile clickable, hide link text */
+    .info-card__list a{
+      position:absolute; inset:0;
+      text-indent:-9999px; overflow:hidden;
+    }
+
+    /* form below the icons */
+    .form-card__heading{ display:none !important; }  /* heading is now above icons */
+    .contact-form-wrapper{
+      /* centered and narrower than before */
+      max-width: clamp(340px, 50vw, 560px);
+      margin: 0 auto;   /* ensure centered */
+    }
+
+    .floating-word{
+      font-size: clamp(18px, 3.8vw, 28px);   /* scale down a bit */
+      z-index: 0;
+    }
+
+    /* move the top-right one to the bottom-right */
+    .floating-word.top-right{
+      right: clamp(16px, 4vw, 36px);
+    }
+
+    /* keep the other at bottom-left (adjust spacing/tilt) */
+    .floating-word.bottom-left{
+      left: clamp(8px, 2vw, 16px);
+      bottom: clamp(200px, 20vh, 240px);
+      transform: rotate(-20deg);
+    }
+  }
+
+  /* phones: slightly tighter */
+  @media (max-width:640px){
+    .contact-container{
+      margin-top: clamp(32px, 4vh, 64px);
+    }
+
+    .contact-form-wrapper{
+      max-width: clamp(300px, 57vw, 440px);
+    }
+    .contact-form-card{
+      padding: 20px 12px 28px;
+      width: 90%;
+    }
+    .contact-info-card::before{
+      font-size: clamp(24px, 7vw, 32px);
+      margin-bottom: 10px;
+    }
+    .info-card__list li{
+      width: clamp(56px, 17vw, 80px);
+      height: clamp(56px, 17vw, 80px);
+      border-radius:14px;
+    }
+    .floating-word{ 
+      display: none !important;
+    }
+  }
+
+  /* ================= 4K upscale (unchanged) ================= */
+  @media (min-width:3840px){
+    html{ font-size:120%; }
+    ::placeholder{ font-size:22px; color:#999; }
+    .site-header{ height:400px; }
+    .site-header__title{ font-size:140px; }
+    .contact-container{ max-width:3200px; }
+    .contact-form-card{ max-width:1800px; padding:120px 0; height:1000px; }
+    .contact-info-card{
+      width:800px; height:800px; transform:translate(-28%,-50%);
+      box-shadow:20px 20px 10px rgba(0,0,0,.25);
+    }
+    .info-card__heading{ font-size:80px !important; margin-bottom:60px; }
+    .info-card__icon{ font-size:52px; }
+    .info-card__list{ margin-bottom:144px; margin-left:40px; }
+    .info-card__list a{ font-size:32px; margin-left:40px; }
+    .contact-form-wrapper{ max-width:800px; margin-left:30vw; margin-top:-80px; }
+    .form-card__heading{ font-size:88px !important; margin-bottom:80px; }
+    .form-input,.form-select,.form-textarea{ font-size:20px; height:70px; margin-bottom:60px; }
+    .form-textarea{ height:300px; }
+    .select-arrow{ font-size:24px; }
+    .contact-form-wrapper{ margin-left:20vw; }
+    .floating-word{ font-size:84px; }
+    .floating-word.top-right{ top:80px; right:300px; transform:rotate(22deg); }
+    .floating-word.bottom-left{ bottom:0; left:160px; transform:rotate(-20deg); }
+  }
